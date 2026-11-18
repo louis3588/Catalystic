@@ -1,4 +1,6 @@
-﻿namespace CatalyticBackend.Models;
+﻿using System;
+
+namespace CatalyticBackend.Models;
 
 //User model
 public class User

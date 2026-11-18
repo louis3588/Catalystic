@@ -1,4 +1,6 @@
-﻿namespace CatalyticBackend.Service;
+﻿using System;
+
+namespace CatalyticBackend.Service;
 
 public class UserProfile
 {

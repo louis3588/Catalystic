@@ -5,7 +5,7 @@ namespace CatalyticBackend.Data;
 
 public class CatalysticDbContext : DbContext
 {
-    public CatalysticDbContext(DbContextOptions<CatalysticDbContext> options)
+    public CatalysticDbContext(DbContextOptions<CatalysticDbContext> options) : base(options)
     {
         
     }
