@@ -21,6 +21,19 @@ public class CatalysticDbContext : DbContext
             entity.Property(e => e.FirstName)
                 .IsRequired()
                 .HasMaxLength(64);
+            
+            entity.Property(e => e.Email)
+                .IsRequired()
+                .HasMaxLength(256);
+
+            entity.Property(e => e.PhoneNumber)
+                .IsRequired()
+                .HasMaxLength(16);
+
+            entity.Property(e => e.City)
+                .IsRequired()
+                .HasMaxLength(60);
         });
+        
     }
 }
