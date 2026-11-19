@@ -1,7 +1,7 @@
-﻿using CatalyticBackend.Models;
+using CatalysticBackend.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CatalyticBackend.Data;
+namespace CatalysticBackend.Data;
 
 public class CatalysticDbContext : DbContext
 {
@@ -11,6 +11,7 @@ public class CatalysticDbContext : DbContext
     }
     
     public DbSet<User> Users => Set<User>();
+    public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -32,8 +33,25 @@ public class CatalysticDbContext : DbContext
 
             entity.Property(e => e.City)
                 .IsRequired()
-                .HasMaxLength(60);
+                .HasMaxLength(128);
+        });
+
+        modelBuilder.Entity<BlogPost>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Title)
+                .IsRequired()
+                .HasMaxLength(128);
+
+            entity.Property(e => e.Content)
+                .IsRequired()
+                .HasMaxLength(8192);
+            
         });
         
+        
+        
+
     }
 }

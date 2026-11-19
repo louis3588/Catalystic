@@ -1,6 +1,6 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalyticBackend", "CatalyticBackend.csproj", "{832B7ADD-3778-4C18-94C8-BB979CD6848B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalysticBackend", "CatalysticBackend.csproj", "{832B7ADD-3778-4C18-94C8-BB979CD6848B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
