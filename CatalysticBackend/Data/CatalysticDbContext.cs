@@ -19,6 +19,11 @@ public class CatalysticDbContext : DbContext
         {
             entity.HasKey(e => e.Id);
 
+            entity.Property(e => e.ConfirmationTokenHash)
+                .HasColumnName("ComfirmationTokenHash");
+
+            entity.Property(e => e.Role).HasMaxLength(16);
+
             entity.Property(e => e.FirstName)
                 .IsRequired()
                 .HasMaxLength(64);
@@ -49,8 +54,6 @@ public class CatalysticDbContext : DbContext
                 .HasMaxLength(8192);
             
         });
-        
-        
         
 
     }

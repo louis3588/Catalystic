@@ -5,3 +5,6 @@
 /CatalysticBackend/bin/
 /CatalysticBackend/obj/
 /docs/*.md
+/CatalysticBackend.Tests/bin/
+/CatalysticBackend.Tests/obj/
+/CatalysticBackend/docs/
