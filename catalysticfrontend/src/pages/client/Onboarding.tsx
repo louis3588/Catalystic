@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { sendRequest } from "../api";
+import { sendRequest } from "../../api";
 
 export default function Onboarding() {
   const [token, setToken] = useState("");
@@ -57,8 +57,8 @@ export default function Onboarding() {
         <h1>Set up your account</h1>
         {complete ? (
           <div role="status">
-            <p>Your account is ready. The client portal is coming soon.</p>
-            <Link to="/">Return to the homepage</Link>
+            <p>Your account is ready.</p>
+            <Link to="/client">Sign in to your client portal</Link>
           </div>
         ) : (
           <form className="enquiry-form" onSubmit={submit}>

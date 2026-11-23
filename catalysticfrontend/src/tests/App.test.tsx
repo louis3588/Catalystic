@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
-import App from "./App";
+import App from "../App";
 
 beforeEach(() => {
   window.history.pushState({}, "", "/");
@@ -112,7 +112,8 @@ test("an administrator can see new enquiries and sign out", async () => {
     .mockResolvedValueOnce({ ok: true } as Response);
 
   render(<App />);
-  expect(await screen.findByText(/new enquiries in the latest 100: 1/i)).toBeInTheDocument();
+  expect(await screen.findByRole("heading", { name: /hello daniel/i })).toBeInTheDocument();
+  expect(screen.getByText("1")).toBeInTheDocument();
   expect(screen.getByRole("link", { name: /reply to visitor@example.com/i })).toHaveAttribute("href", expect.stringContaining("mailto:"));
   fireEvent.click(screen.getByRole("button", { name: /sign out/i }));
   expect(await screen.findByRole("heading", { name: /administrator sign in/i })).toBeInTheDocument();
