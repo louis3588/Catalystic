@@ -1,9 +1,9 @@
-﻿
-using CatalyticBackend.Data;
-using CatalyticBackend.Models;
-using CatalyticBackend.Service.DTOs;
 
-namespace CatalyticBackend.Service;
+using CatalysticBackend.Data;
+using CatalysticBackend.Models;
+using CatalysticBackend.Service.DTOs;
+
+namespace CatalysticBackend.Service;
 
 public class ProfileService
 {

@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using CatalyticBackend.Data;
+using CatalysticBackend.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
-DotNetEnv.Env.Load();
+DotNetEnv.Env.NoClobber().Load();
 var connectionString =
     $"Host={Environment.GetEnvironmentVariable("PGHOST")};" +
     $"Database={Environment.GetEnvironmentVariable("PGDATABASE")};" +
@@ -22,15 +22,13 @@ builder.Services.AddDbContext<CatalysticDbContext>(option =>
     option.UseNpgsql(connectionString);
 });
 
-builder.Services.AddOpenApi();
-
 builder.Services.AddOpenApi("v1", options =>
 {
     options.AddDocumentTransformer((document, context, cancellationToken) =>
     {
         document.Info = new OpenApiInfo
         {
-            Title = "Catalytic",
+            Title = "Asistym API",
             Version = "v1"
         };
         return Task.CompletedTask;
@@ -40,10 +38,14 @@ builder.Services.AddOpenApi("v1", options =>
 var app = builder.Build();
 
 
-app.UseSwaggerUI(options =>
+if (app.Environment.IsDevelopment())
 {
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-});
+    app.MapOpenApi();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("../openapi/v1.json", "Asistym API v1");
+    });
+}
 app.UseHttpsRedirection();
 app.Run();
 

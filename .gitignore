@@ -1,3 +1,10 @@
 /CatalyticBackend/.env
 /CatalyticBackend/bin/
 /CatalyticBackend/obj
+/CatalysticBackend/.env
+/CatalysticBackend/bin/
+/CatalysticBackend/obj/
+/CatalysticBackend.Tests/bin/
+/CatalysticBackend.Tests/obj/
+/CatalysticBackend/docs/
+/docs/*.md

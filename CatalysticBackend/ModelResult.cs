@@ -1,4 +1,4 @@
-﻿namespace CatalyticBackend;
+namespace CatalysticBackend;
 
 public class ModelResult<T>
 {

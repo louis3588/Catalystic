@@ -1,0 +1,68 @@
+name: Build and test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backend-build:
+    name: Build backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - run: dotnet restore CatalysticBackend/CatalysticBackend.csproj
+      - run: dotnet build CatalysticBackend/CatalysticBackend.csproj --configuration Release --no-restore
+
+  backend-test:
+    name: Test backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - run: dotnet restore CatalysticBackend.Tests/CatalysticBackend.Tests.csproj
+      - run: dotnet test CatalysticBackend.Tests/CatalysticBackend.Tests.csproj --configuration Release --no-restore
+
+  frontend-build:
+    name: Build frontend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: catalysticfrontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: catalysticfrontend/package-lock.json
+      - run: npm ci
+      - run: npm run build
+
+  frontend-test:
+    name: Test frontend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: catalysticfrontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: catalysticfrontend/package-lock.json
+      - run: npm ci
+      - run: npm test -- --watch=false --runInBand
+        env:
+          CI: true

@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace CatalyticBackend.Service.DTOs;
+namespace CatalysticBackend.Service.DTOs;
 
 public class UserProfile
 {

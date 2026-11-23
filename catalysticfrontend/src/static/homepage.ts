@@ -2,7 +2,5 @@
 
 export default function Homepage() {
 
-    const []
-
-    return()
+    return null;
 }

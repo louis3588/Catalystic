@@ -1,7 +1,7 @@
-﻿using CatalyticBackend.Models;
+using CatalysticBackend.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CatalyticBackend.Data;
+namespace CatalysticBackend.Data;
 
 public class CatalysticDbContext : DbContext
 {
