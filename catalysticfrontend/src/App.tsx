@@ -8,6 +8,9 @@ import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
 import Shop from "./pages/Shop";
 import NotFound from "./pages/NotFound";
+import AdminEnquiries from "./pages/AdminEnquiries";
+import AdminClients from "./pages/AdminClients";
+import Onboarding from "./pages/Onboarding";
 import "./App.css";
 
 function RouteChange() {
@@ -36,6 +39,10 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/admin/enquiries" element={<AdminEnquiries />} />
+          <Route path="/admin" element={<AdminEnquiries />} />
+          <Route path="/admin/clients" element={<AdminClients />} />
+          <Route path="/onboarding" element={<Onboarding />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

@@ -1,53 +1,59 @@
-import { Link } from "react-router-dom";
+import { FormEvent, useState } from "react";
 import PageIntro from "../components/PageIntro";
+import { sendRequest } from "../api";
 
 function Contact() {
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    setState("sending");
+
+    try {
+      const response = await sendRequest("/api/enquiries", "POST", {
+        name: data.get("name"),
+        email: data.get("email"),
+        contactPreference: "Email",
+        goals: data.get("goals"),
+        message: data.get("message"),
+        consent: data.has("consent"),
+        website: data.get("website"),
+      });
+
+      if (!response.ok) throw new Error("Submission failed");
+      form.reset();
+      setState("sent");
+    } catch {
+      setState("error");
+    }
+  }
+
   return (
     <>
-      <PageIntro
-        eyebrow="Get in touch"
-        title="Let’s start a conversation."
-        description="Every journey begins somewhere. This is a space to talk about what you’d like to work towards."
-      />
+      <PageIntro eyebrow="Get in touch" title="Let’s start a conversation." description="Tell us a little about what you would like to work towards." />
       <section className="section">
         <div className="container content-grid">
           <div>
-            <span className="eyebrow">
-              <span aria-hidden="true" />
-              Your next step
-            </span>
-            <h2>
-              No perfect words
-              <br />
-              <em>required.</em>
-            </h2>
-            <p className="muted">
-              You don’t need a complete plan to reach out. Start with what’s on
-              your mind.
-            </p>
+            <h2>No perfect words <em>required.</em></h2>
+            <p className="muted">Your enquiry will be reviewed by the practitioner, who can contact you by email. Please avoid sharing sensitive personal or medical details at this stage.</p>
           </div>
-          <div className="notice large-notice">
-            <span className="notice-icon" aria-hidden="true">
-              ✳
-            </span>
-            <h2>Contact form coming soon.</h2>
-            <p>
-              We’re preparing a private enquiry form so your message can reach
-              the practitioner directly. Please check back soon.
-            </p>
-            <p>
-              For your privacy, please don’t share sensitive personal
-              information until the enquiry service is available.
-            </p>
-            <Link className="text-link" to="/services">
-              Explore services
-            </Link>
-          </div>
+          <form className="enquiry-form" onSubmit={submit}>
+            <label>Name <input name="name" autoComplete="name" maxLength={120} required /></label>
+            <label>Email address <input name="email" type="email" autoComplete="email" maxLength={254} required /></label>
+            <p>Preferred contact method: Email</p>
+            <label>What would you like to achieve? <span>(optional)</span><textarea name="goals" maxLength={1000} rows={3} /></label>
+            <label>Message <textarea name="message" maxLength={2000} rows={5} required /></label>
+            <div className="honeypot" aria-hidden="true"><label>Website <input name="website" tabIndex={-1} autoComplete="off" /></label></div>
+            <label className="check-label"><input type="checkbox" name="consent" required /> I agree to Asistym using these details to respond to my enquiry.</label>
+            <button className="button book-button" type="submit" disabled={state === "sending"}>{state === "sending" ? "Sending…" : "Send enquiry"}</button>
+            <p role="status" aria-live="polite">{state === "sent" ? "Thank you. Your enquiry has been received." : state === "error" ? "Your enquiry could not be sent. Please try again later." : ""}</p>
+          </form>
         </div>
       </section>
     </>
   );
 }
-
 
 export default Contact;

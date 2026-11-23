@@ -4,32 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="user profile provision init">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="static pages initialised">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/.idea/.idea.CatalysticBackend/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/.idea/.idea.CatalysticBackend/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/CatalysticBackend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/CatalysticBackend.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend.Tests/auth-integration.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend.Tests/auth-integration.cjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CatalysticBackend/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Models/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CatalysticBackend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Service/ProfileService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Service/ProfileService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalyticBackend/.idea/.idea.CatalyticBackend/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalyticBackend/.idea/.idea.CatalyticBackend/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalyticBackend/.idea/.idea.CatalyticBackend/.idea/projectSettingsUpdater.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalyticBackend/.idea/.idea.CatalyticBackend/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalyticBackend/.idea/.idea.CatalyticBackend/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalyticBackend/Service/DTOs/UserProfile.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalyticBackend/Service/ProfileService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Service/DTOs/UserProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Service/DTOs/UserProfile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.test.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/static/homepage.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/Contact.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +45,65 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000000000002" />
+      <entry key="S2" value="1.0001214517097667" />
+      <entry key="S5" value="1.046435944319956" />
+      <entry key="S10" value="1.746860067500227" />
+      <entry key="S30" value="11.202499671364764" />
+      <entry key="S60" value="27.292696897854466" />
+      <entry key="M2" value="47.857804643429915" />
+      <entry key="M5" value="70.0403371680215" />
+      <entry key="M10" value="80.12206996543583" />
+      <entry key="M15" value="83.86549147597106" />
+      <entry key="M30" value="87.82039034107183" />
+      <entry key="H1" value="89.88124565153198" />
+      <entry key="H2" value="90.93327481563522" />
+      <entry key="H4" value="91.46478638129946" />
+      <entry key="D1" value="91.91053944370195" />
+      <entry key="W1" value="91.98721357944122" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.9138314502294005" />
+      <entry key="MS500" value="0.9821395952633917" />
+      <entry key="S2" value="0.9956254261082869" />
+      <entry key="S5" value="1.0445388148973462" />
+      <entry key="S10" value="1.7452492049443642" />
+      <entry key="S30" value="11.198758820345482" />
+      <entry key="S60" value="27.287305901102243" />
+      <entry key="M2" value="47.8523611075399" />
+      <entry key="M5" value="70.03682026424943" />
+      <entry key="M10" value="80.11998830630529" />
+      <entry key="M15" value="83.86402204177864" />
+      <entry key="M30" value="87.81961203704948" />
+      <entry key="H1" value="89.88084505534495" />
+      <entry key="H2" value="90.93307158525046" />
+      <entry key="H4" value="91.46468402394626" />
+      <entry key="D1" value="91.91052228028522" />
+      <entry key="W1" value="91.98721112497086" />
+    </decayedShown>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7,
   &quot;fromUser&quot;: false
@@ -76,6 +121,7 @@
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;development&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
@@ -111,7 +157,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-WS-262.10968.77" />
+        <option value="bundled-js-predefined-d6986cc7102b-56aff7b04f6f-JavaScript-WS-263.7307.202" />
       </set>
     </attachedChunks>
   </component>
@@ -131,6 +177,13 @@
       <workItem from="1795188399389" duration="9663000" />
       <workItem from="1795269835383" duration="9226000" />
       <workItem from="1795281045795" duration="1785000" />
+      <workItem from="1795354682447" duration="1037000" />
+      <workItem from="1795358343560" duration="10110000" />
+      <workItem from="1795429937434" duration="22000" />
+      <workItem from="1795431203221" duration="300000" />
+      <workItem from="1795431601856" duration="48000" />
+      <workItem from="1795432071131" duration="203000" />
+      <workItem from="1795433112395" duration="1371000" />
     </task>
     <task id="LOCAL-00001" summary="user profile provision init">
       <option name="closed" value="true" />
@@ -140,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1795050797802</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="static pages initialised">
+      <option name="closed" value="true" />
+      <created>1795354818165</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1795354818165</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +209,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="user profile provision init" />
-    <option name="LAST_COMMIT_MESSAGE" value="user profile provision init" />
+    <MESSAGE value="static pages initialised" />
+    <option name="LAST_COMMIT_MESSAGE" value="static pages initialised" />
   </component>
 </project>

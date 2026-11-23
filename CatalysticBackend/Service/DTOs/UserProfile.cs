@@ -11,6 +11,6 @@ public class UserProfile
     public string Email { get; set; }= string.Empty;
     public string PhoneNumber { get; set; }= string.Empty;
     public string City { get; set; }= string.Empty;
-    public DateTime DateOfBirth { get; set; }= DateTime.MinValue;
+    public DateTime? DateOfBirth { get; set; }
     public string ProfileImageUrl { get; set; }= string.Empty;
 }

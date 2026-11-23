@@ -20,7 +20,7 @@ public class User
     public Guid SessionVersion { get; set; }
     public string PhoneNumber { get; set; }= string.Empty;
     public string City { get; set; }= string.Empty;
-    public DateTime DateOfBirth { get; set; }= DateTime.MinValue;
+    public DateTime? DateOfBirth { get; set; }
     public string ProfileImageUrl { get; set; }= string.Empty;
     //If email is not confirmed they are not full user and have no capabilities
     // TODO(2): Implement email confirmation system

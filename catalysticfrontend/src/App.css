@@ -871,6 +871,74 @@ em {
     padding: 25px;
   }
 }
+
+.enquiry-form, .enquiry-item {
+  display: grid;
+  gap: 18px;
+  padding: 30px;
+  border: 1px solid #d5e3d1;
+  border-radius: 14px;
+  background: #eff6ec;
+  color: #172519;
+}
+
+.enquiry-form label, .enquiry-item label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.enquiry-form input:not([type="checkbox"]), .enquiry-form textarea, .enquiry-item select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #778b77;
+  border-radius: 4px;
+  background: white;
+  color: #172519;
+}
+
+.enquiry-form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #778b77;
+  border-radius: 4px;
+  background: white;
+  color: #172519;
+}
+
+.enquiry-form .check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 400;
+}
+
+.enquiry-form button { justify-self: start; }
+.enquiry-form button:disabled { opacity: 0.65; cursor: wait; }
+.enquiry-item { margin: 20px 0; }
+.client-access-button { color: #193b20; border-color: #547958; }
+.invitation-result { display: grid; gap: 12px; }
+.invitation-result label { display: grid; gap: 6px; font-weight: 600; }
+.invitation-result input { width: 100%; padding: 12px; border: 1px solid #778b77; border-radius: 4px; }
+.invitation-result button { justify-self: start; }
+.admin-overview {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 30px;
+  border-radius: 14px;
+  background: #e7f1e3;
+  color: #172519;
+}
+.admin-overview span { color: #276c28; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; }
+.admin-overview h2 { margin: 12px 0; font-size: 28px; }
+.admin-overview p { margin-bottom: 8px; }
+.admin-overview .button-outline { color: #193b20; border-color: #547958; }
+@media (max-width: 600px) { .admin-overview { flex-direction: column; } }
+.enquiry-item h2 { font-size: 24px; margin: 0; }
+.enquiry-message { white-space: pre-wrap; }
+.honeypot { position: absolute; left: -10000px; }
 @media (max-width: 420px) {
   .pillar-grid {
     grid-template-columns: 1fr;
