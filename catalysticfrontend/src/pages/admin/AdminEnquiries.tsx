@@ -1,5 +1,5 @@
 import { FormEvent, useCallback, useEffect, useState } from "react";
-import { sendRequest } from "../api";
+import { sendRequest } from "../../api";
 import { Link } from "react-router-dom";
 
 type Enquiry = { id: number; name: string; email: string; goals: string; message: string; status: string; createdAt: string };
@@ -91,7 +91,7 @@ export default function AdminEnquiries() {
 
   return (
     <section className="section"><div className="container">
-      <h1>Enquiries</h1>
+      {view !== "ready" && <h1>Administrator portal</h1>}
       {view === "loading" && <p>Loading enquiries…</p>}
       {view === "error" && <p role="alert">Unable to load enquiries. Check your connection and permissions.</p>}
       {view === "login" && !bootstrap && <form className="enquiry-form" onSubmit={login}>
@@ -109,16 +109,21 @@ export default function AdminEnquiries() {
         <button type="button" onClick={() => { setBootstrap(null); setFeedback(""); }}>Back to sign in</button>
       </form>}
       <p role="status">{feedback}</p>
-      {view === "ready" && <div className="admin-overview">
-        <div>
-          <span>ADMIN PORTAL</span>
-          <h2>Enquiry inbox</h2>
-          <p>New enquiries in the latest 100: {items.filter(item => item.status === "New").length}.</p>
-          <p>Use the email link on an enquiry to respond through your email application.</p>
-          <Link to="/admin/clients">View clients</Link>
+      {view === "ready" && <>
+        <div className="admin-hero">
+          <div>
+            <span className="admin-eyebrow">ADMIN PORTAL</span>
+            <h1>Hello Daniel</h1>
+            <p>Welcome back. Here’s what needs your attention.</p>
+          </div>
+          <button className="button button-outline" type="button" onClick={() => void logout()}>Sign out</button>
         </div>
-        <button className="button button-outline" type="button" onClick={() => void logout()}>Sign out</button>
-      </div>}
+        <div className="admin-summary">
+          <div className="admin-summary-card"><span>New enquiries</span><strong>{items.filter(item => item.status === "New").length}</strong><small>Within the latest 100 enquiries</small></div>
+          <div className="admin-summary-card"><span>Client management</span><strong>Your clients</strong><Link to="/admin/clients">View clients →</Link></div>
+        </div>
+        <div className="admin-inbox-heading"><div><span className="admin-eyebrow">YOUR INBOX</span><h2>Enquiries</h2><p>Review enquiries and reply using your email application.</p></div></div>
+      </>}
       {view === "ready" && (items.length === 0 ? <p>No enquiries yet.</p> : items.map(item => (
         <article className="enquiry-item" key={item.id}>
           <h2>{item.name}</h2>

@@ -61,6 +61,13 @@ function Header() {
           >
             Explore the shop
           </Link>
+          <Link
+              className="button button-small"
+              to="/client"
+              onClick={() => setMenuOpen(false)}
+          >
+            Client Login
+          </Link>
         </nav>
       </div>
     </header>

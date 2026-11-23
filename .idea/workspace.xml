@@ -4,15 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="directory restructure and main.yml">
+    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="static pages initialised">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend.Tests/CatalysticBackend.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend.Tests/CatalysticBackend.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Models/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Service/ProfileService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Service/ProfileService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalyticBackend/Service/ProfileService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.test.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/components/SiteLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/components/SiteLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/About.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/AdminClients.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/AdminEnquiries.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Blog.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Contact.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Home.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/NotFound.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Onboarding.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Services.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Shop.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/setupTests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/setupTests.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,23 +67,23 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0032395294761847" />
-      <entry key="MS500" value="1.3217411802104806" />
-      <entry key="S2" value="2.6418455456719365" />
-      <entry key="S5" value="6.8878647606418735" />
-      <entry key="S10" value="14.175008789911612" />
-      <entry key="S30" value="34.39670102189543" />
-      <entry key="S60" value="49.452752994657445" />
-      <entry key="M2" value="61.751720752539654" />
-      <entry key="M5" value="74.7190186581653" />
-      <entry key="M10" value="98.19156729380975" />
-      <entry key="M15" value="123.27964522251607" />
-      <entry key="M30" value="175.90098675930625" />
-      <entry key="H1" value="222.10452087588175" />
-      <entry key="H2" value="253.08943687460496" />
-      <entry key="H4" value="271.08502621486105" />
-      <entry key="D1" value="287.53870637757933" />
-      <entry key="W1" value="290.5019270981758" />
+      <entry key="MS100" value="1.0000000012772632" />
+      <entry key="MS500" value="1.0224181802578707" />
+      <entry key="S2" value="1.7797665294826677" />
+      <entry key="S5" value="2.902164169692907" />
+      <entry key="S10" value="3.6998809238394204" />
+      <entry key="S30" value="4.553652416593035" />
+      <entry key="S60" value="5.222554921066587" />
+      <entry key="M2" value="7.59052047741212" />
+      <entry key="M5" value="19.697832719287323" />
+      <entry key="M10" value="33.096179648633544" />
+      <entry key="M15" value="40.07184708502821" />
+      <entry key="M30" value="50.96609262596607" />
+      <entry key="H1" value="92.06316522469044" />
+      <entry key="H2" value="222.03155973383318" />
+      <entry key="H4" value="404.67803326311224" />
+      <entry key="D1" value="703.4852626736615" />
+      <entry key="W1" value="776.1201112907598" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -94,23 +105,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9231686256426932" />
-      <entry key="MS500" value="1.299929801253748" />
-      <entry key="S2" value="2.630416084516898" />
-      <entry key="S5" value="6.873985245018477" />
-      <entry key="S10" value="14.157824696441907" />
-      <entry key="S30" value="34.37808099833421" />
-      <entry key="S60" value="49.438120026364466" />
-      <entry key="M2" value="61.74223759336236" />
-      <entry key="M5" value="74.71432853589285" />
-      <entry key="M10" value="98.18837329056645" />
-      <entry key="M15" value="123.27689036601451" />
-      <entry key="M30" value="175.89894139243452" />
-      <entry key="H1" value="222.1032017623961" />
-      <entry key="H2" value="253.08867743381327" />
-      <entry key="H4" value="271.0846174217392" />
-      <entry key="D1" value="287.5386338090321" />
-      <entry key="W1" value="290.50191661702183" />
+      <entry key="MS100" value="0.9075191564448261" />
+      <entry key="MS500" value="1.002696994250175" />
+      <entry key="S2" value="1.7694595304709164" />
+      <entry key="S5" value="2.8902869154206723" />
+      <entry key="S10" value="3.6894353993117126" />
+      <entry key="S30" value="4.547712361426346" />
+      <entry key="S60" value="5.217423697621313" />
+      <entry key="M2" value="7.585959377276106" />
+      <entry key="M5" value="19.69466553388003" />
+      <entry key="M10" value="33.09412417078528" />
+      <entry key="M15" value="40.07033223529147" />
+      <entry key="M30" value="50.96523378478319" />
+      <entry key="H1" value="92.06257792365105" />
+      <entry key="H2" value="222.03101994109988" />
+      <entry key="H4" value="404.67758963871177" />
+      <entry key="D1" value="703.4851411693058" />
+      <entry key="W1" value="776.1200922776088" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -122,28 +133,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.updates&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\Code\\JavaScript\\Catalystic\\catalysticfrontend\\node_modules\\typescript\\lib&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "development",
+    "ignore.virus.scanning.warn.message": "true",
+    "javascript.preferred.runtime.type.id": "node",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "settings.editor.selected.configurable": "com.intellij.mcpserver.settings",
+    "ts.external.directory.path": "D:\\Code\\JavaScript\\Catalystic\\catalysticfrontend\\node_modules\\typescript\\lib"
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -158,8 +170,18 @@
       <recent name="D:\Code\JavaScript\Catalystic\CatalysticBackend\docs" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/catalysticfrontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
       <method v="2" />
     </configuration>
   </component>
@@ -193,9 +215,16 @@
       <workItem from="1795431601856" duration="48000" />
       <workItem from="1795432071131" duration="203000" />
       <workItem from="1795433112395" duration="1371000" />
-      <workItem from="1795436403741" duration="871000" />
-      <workItem from="1795437318228" duration="3346000" />
-      <workItem from="1795441334088" duration="622000" />
+      <workItem from="1795442296677" duration="1804000" />
+      <workItem from="1795444125799" duration="267000" />
+      <workItem from="1795444534075" duration="322000" />
+      <workItem from="1795444897717" duration="856000" />
+      <workItem from="1795445843074" duration="402000" />
+      <workItem from="1795446449555" duration="9000" />
+      <workItem from="1795446691560" duration="1777000" />
+      <workItem from="1795448528679" duration="223000" />
+      <workItem from="1795448781150" duration="8101000" />
+      <workItem from="1795463902448" duration="403000" />
     </task>
     <task id="LOCAL-00001" summary="user profile provision init">
       <option name="closed" value="true" />
@@ -213,15 +242,7 @@
       <option name="project" value="LOCAL" />
       <updated>1795354818165</updated>
     </task>
-    <task id="LOCAL-00003" summary="directory restructure and main.yml">
-      <option name="closed" value="true" />
-      <created>1795437106674</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1795437106674</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +262,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="user profile provision init" />
     <MESSAGE value="static pages initialised" />
-    <MESSAGE value="directory restructure and main.yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="directory restructure and main.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="static pages initialised" />
   </component>
 </project>

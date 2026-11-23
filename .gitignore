@@ -4,7 +4,8 @@
 /CatalysticBackend/.env
 /CatalysticBackend/bin/
 /CatalysticBackend/obj/
+/docs/*.md
+/docs/*.txt
 /CatalysticBackend.Tests/bin/
 /CatalysticBackend.Tests/obj/
 /CatalysticBackend/docs/
-/docs/*.md

@@ -958,7 +958,7 @@ em {
   }
 }
 
-/* A continuous brand backdrop frames the editorial content surface. */
+
 body {
   background:
     radial-gradient(ellipse at 7% 6%, rgba(12, 128, 2, 0.7), transparent 36%),
@@ -1347,6 +1347,106 @@ body {
 @keyframes orbit-breathe {
   0%, 100% { opacity: 0.55; }
   50% { opacity: 1; }
+}
+
+.client-portal-eyebrow {
+  color: #28772c;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.client-portal-intro,
+.client-portal-toolbar p {
+  color: #536157;
+}
+
+.client-login {
+  max-width: 540px;
+  margin-top: 2rem;
+}
+
+.client-portal-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.client-portal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.client-portal-list {
+  display: grid;
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.client-portal-card {
+  padding: 1.4rem;
+  border: 1px solid #d5e3d1;
+  border-radius: 14px;
+  background: #f2f7ef;
+  overflow-wrap: anywhere;
+}
+
+.client-portal-card h3 {
+  margin: 0.5rem 0;
+}
+
+.client-portal-meta {
+  color: #405844;
+  font-size: 0.875rem;
+}
+
+.client-portal-content {
+  white-space: pre-wrap;
+}
+
+.main-nav > .button + .button {
+  margin-left: -20px;
+}
+
+.contact-grid {
+  grid-template-columns: minmax(0, 35fr) minmax(0, 65fr);
+}
+
+.admin-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border-radius: 22px;
+  color: white;
+  background: linear-gradient(120deg, #195d27, #101c14 78%);
+}
+
+.admin-hero h1 { margin: 0.5rem 0; color: white; }
+.admin-hero p { color: #dcebdd; margin-bottom: 0; }
+.admin-hero .button-outline { color: white; border-color: #a9c5aa; }
+.admin-eyebrow { color: #34792d; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; }
+.admin-hero .admin-eyebrow { color: #c5edba; }
+.admin-summary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0 3rem; }
+.admin-summary-card { display: grid; gap: 0.6rem; padding: 1.5rem; border: 1px solid #d5e3d1; border-radius: 16px; background: #f2f7ef; }
+.admin-summary-card span, .admin-summary-card small, .admin-inbox-heading p { color: #536157; }
+.admin-summary-card strong { color: #172519; font-size: 1.7rem; }
+.admin-summary-card a { color: #276c28; font-weight: 700; }
+.admin-inbox-heading { margin-bottom: 1.5rem; }
+.admin-inbox-heading h2 { margin: 0.4rem 0; }
+
+@media (max-width: 700px) {
+  .client-portal-grid { grid-template-columns: 1fr; }
+  .contact-grid, .admin-summary { grid-template-columns: 1fr; }
+  .main-nav > .button + .button { margin-left: 0; }
+  .admin-hero { flex-direction: column; }
 }
 
 @media (max-width: 700px) {

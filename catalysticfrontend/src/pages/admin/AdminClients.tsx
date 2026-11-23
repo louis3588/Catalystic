@@ -1,6 +1,6 @@
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { sendRequest } from "../api";
+import { sendRequest } from "../../api";
 
 type Client = {
   id: number;
