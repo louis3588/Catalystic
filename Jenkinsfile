@@ -9,6 +9,7 @@ pipeline {
 
     parameters {
         string(name: 'GITHUB_REPOSITORY', defaultValue: 'louis3588/Catalystic', description: 'GitHub repository in owner/repository format')
+        booleanParam(name: 'FORCE_PUBLISH', defaultValue: false, description: 'Republish the current run after changing report configuration')
     }
 
     triggers { cron('H/15 * * * *') }
@@ -85,7 +86,7 @@ PY'''
                 script {
                     def runId = readFile('reports/run-id.txt').trim()
                     def previous = currentBuild.previousSuccessfulBuild
-                    env.REPORT_ALREADY_PUBLISHED = (previous?.description == "GitHub Actions run ${runId}").toString()
+                    env.REPORT_ALREADY_PUBLISHED = (!params.FORCE_PUBLISH && previous?.description == "GitHub Actions run ${runId}").toString()
                     currentBuild.description = "GitHub Actions run ${runId}"
                 }
             }
@@ -94,7 +95,8 @@ PY'''
             when { expression { env.REPORT_ALREADY_PUBLISHED != 'true' } }
             steps {
                 junit testResults: 'reports/**/junit.xml', allowEmptyResults: false
-                recordCoverage tools: [[parser: 'COBERTURA', pattern: 'reports/**/coverage.cobertura.xml'], [parser: 'COBERTURA', pattern: 'reports/**/cobertura-coverage.xml']], sourceCodeRetention: 'LAST_BUILD', sourceDirectories: [[path: 'reports/coverage-sources/CatalysticBackend'], [path: 'reports/coverage-sources/catalysticfrontend']]
+                recordCoverage id: 'backend-coverage', name: 'Backend coverage', tools: [[parser: 'COBERTURA', pattern: 'reports/**/coverage.cobertura.xml']], sourceCodeRetention: 'LAST_BUILD', sourceDirectories: [[path: 'reports/coverage-sources/CatalysticBackend']]
+                recordCoverage id: 'frontend-coverage', name: 'Frontend coverage', tools: [[parser: 'COBERTURA', pattern: 'reports/**/cobertura-coverage.xml']], sourceCodeRetention: 'LAST_BUILD', sourceDirectories: [[path: 'reports/coverage-sources/catalysticfrontend']]
             }
         }
     }
