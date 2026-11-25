@@ -73,12 +73,25 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
-      - run: dotnet test CatalysticBackend.Tests/CatalysticBackend.Tests.csproj --configuration Release --collect:"XPlat Code Coverage" --logger:"junit;LogFilePath=${{ github.workspace }}/reports/backend/junit.xml" --results-directory reports/backend
+      - run: dotnet test CatalysticBackend.Tests/CatalysticBackend.Tests.csproj --configuration Release --collect:"XPlat Code Coverage" --settings coverage.runsettings --logger:"junit;LogFilePath=${{ github.workspace }}/reports/backend/junit.xml" --results-directory reports/backend
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: backend-reports
           path: reports/backend/
+          if-no-files-found: error
+          retention-days: 14
+
+  coverage-sources:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/prepare-coverage-sources.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: coverage-sources
+          path: reports/source-files/
           if-no-files-found: error
           retention-days: 14
 
