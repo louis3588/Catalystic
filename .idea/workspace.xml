@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="jenkins config and test coverage reports&#10;&#10;# Conflicts:&#10;#&#9;.github/workflows/main.yml">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/main.yml" afterDir="false" />
+    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="source level jenkins coverage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
     </list>
@@ -72,23 +71,23 @@
 }]]></component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.00200832037957" />
-      <entry key="MS500" value="1.4801042502594037" />
-      <entry key="S2" value="2.8306184108793944" />
-      <entry key="S5" value="3.4546384692959067" />
-      <entry key="S10" value="3.7122705341848277" />
-      <entry key="S30" value="4.00686586637302" />
-      <entry key="S60" value="5.7183080254374365" />
-      <entry key="M2" value="12.126463097295481" />
-      <entry key="M5" value="32.69212358104173" />
-      <entry key="M10" value="69.2750859105059" />
-      <entry key="M15" value="111.44437666720077" />
-      <entry key="M30" value="226.1241022928659" />
-      <entry key="H1" value="371.90179051855523" />
-      <entry key="H2" value="567.1201363413336" />
-      <entry key="H4" value="803.2817205295634" />
-      <entry key="D1" value="1200.0705336286976" />
-      <entry key="W1" value="1300.1104747266863" />
+      <entry key="MS100" value="1.0033101840333423" />
+      <entry key="MS500" value="1.5781944975447033" />
+      <entry key="S2" value="3.2883882265339235" />
+      <entry key="S5" value="4.174425213221928" />
+      <entry key="S10" value="4.558533097020563" />
+      <entry key="S30" value="4.845904845960575" />
+      <entry key="S60" value="4.926600450193392" />
+      <entry key="M2" value="5.082570514340521" />
+      <entry key="M5" value="8.021274378581264" />
+      <entry key="M10" value="24.05027161991104" />
+      <entry key="M15" value="50.974619406354094" />
+      <entry key="M30" value="149.0588828436155" />
+      <entry key="H1" value="302.6993226862587" />
+      <entry key="H2" value="514.1298425712339" />
+      <entry key="H4" value="768.5173327253224" />
+      <entry key="D1" value="1201.6423940697427" />
+      <entry key="W1" value="1312.1792037456732" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -110,23 +109,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9156044609425555" />
-      <entry key="MS500" value="1.4507537527020604" />
-      <entry key="S2" value="2.815287566812475" />
-      <entry key="S5" value="3.447042185138426" />
-      <entry key="S10" value="3.708170829578426" />
-      <entry key="S30" value="4.005377162038406" />
-      <entry key="S60" value="5.717177373017324" />
-      <entry key="M2" value="12.12517811985276" />
-      <entry key="M5" value="32.69064111886857" />
-      <entry key="M10" value="69.27325435132948" />
-      <entry key="M15" value="111.44216260030095" />
-      <entry key="M30" value="226.12153508524642" />
-      <entry key="H1" value="371.8995939896523" />
-      <entry key="H2" value="567.1185246828435" />
-      <entry key="H4" value="803.2806448160005" />
-      <entry key="D1" value="1200.0702839586124" />
-      <entry key="W1" value="1300.110436589656" />
+      <entry key="MS100" value="0.9105237979115652" />
+      <entry key="MS500" value="1.5480701673647714" />
+      <entry key="S2" value="3.272246663545809" />
+      <entry key="S5" value="4.166092442074191" />
+      <entry key="S10" value="4.553953017643783" />
+      <entry key="S30" value="4.844274186242315" />
+      <entry key="S60" value="4.9257696251492655" />
+      <entry key="M2" value="5.082124407083269" />
+      <entry key="M5" value="8.020873674033053" />
+      <entry key="M10" value="24.049569909536697" />
+      <entry key="M15" value="50.97355482477872" />
+      <entry key="M30" value="149.05716214505026" />
+      <entry key="H1" value="302.6975183395937" />
+      <entry key="H2" value="514.1283703383758" />
+      <entry key="H4" value="768.5162964737946" />
+      <entry key="D1" value="1201.642142618359" />
+      <entry key="W1" value="1312.179165039813" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -145,7 +144,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "#19 on devops",
+    "git-widget-placeholder": "devops",
     "ignore.virus.scanning.warn.message": "true",
     "javascript.preferred.runtime.type.id": "node",
     "node.js.detected.package.eslint": "true",
@@ -236,7 +235,7 @@
       <workItem from="1795528664384" duration="223000" />
       <workItem from="1795529224712" duration="1423000" />
       <workItem from="1795600142596" duration="153000" />
-      <workItem from="1795600324348" duration="3411000" />
+      <workItem from="1795600324348" duration="4711000" />
     </task>
     <task id="LOCAL-00001" summary="user profile provision init">
       <option name="closed" value="true" />
@@ -270,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1795602303657</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="source level jenkins coverage">
+      <option name="closed" value="true" />
+      <created>1795603803131</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1795603803131</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,6 +299,7 @@
     <MESSAGE value="static pages initialised" />
     <MESSAGE value="client to admin messaging" />
     <MESSAGE value="jenkins config and test coverage reports" />
-    <option name="LAST_COMMIT_MESSAGE" value="jenkins config and test coverage reports" />
+    <MESSAGE value="source level jenkins coverage" />
+    <option name="LAST_COMMIT_MESSAGE" value="source level jenkins coverage" />
   </component>
 </project>
