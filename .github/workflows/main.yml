@@ -1,0 +1,100 @@
+name: Build, test and coverage
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet build CatalysticBackend/CatalysticBackend.csproj --configuration Release
+
+  backend-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet test CatalysticBackend.Tests/CatalysticBackend.Tests.csproj --configuration Release
+
+  frontend-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: catalysticfrontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: catalysticfrontend/package-lock.json
+      - run: npm ci
+      - run: npm run build
+
+  frontend-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: catalysticfrontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: catalysticfrontend/package-lock.json
+      - run: npm ci
+      - run: npm test -- --watchAll=false --runInBand
+
+  backend-coverage:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet test CatalysticBackend.Tests/CatalysticBackend.Tests.csproj --configuration Release --collect:"XPlat Code Coverage" --logger:"junit;LogFilePath=${{ github.workspace }}/reports/backend/junit.xml" --results-directory reports/backend
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: backend-reports
+          path: reports/backend/
+          if-no-files-found: error
+          retention-days: 14
+
+  frontend-coverage:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: catalysticfrontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: catalysticfrontend/package-lock.json
+      - run: npm ci
+      - run: npm test -- --watchAll=false --runInBand --coverage --coveragePathIgnorePatterns=/src/tests/ --coverageReporters=cobertura --coverageReporters=text --reporters=default --reporters=jest-junit
+        env:
+          JEST_JUNIT_OUTPUT_DIR: coverage
+          JEST_JUNIT_OUTPUT_NAME: junit.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: frontend-reports
+          path: catalysticfrontend/coverage/
+          if-no-files-found: error
+          retention-days: 14
