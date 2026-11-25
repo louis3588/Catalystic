@@ -4,26 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="static pages initialised">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="split reports bug fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalyticBackend/Service/ProfileService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend.Tests/auth-integration.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend.Tests/auth-integration.cjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Domain/WellnessScores.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Domain/WellnessScores.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Models/BlogPost.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Models/BlogPost.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.test.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/components/SiteLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/components/SiteLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/About.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/AdminClients.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/AdminEnquiries.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Blog.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Contact.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Home.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/NotFound.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Onboarding.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Services.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Shop.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/setupTests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/setupTests.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/AdminEnquiries.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/AdminEnquiries.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/static/Blog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/static/Blog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/tests/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/tests/App.test.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,61 +61,61 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000012772632" />
-      <entry key="MS500" value="1.0224181802578707" />
-      <entry key="S2" value="1.7797665294826677" />
-      <entry key="S5" value="2.902164169692907" />
-      <entry key="S10" value="3.6998809238394204" />
-      <entry key="S30" value="4.553652416593035" />
-      <entry key="S60" value="5.222554921066587" />
-      <entry key="M2" value="7.59052047741212" />
-      <entry key="M5" value="19.697832719287323" />
-      <entry key="M10" value="33.096179648633544" />
-      <entry key="M15" value="40.07184708502821" />
-      <entry key="M30" value="50.96609262596607" />
-      <entry key="H1" value="92.06316522469044" />
-      <entry key="H2" value="222.03155973383318" />
-      <entry key="H4" value="404.67803326311224" />
-      <entry key="D1" value="703.4852626736615" />
-      <entry key="W1" value="776.1201112907598" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.000000000009316" />
+      <entry key="S10" value="1.0000030522403438" />
+      <entry key="S30" value="1.0145154570779031" />
+      <entry key="S60" value="1.1310344245945523" />
+      <entry key="M2" value="1.8523214781345736" />
+      <entry key="M5" value="11.518130603172064" />
+      <entry key="M10" value="44.01141120833336" />
+      <entry key="M15" value="78.63056013561503" />
+      <entry key="M30" value="153.3791761803435" />
+      <entry key="H1" value="240.77999516024215" />
+      <entry key="H2" value="387.4373563830872" />
+      <entry key="H4" value="590.93115117153" />
+      <entry key="D1" value="951.1981241443939" />
+      <entry key="W1" value="1043.4654285331837" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="0.0" />
-      <entry key="S30" value="0.0" />
-      <entry key="S60" value="0.0" />
-      <entry key="M2" value="0.0" />
-      <entry key="M5" value="0.0" />
-      <entry key="M10" value="0.0" />
-      <entry key="M15" value="0.0" />
-      <entry key="M30" value="0.0" />
-      <entry key="H1" value="0.0" />
-      <entry key="H2" value="0.0" />
-      <entry key="H4" value="0.0" />
-      <entry key="D1" value="0.0" />
-      <entry key="W1" value="0.0" />
+      <entry key="S2" value="1.591229941356997E-151" />
+      <entry key="S5" value="4.793946431533384E-61" />
+      <entry key="S10" value="6.923833065241661E-31" />
+      <entry key="S30" value="8.84671825090395E-11" />
+      <entry key="S60" value="9.405699469419558E-6" />
+      <entry key="M2" value="0.0030668712834776035" />
+      <entry key="M5" value="0.09878209205319713" />
+      <entry key="M10" value="0.3142961852348785" />
+      <entry key="M15" value="0.4622668386821255" />
+      <entry key="M30" value="0.6799020802160595" />
+      <entry key="H1" value="0.824561750395966" />
+      <entry key="H2" value="0.9080538257151748" />
+      <entry key="H4" value="0.952918582941468" />
+      <entry key="D1" value="0.9919945801939848" />
+      <entry key="W1" value="0.9988524253642049" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9075191564448261" />
-      <entry key="MS500" value="1.002696994250175" />
-      <entry key="S2" value="1.7694595304709164" />
-      <entry key="S5" value="2.8902869154206723" />
-      <entry key="S10" value="3.6894353993117126" />
-      <entry key="S30" value="4.547712361426346" />
-      <entry key="S60" value="5.217423697621313" />
-      <entry key="M2" value="7.585959377276106" />
-      <entry key="M5" value="19.69466553388003" />
-      <entry key="M10" value="33.09412417078528" />
-      <entry key="M15" value="40.07033223529147" />
-      <entry key="M30" value="50.96523378478319" />
-      <entry key="H1" value="92.06257792365105" />
-      <entry key="H2" value="222.03101994109988" />
-      <entry key="H4" value="404.67758963871177" />
-      <entry key="D1" value="703.4851411693058" />
-      <entry key="W1" value="776.1200922776088" />
+      <entry key="MS100" value="0.8827029962906549" />
+      <entry key="MS500" value="0.9753554615276419" />
+      <entry key="S2" value="0.9937810933225548" />
+      <entry key="S5" value="0.9975077809068134" />
+      <entry key="S10" value="0.9987561600410698" />
+      <entry key="S30" value="1.014091275063116" />
+      <entry key="S60" value="1.1307984969709597" />
+      <entry key="M2" value="1.8550949948268536" />
+      <entry key="M5" value="11.615295634635899" />
+      <entry key="M10" value="44.323033652690164" />
+      <entry key="M15" value="79.09002023719152" />
+      <entry key="M30" value="154.05672191137407" />
+      <entry key="H1" value="241.60290258588284" />
+      <entry key="H2" value="388.344258806023" />
+      <entry key="H4" value="591.88328730391" />
+      <entry key="D1" value="952.1899290015788" />
+      <entry key="W1" value="1044.4642517028524" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -152,6 +146,7 @@
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "npm.start.executor": "Run",
+    "npm.start:all.executor": "Run",
     "settings.editor.selected.configurable": "com.intellij.mcpserver.settings",
     "ts.external.directory.path": "D:\\Code\\JavaScript\\Catalystic\\catalysticfrontend\\node_modules\\typescript\\lib"
   }
@@ -170,7 +165,7 @@
       <recent name="D:\Code\JavaScript\Catalystic\CatalysticBackend\docs" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.start:all">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
@@ -179,6 +174,16 @@
       <command value="run" />
       <scripts>
         <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start:all" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/catalysticfrontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:all" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -225,6 +230,11 @@
       <workItem from="1795448528679" duration="223000" />
       <workItem from="1795448781150" duration="8101000" />
       <workItem from="1795463902448" duration="403000" />
+      <workItem from="1795608791192" duration="125000" />
+      <workItem from="1795609087738" duration="55000" />
+      <workItem from="1795615575708" duration="1000" />
+      <workItem from="1795615619685" duration="29000" />
+      <workItem from="1795619432154" duration="1909000" />
     </task>
     <task id="LOCAL-00001" summary="user profile provision init">
       <option name="closed" value="true" />

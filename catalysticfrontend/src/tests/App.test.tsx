@@ -20,7 +20,8 @@ test("the homepage introduces the programme and seven pillars", () => {
   ).toBeInTheDocument();
 });
 
-test("public navigation opens placeholder pages and closes the mobile menu", () => {
+test("public navigation opens the blog and closes the mobile menu", () => {
+  window.fetch = jest.fn().mockResolvedValue({ ok: true, json: async () => [] });
   render(<App />);
 
   fireEvent.click(screen.getByRole("button", { name: /menu/i }));
@@ -34,7 +35,7 @@ test("public navigation opens placeholder pages and closes the mobile menu", () 
     ).getByRole("link", { name: "Blog" }),
   );
   expect(
-    screen.getByRole("heading", { name: /blog is taking shape/i }),
+    screen.getByRole("heading", { name: /ideas worth taking with you/i }),
   ).toBeInTheDocument();
   expect(screen.getByRole("button", { name: /menu/i })).toHaveAttribute(
     "aria-expanded",
@@ -181,6 +182,7 @@ test.each([
   ["/shop", /resources for the road ahead/i],
   ["/missing-page", /let’s get you back on track/i],
 ])("%s renders its public page", (path, heading) => {
+  if (path === "/blog") window.fetch = jest.fn().mockResolvedValue({ ok: true, json: async () => [] });
   window.history.pushState({}, "", path);
   render(<App />);
 

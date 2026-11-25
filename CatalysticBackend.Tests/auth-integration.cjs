@@ -84,7 +84,7 @@ function client() {
                 if (token) headers['X-CSRF-TOKEN'] = token;
                 if (cookies.size) headers.Cookie = [...cookies].map(([key, value]) => `${key}=${value}`).join('; ');
                 const request = https.request({ hostname: 'localhost', port: webPort, path: route, method,
-                    rejectUnauthorized: false, headers }, response => {
+                    rejectUnauthorized: false, agent: false, headers }, response => {
                     for (const cookie of response.headers['set-cookie'] || []) {
                         const pair = cookie.split(';', 1)[0];
                         const split = pair.indexOf('=');
@@ -216,7 +216,19 @@ function client() {
         const owner = client();
         const ownerToken = await owner.token();
         assert.equal((await owner.request('POST', '/api/auth/login', { email: clientOne.email, password: changedPassword }, ownerToken)).status, 200);
-        assert.equal((await owner.request('GET', '/api/admin/clients/')).status, 403);
+        const blog = { title: 'Test article', content: '<script>text only</script>', isPublished: true, releaseTime: null };
+        assert.equal((await client().request('POST', '/api/admin/blog/', blog)).status, 401);
+        assert.equal((await owner.request('POST', '/api/admin/blog/', blog, ownerToken)).status, 403);
+        assert.equal((await afterChange.request('POST', '/api/admin/blog/', blog)).status, 400);
+        const createdBlog = await afterChange.request('POST', '/api/admin/blog/', blog, adminToken);
+        assert.equal(createdBlog.status, 200);
+        const blogId = JSON.parse(createdBlog.body).id;
+        assert.equal((await client().request('GET', `/api/blog/${blogId}`)).status, 200);
+        assert.equal((await afterChange.request('PUT', `/api/admin/blog/${blogId}`, { ...blog, isPublished: false }, adminToken)).status, 200);
+        assert.equal((await client().request('GET', `/api/blog/${blogId}`)).status, 404);
+        assert.equal((await afterChange.request('DELETE', `/api/admin/blog/${blogId}`, {}, adminToken)).status, 204);
+        const forbiddenDirectory = await owner.request('GET', '/api/admin/clients/');
+        assert.equal(forbiddenDirectory.status, 403, forbiddenDirectory.body);
         assert.equal((await owner.request('GET', `/api/admin/clients/${clientTwo.id}`)).status, 403);
         assert.equal((await owner.request('POST', `/api/admin/clients/${clientTwo.id}/private-notes`, { content: 'Forbidden' }, ownerToken)).status, 403);
         const ownerWork = await owner.request('GET', '/api/client/work/');

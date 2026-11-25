@@ -12,6 +12,8 @@ public sealed record WellnessScores
     public decimal Intellectual { get; }
     public decimal Habitual { get; }
     public decimal Financial { get; }
+
+    // personal independence rating from the admin
     public decimal Independence { get; }
 
     public decimal Total => Physical + Dietary + Social + Emotional + Intellectual + Habitual + Financial + Independence;

@@ -68,6 +68,9 @@ namespace CatalysticBackend.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("boolean");
+
                     b.Property<DateTime>("ReleaseTime")
                         .HasColumnType("timestamp with time zone");
 
@@ -80,6 +83,8 @@ namespace CatalysticBackend.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IsPublished", "ReleaseTime");
 
                     b.ToTable("BlogPosts");
                 });

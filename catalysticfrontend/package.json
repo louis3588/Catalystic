@@ -21,12 +21,15 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:all": "concurrently --kill-others --names backend,frontend \"node scripts/start-backend.js\" \"npm start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "jest": {
-    "testMatch": ["<rootDir>/src/tests/**/*.{test,spec}.{js,jsx,ts,tsx}"]
+    "testMatch": [
+      "<rootDir>/src/tests/**/*.{test,spec}.{js,jsx,ts,tsx}"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "tailwindcss": "^3.4.19"
   }
 }

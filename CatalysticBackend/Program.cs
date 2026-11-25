@@ -32,6 +32,8 @@ builder.Services.AddDbContext<CatalysticDbContext>(option =>
 
 
 builder.Services.AddScoped<SessionValidation>();
+builder.Services.AddScoped<BlogService>();
+builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddAntiforgery(options =>
 {
@@ -110,6 +112,7 @@ app.MapAccountEndpoints();
 app.MapEnquiryEndpoints();
 app.MapClientWorkEndpoints();
 app.MapInvitationEndpoints();
+app.MapBlogEndpoints();
 app.Run();
 
 public partial class Program;

@@ -100,6 +100,7 @@ public class CatalysticDbContext : DbContext
             entity.Property(e => e.Content)
                 .IsRequired()
                 .HasMaxLength(8192);
+            entity.HasIndex(e => new { e.IsPublished, e.ReleaseTime });
             
         });
         
