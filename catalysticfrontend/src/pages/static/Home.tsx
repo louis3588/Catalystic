@@ -8,7 +8,7 @@ import {
   UsersRound,
   Utensils,
 } from "lucide-react";
-import SectionHeading from "../components/SectionHeading";
+import SectionHeading from "../../components/SectionHeading";
 
 const pillars = [
   {

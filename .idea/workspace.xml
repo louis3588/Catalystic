@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="directory restructure and main.yml">
+    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="client to admin messaging">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CatalysticBackend.Tests/CatalysticBackend.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend.Tests/CatalysticBackend.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Models/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CatalysticBackend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Service/ProfileService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Service/ProfileService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/setupProxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/setupProxy.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -56,23 +54,23 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0032395294761847" />
-      <entry key="MS500" value="1.3217411802104806" />
-      <entry key="S2" value="2.6418455456719365" />
-      <entry key="S5" value="6.8878647606418735" />
-      <entry key="S10" value="14.175008789911612" />
-      <entry key="S30" value="34.39670102189543" />
-      <entry key="S60" value="49.452752994657445" />
-      <entry key="M2" value="61.751720752539654" />
-      <entry key="M5" value="74.7190186581653" />
-      <entry key="M10" value="98.19156729380975" />
-      <entry key="M15" value="123.27964522251607" />
-      <entry key="M30" value="175.90098675930625" />
-      <entry key="H1" value="222.10452087588175" />
-      <entry key="H2" value="253.08943687460496" />
-      <entry key="H4" value="271.08502621486105" />
-      <entry key="D1" value="287.53870637757933" />
-      <entry key="W1" value="290.5019270981758" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000095192099194" />
+      <entry key="S2" value="1.129969845128536" />
+      <entry key="S5" value="2.259162599465169" />
+      <entry key="S10" value="5.002846492784641" />
+      <entry key="S30" value="14.328518381281304" />
+      <entry key="S60" value="21.422996792356756" />
+      <entry key="M2" value="27.272309864239826" />
+      <entry key="M5" value="38.05004861348719" />
+      <entry key="M10" value="78.85322003091886" />
+      <entry key="M15" value="128.71788474553284" />
+      <entry key="M30" value="239.86887100588447" />
+      <entry key="H1" value="362.20837131713995" />
+      <entry key="H2" value="535.7762618052436" />
+      <entry key="H4" value="752.8073092412308" />
+      <entry key="D1" value="1115.342513943995" />
+      <entry key="W1" value="1205.8528196136813" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -94,23 +92,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9231686256426932" />
-      <entry key="MS500" value="1.299929801253748" />
-      <entry key="S2" value="2.630416084516898" />
-      <entry key="S5" value="6.873985245018477" />
-      <entry key="S10" value="14.157824696441907" />
-      <entry key="S30" value="34.37808099833421" />
-      <entry key="S60" value="49.438120026364466" />
-      <entry key="M2" value="61.74223759336236" />
-      <entry key="M5" value="74.71432853589285" />
-      <entry key="M10" value="98.18837329056645" />
-      <entry key="M15" value="123.27689036601451" />
-      <entry key="M30" value="175.89894139243452" />
-      <entry key="H1" value="222.1032017623961" />
-      <entry key="H2" value="253.08867743381327" />
-      <entry key="H4" value="271.0846174217392" />
-      <entry key="D1" value="287.5386338090321" />
-      <entry key="W1" value="290.50191661702183" />
+      <entry key="MS100" value="0.8766057213160351" />
+      <entry key="MS500" value="0.974013564813443" />
+      <entry key="S2" value="1.1225976058314897" />
+      <entry key="S5" value="2.2533038086000583" />
+      <entry key="S10" value="4.9960550352129465" />
+      <entry key="S30" value="14.320813678255377" />
+      <entry key="S60" value="21.41672683556021" />
+      <entry key="M2" value="27.26806686245744" />
+      <entry key="M5" value="38.04737955753246" />
+      <entry key="M10" value="78.85019181406066" />
+      <entry key="M15" value="128.7144989967348" />
+      <entry key="M30" value="239.86565243555702" />
+      <entry key="H1" value="362.2059866568066" />
+      <entry key="H2" value="535.7746344501406" />
+      <entry key="H4" value="752.8062582114509" />
+      <entry key="D1" value="1115.3422763689298" />
+      <entry key="W1" value="1205.8527834914441" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -129,7 +127,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;devops&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -140,7 +138,8 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.updates&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.air.settings.ai.providers&quot;,
     &quot;ts.external.directory.path&quot;: &quot;D:\\Code\\JavaScript\\Catalystic\\catalysticfrontend\\node_modules\\typescript\\lib&quot;
   }
 }</component>
@@ -158,8 +157,18 @@
       <recent name="D:\Code\JavaScript\Catalystic\CatalysticBackend\docs" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/catalysticfrontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
       <method v="2" />
     </configuration>
   </component>
@@ -193,9 +202,23 @@
       <workItem from="1795431601856" duration="48000" />
       <workItem from="1795432071131" duration="203000" />
       <workItem from="1795433112395" duration="1371000" />
-      <workItem from="1795436403741" duration="871000" />
-      <workItem from="1795437318228" duration="3346000" />
-      <workItem from="1795441334088" duration="622000" />
+      <workItem from="1795442296677" duration="1804000" />
+      <workItem from="1795444125799" duration="267000" />
+      <workItem from="1795444534075" duration="322000" />
+      <workItem from="1795444897717" duration="856000" />
+      <workItem from="1795445843074" duration="402000" />
+      <workItem from="1795446449555" duration="9000" />
+      <workItem from="1795446691560" duration="1777000" />
+      <workItem from="1795448528679" duration="223000" />
+      <workItem from="1795448781150" duration="8101000" />
+      <workItem from="1795463902448" duration="1209000" />
+      <workItem from="1795525707871" duration="556000" />
+      <workItem from="1795526693471" duration="274000" />
+      <workItem from="1795528571647" duration="66000" />
+      <workItem from="1795528664384" duration="223000" />
+      <workItem from="1795529224712" duration="1423000" />
+      <workItem from="1795600142596" duration="153000" />
+      <workItem from="1795600324348" duration="1915000" />
     </task>
     <task id="LOCAL-00001" summary="user profile provision init">
       <option name="closed" value="true" />
@@ -213,13 +236,13 @@
       <option name="project" value="LOCAL" />
       <updated>1795354818165</updated>
     </task>
-    <task id="LOCAL-00003" summary="directory restructure and main.yml">
+    <task id="LOCAL-00003" summary="client to admin messaging">
       <option name="closed" value="true" />
-      <created>1795437106674</created>
+      <created>1795464634644</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1795437106674</updated>
+      <updated>1795464634646</updated>
     </task>
     <option name="localTasksCounter" value="4" />
     <servers />
@@ -241,7 +264,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="user profile provision init" />
     <MESSAGE value="static pages initialised" />
-    <MESSAGE value="directory restructure and main.yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="directory restructure and main.yml" />
+    <MESSAGE value="client to admin messaging" />
+    <option name="LAST_COMMIT_MESSAGE" value="client to admin messaging" />
   </component>
 </project>

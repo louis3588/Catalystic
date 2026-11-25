@@ -1,16 +1,17 @@
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Header, Footer } from "./components/SiteLayout";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Contact from "./pages/Contact";
-import Blog from "./pages/Blog";
-import Shop from "./pages/Shop";
-import NotFound from "./pages/NotFound";
-import AdminEnquiries from "./pages/AdminEnquiries";
-import AdminClients from "./pages/AdminClients";
-import Onboarding from "./pages/Onboarding";
+import Home from "./pages/static/Home";
+import About from "./pages/static/About";
+import Services from "./pages/static/Services";
+import Contact from "./pages/static/Contact";
+import Blog from "./pages/static/Blog";
+import Shop from "./pages/static/Shop";
+import NotFound from "./pages/static/NotFound";
+import AdminEnquiries from "./pages/admin/AdminEnquiries";
+import AdminClients from "./pages/admin/AdminClients";
+import Onboarding from "./pages/client/Onboarding";
+import ClientPortal from "./pages/client/ClientPortal";
 import "./App.css";
 
 function RouteChange() {
@@ -43,6 +44,7 @@ function App() {
           <Route path="/admin" element={<AdminEnquiries />} />
           <Route path="/admin/clients" element={<AdminClients />} />
           <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/client" element={<ClientPortal />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
