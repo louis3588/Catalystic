@@ -4,26 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="static pages initialised">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="client to admin messaging">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalyticBackend/Service/ProfileService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend.Tests/CatalysticBackend.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend.Tests/CatalysticBackend.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.test.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/components/SiteLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/components/SiteLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/About.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/AdminClients.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/AdminEnquiries.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Blog.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Contact.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Home.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/NotFound.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Onboarding.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Services.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Shop.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/setupTests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/setupTests.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/setupProxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/setupProxy.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,23 +54,23 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000012772632" />
-      <entry key="MS500" value="1.0224181802578707" />
-      <entry key="S2" value="1.7797665294826677" />
-      <entry key="S5" value="2.902164169692907" />
-      <entry key="S10" value="3.6998809238394204" />
-      <entry key="S30" value="4.553652416593035" />
-      <entry key="S60" value="5.222554921066587" />
-      <entry key="M2" value="7.59052047741212" />
-      <entry key="M5" value="19.697832719287323" />
-      <entry key="M10" value="33.096179648633544" />
-      <entry key="M15" value="40.07184708502821" />
-      <entry key="M30" value="50.96609262596607" />
-      <entry key="H1" value="92.06316522469044" />
-      <entry key="H2" value="222.03155973383318" />
-      <entry key="H4" value="404.67803326311224" />
-      <entry key="D1" value="703.4852626736615" />
-      <entry key="W1" value="776.1201112907598" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000095192099194" />
+      <entry key="S2" value="1.129969845128536" />
+      <entry key="S5" value="2.259162599465169" />
+      <entry key="S10" value="5.002846492784641" />
+      <entry key="S30" value="14.328518381281304" />
+      <entry key="S60" value="21.422996792356756" />
+      <entry key="M2" value="27.272309864239826" />
+      <entry key="M5" value="38.05004861348719" />
+      <entry key="M10" value="78.85322003091886" />
+      <entry key="M15" value="128.71788474553284" />
+      <entry key="M30" value="239.86887100588447" />
+      <entry key="H1" value="362.20837131713995" />
+      <entry key="H2" value="535.7762618052436" />
+      <entry key="H4" value="752.8073092412308" />
+      <entry key="D1" value="1115.342513943995" />
+      <entry key="W1" value="1205.8528196136813" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -105,23 +92,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9075191564448261" />
-      <entry key="MS500" value="1.002696994250175" />
-      <entry key="S2" value="1.7694595304709164" />
-      <entry key="S5" value="2.8902869154206723" />
-      <entry key="S10" value="3.6894353993117126" />
-      <entry key="S30" value="4.547712361426346" />
-      <entry key="S60" value="5.217423697621313" />
-      <entry key="M2" value="7.585959377276106" />
-      <entry key="M5" value="19.69466553388003" />
-      <entry key="M10" value="33.09412417078528" />
-      <entry key="M15" value="40.07033223529147" />
-      <entry key="M30" value="50.96523378478319" />
-      <entry key="H1" value="92.06257792365105" />
-      <entry key="H2" value="222.03101994109988" />
-      <entry key="H4" value="404.67758963871177" />
-      <entry key="D1" value="703.4851411693058" />
-      <entry key="W1" value="776.1200922776088" />
+      <entry key="MS100" value="0.8766057213160351" />
+      <entry key="MS500" value="0.974013564813443" />
+      <entry key="S2" value="1.1225976058314897" />
+      <entry key="S5" value="2.2533038086000583" />
+      <entry key="S10" value="4.9960550352129465" />
+      <entry key="S30" value="14.320813678255377" />
+      <entry key="S60" value="21.41672683556021" />
+      <entry key="M2" value="27.26806686245744" />
+      <entry key="M5" value="38.04737955753246" />
+      <entry key="M10" value="78.85019181406066" />
+      <entry key="M15" value="128.7144989967348" />
+      <entry key="M30" value="239.86565243555702" />
+      <entry key="H1" value="362.2059866568066" />
+      <entry key="H2" value="535.7746344501406" />
+      <entry key="H4" value="752.8062582114509" />
+      <entry key="D1" value="1115.3422763689298" />
+      <entry key="W1" value="1205.8527834914441" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -133,29 +120,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "development",
-    "ignore.virus.scanning.warn.message": "true",
-    "javascript.preferred.runtime.type.id": "node",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.jshint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "settings.editor.selected.configurable": "com.intellij.mcpserver.settings",
-    "ts.external.directory.path": "D:\\Code\\JavaScript\\Catalystic\\catalysticfrontend\\node_modules\\typescript\\lib"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;devops&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.air.settings.ai.providers&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Code\\JavaScript\\Catalystic\\catalysticfrontend\\node_modules\\typescript\\lib&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -224,7 +211,14 @@
       <workItem from="1795446691560" duration="1777000" />
       <workItem from="1795448528679" duration="223000" />
       <workItem from="1795448781150" duration="8101000" />
-      <workItem from="1795463902448" duration="403000" />
+      <workItem from="1795463902448" duration="1209000" />
+      <workItem from="1795525707871" duration="556000" />
+      <workItem from="1795526693471" duration="274000" />
+      <workItem from="1795528571647" duration="66000" />
+      <workItem from="1795528664384" duration="223000" />
+      <workItem from="1795529224712" duration="1423000" />
+      <workItem from="1795600142596" duration="153000" />
+      <workItem from="1795600324348" duration="1915000" />
     </task>
     <task id="LOCAL-00001" summary="user profile provision init">
       <option name="closed" value="true" />
@@ -242,7 +236,15 @@
       <option name="project" value="LOCAL" />
       <updated>1795354818165</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="client to admin messaging">
+      <option name="closed" value="true" />
+      <created>1795464634644</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1795464634646</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,6 +264,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="user profile provision init" />
     <MESSAGE value="static pages initialised" />
-    <option name="LAST_COMMIT_MESSAGE" value="static pages initialised" />
+    <MESSAGE value="client to admin messaging" />
+    <option name="LAST_COMMIT_MESSAGE" value="client to admin messaging" />
   </component>
 </project>
