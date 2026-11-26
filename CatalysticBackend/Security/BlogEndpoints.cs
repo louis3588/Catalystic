@@ -7,9 +7,8 @@ using System.Text.RegularExpressions;
 
 namespace CatalysticBackend.Security;
 
-public static class BlogEndpoints
+public static partial class BlogEndpoints
 {
-    public record LabelInput(string? Name, string? Colour);
     public static void MapBlogEndpoints(this WebApplication app)
     {
         var publicBlog = app.MapGroup("/api/blog").AllowAnonymous();

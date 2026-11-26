@@ -7,10 +7,8 @@ using Npgsql;
 
 namespace CatalysticBackend.Security;
 
-public static class WeeklyReviewEndpoints
+public static partial class WeeklyReviewEndpoints
 {
-    public record Submit(DateOnly? NextReviewDate, decimal? Physical, decimal? Dietary, decimal? Social, decimal? Emotional, decimal? Intellectual, decimal? Habitual, decimal? Financial);
-    public record Finish(decimal? Preos);
 
     public static void MapWeeklyReviewEndpoints(this WebApplication app)
     {

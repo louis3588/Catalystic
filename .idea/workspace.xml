@@ -4,38 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="admin blog posts scheduling">
+    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="wellness assessments and blog labels modelled">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CatalysticBackend.Tests/BlogServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend.Tests/BlogServiceTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend.Tests/SessionValidationTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend.Tests/SessionValidationTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend.Tests/WellnessScoresTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend.Tests/WellnessScoresTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend.Tests/auth-integration.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend.Tests/auth-integration.cjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Domain/WellnessScores.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Domain/WellnessScores.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Models/BlogLabel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Models/BlogLabel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Models/BlogPost.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Models/BlogPost.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Models/ClientWork.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/CatalysticBackend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CatalysticBackend/Security/AccountEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Security/AccountEndpoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Security/AdminBootstrap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Security/AdminBootstrap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CatalysticBackend/Security/BlogEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Security/BlogEndpoints.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CatalysticBackend/Security/ClientWorkEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Security/ClientWorkEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Security/EnquiryEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Security/EnquiryEndpoints.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CatalysticBackend/Security/InvitationEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Security/InvitationEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Security/WeeklyReviewEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Security/WeeklyReviewEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Service/AssessmentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Service/AssessmentService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CatalysticBackend/Service/BlogService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Service/BlogService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Service/SessionValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Service/SessionValidation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/components/TaskCalendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/components/TaskCalendar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/AdminBlog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/AdminBlog.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/AdminClients.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/AdminClients.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/AdminEnquiries.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/AdminEnquiries.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/ClientAssessments.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/ClientAssessments.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/WeeklyReviews.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/WeeklyReviews.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/client/ClientPortal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/client/ClientPortal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/client/WeeklyReview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/client/WeeklyReview.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/static/Blog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/static/Blog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/tests/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/tests/App.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/tests/Blog.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/tests/Blog.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/tests/ClientAssessments.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/tests/ClientAssessments.test.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/tests/ClientPortal.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/tests/ClientPortal.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/tests/WeeklyReview.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/tests/WeeklyReview.test.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,61 +73,61 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.003520509622164" />
-      <entry key="MS500" value="1.328833601468302" />
-      <entry key="S2" value="2.541024097238274" />
-      <entry key="S5" value="4.732488513224067" />
-      <entry key="S10" value="8.050541711219484" />
-      <entry key="S30" value="21.796080205169066" />
-      <entry key="S60" value="40.064376734268116" />
-      <entry key="M2" value="71.24905908650663" />
-      <entry key="M5" value="120.05564239242358" />
-      <entry key="M10" value="149.32138407978974" />
-      <entry key="M15" value="165.7856215984778" />
-      <entry key="M30" value="216.8063337938579" />
-      <entry key="H1" value="335.7684425638859" />
-      <entry key="H2" value="544.8923438078015" />
-      <entry key="H4" value="832.1402229792288" />
-      <entry key="D1" value="1402.4940335613321" />
-      <entry key="W1" value="1562.697401847139" />
+      <entry key="MS100" value="1.0819829642216625" />
+      <entry key="MS500" value="1.7590864442425413" />
+      <entry key="S2" value="2.50952976305841" />
+      <entry key="S5" value="3.122153482589788" />
+      <entry key="S10" value="5.495491958890267" />
+      <entry key="S30" value="18.814314413787567" />
+      <entry key="S60" value="35.552533812152866" />
+      <entry key="M2" value="55.196879591431895" />
+      <entry key="M5" value="76.38565757472718" />
+      <entry key="M10" value="86.27831056904482" />
+      <entry key="M15" value="90.56408722663515" />
+      <entry key="M30" value="105.62618244288277" />
+      <entry key="H1" value="172.622094199692" />
+      <entry key="H2" value="358.29529429171197" />
+      <entry key="H4" value="679.0415412039567" />
+      <entry key="D1" value="1446.4410114947705" />
+      <entry key="W1" value="1686.1590159319928" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
-      <entry key="S10" value="9.218319090084318E-292" />
-      <entry key="S30" value="9.732339396121943E-98" />
-      <entry key="S60" value="3.119669757541961E-49" />
-      <entry key="M2" value="5.585400395264402E-25" />
-      <entry key="M5" value="1.9898563465238993E-10" />
-      <entry key="M10" value="1.4106226804230526E-5" />
-      <entry key="M15" value="5.838131973659018E-4" />
-      <entry key="M30" value="0.024162226664070162" />
-      <entry key="H1" value="0.1554420363481842" />
-      <entry key="H2" value="0.39426138074656125" />
-      <entry key="H4" value="0.6279023656163094" />
-      <entry key="D1" value="0.9253698666427794" />
-      <entry key="W1" value="0.9889809076742605" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="2.165261640661055E-183" />
+      <entry key="S60" value="4.653237196469845E-92" />
+      <entry key="M2" value="2.1571363416506295E-46" />
+      <entry key="M5" value="5.414408741774425E-19" />
+      <entry key="M10" value="7.358266604149704E-10" />
+      <entry key="M15" value="8.150489258532535E-7" />
+      <entry key="M30" value="9.028006013806441E-4" />
+      <entry key="H1" value="0.030046640434175816" />
+      <entry key="H2" value="0.1733396678033505" />
+      <entry key="H4" value="0.41634080727614026" />
+      <entry key="D1" value="0.8641215380973152" />
+      <entry key="W1" value="0.9793530076993905" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.917048602643002" />
-      <entry key="MS500" value="1.305114331025732" />
-      <entry key="S2" value="2.529824962034124" />
-      <entry key="S5" value="4.724220411923444" />
-      <entry key="S10" value="8.043644246757994" />
-      <entry key="S30" value="21.789954832980836" />
-      <entry key="S60" value="40.0585547117795" />
-      <entry key="M2" value="71.2434622056921" />
-      <entry key="M5" value="120.05154867066628" />
-      <entry key="M10" value="149.3187760708955" />
-      <entry key="M15" value="165.78425071416345" />
-      <entry key="M30" value="216.82916239111694" />
-      <entry key="H1" value="335.9227012031375" />
-      <entry key="H2" value="545.2855310985148" />
-      <entry key="H4" value="832.767269005237" />
-      <entry key="D1" value="1403.419159778926" />
-      <entry key="W1" value="1563.6863439834513" />
+      <entry key="MS100" value="1.01601395861987" />
+      <entry key="MS500" value="1.735611188269247" />
+      <entry key="S2" value="2.500544352731702" />
+      <entry key="S5" value="3.1175573116186754" />
+      <entry key="S10" value="5.491318108905675" />
+      <entry key="S30" value="18.809244185974556" />
+      <entry key="S60" value="35.54748712300944" />
+      <entry key="M2" value="55.19279716797826" />
+      <entry key="M5" value="76.38332835478687" />
+      <entry key="M10" value="86.27697983946564" />
+      <entry key="M15" value="90.563145717636" />
+      <entry key="M30" value="105.62645357798124" />
+      <entry key="H1" value="172.65144793122727" />
+      <entry key="H2" value="358.467802871974" />
+      <entry key="H4" value="679.4570788704546" />
+      <entry key="D1" value="1447.3048551651902" />
+      <entry key="W1" value="1687.1383230245872" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -254,7 +248,7 @@
       <workItem from="1795615619685" duration="29000" />
       <workItem from="1795619432154" duration="12451000" />
       <workItem from="1795681423249" duration="4902000" />
-      <workItem from="1795699763967" duration="501000" />
+      <workItem from="1795699763967" duration="6733000" />
     </task>
     <task id="LOCAL-00001" summary="user profile provision init">
       <option name="closed" value="true" />
@@ -280,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1795621618259</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="wellness assessments and blog labels modelled">
+      <option name="closed" value="true" />
+      <created>1795700428599</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1795700428599</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,6 +303,7 @@
     <MESSAGE value="user profile provision init" />
     <MESSAGE value="static pages initialised" />
     <MESSAGE value="admin blog posts scheduling" />
-    <option name="LAST_COMMIT_MESSAGE" value="admin blog posts scheduling" />
+    <MESSAGE value="wellness assessments and blog labels modelled" />
+    <option name="LAST_COMMIT_MESSAGE" value="wellness assessments and blog labels modelled" />
   </component>
 </project>

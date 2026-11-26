@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CatalysticBackend.Service;
 
-public sealed record BlogInput(string? Title, string? Content, bool IsPublished, DateTime? ReleaseTime, int[]? LabelIds = null);
-public sealed record LabelResponse(int Id, string Name, string Colour);
-public sealed record BlogResponse(int Id, string Title, string Content, bool IsPublished, DateTime ReleaseTime, DateTime CreatedAt, DateTime UpdatedAt, List<LabelResponse> Labels);
+
+
+
 
 public sealed class BlogService(CatalysticDbContext db, TimeProvider clock)
 {

@@ -65,6 +65,4 @@ public class BlogServiceTests
         Assert.NotNull(await service.GetPublicAsync(post.Id, default));
     }
 
-    [Fact]
-    public async Task
 }

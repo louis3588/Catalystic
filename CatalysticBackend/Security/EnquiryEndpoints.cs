@@ -6,10 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CatalysticBackend.Security;
 
-public static class EnquiryEndpoints
+public static partial class EnquiryEndpoints
 {
-    public record SubmitRequest(string? Name, string? Email, string? ContactPreference, string? Goals, string? Message, bool Consent, string? Website);
-    public record StatusRequest(string? Status);
 
     private static readonly string[] Statuses =
         ["New", "Under review", "Consultation requested", "Accepted", "Declined", "Converted to client", "Closed"];

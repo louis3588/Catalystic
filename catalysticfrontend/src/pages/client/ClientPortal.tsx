@@ -30,8 +30,8 @@ type View = "loading" | "login" | "ready" | "forbidden" | "error";
 
 function formatDate(value: string): string {
   return new Intl.DateTimeFormat("en-GB", {
-    day: "numeric",
-    month: "long",
+    day: "2-digit",
+    month: "2-digit",
     year: "numeric",
     timeZone: "UTC",
   }).format(new Date(value));
@@ -140,7 +140,7 @@ export default function ClientPortal() {
     <section className="section client-portal">
       <div className="container">
         <p className="client-portal-eyebrow">Your space</p>
-        <h1>Client portal</h1>
+        <h1>{view === "ready" && work ? `Welcome${work.firstName ? `, ${work.firstName}` : ""}` : "Client portal"}</h1>
         <p className="client-portal-intro">Your shared notes and next steps, all in one place.</p>
 
         {view === "loading" && <p role="status">Loading your portal…</p>}
@@ -158,7 +158,6 @@ export default function ClientPortal() {
             <label>Password <input name="password" type="password" autoComplete="current-password" required /></label>
             <button className="button book-button" disabled={busy}>{busy ? "Signing in…" : "Sign in"}</button>
             <p role="status">{feedback}</p>
-            <div className="client-quick-links"><Link to="/client/weekly-review">Start weekly review →</Link><span>Call booking is not available yet.</span></div>
           </form>
         )}
         {view === "forbidden" && (
@@ -172,15 +171,16 @@ export default function ClientPortal() {
         {view === "ready" && work && (
           <>
             <div className="client-portal-toolbar">
-              <div><h2>Welcome{work.firstName ? `, ${work.firstName}` : ""}</h2><p>Keep your focus on the steps you’ve agreed with your practitioner.</p></div>
+              <p>Keep your focus on the steps you’ve agreed with your practitioner.</p>
               <button type="button" onClick={() => void signOut()} disabled={busy}>Sign out</button>
             </div>
+            <nav className="client-quick-links" aria-label="Client shortcuts"><Link to="/client/weekly-review">Start weekly review →</Link><span>Call booking coming soon</span></nav>
             <p role="status">{feedback}</p>
             {scoresError && <p role="alert">Unable to load your score history.</p>}
             {scores && <section className="client-score-section" aria-labelledby="score-history-heading">
-              <div className="client-score-summary"><div><span>Current score</span><strong>{scores.length ? `${scores[scores.length - 1].score.toFixed(1)} / 10` : "Not yet recorded"}</strong></div><div><span>Average of earlier reviews</span><strong>{scores.length > 1 ? `${(scores.slice(0, -1).reduce((sum, item) => sum + item.score, 0) / (scores.length - 1)).toFixed(1)} / 10` : "No earlier reviews"}</strong></div></div>
+              <div className="client-score-summary"><div><span>Current score</span><strong>{scores.length ? `${scores[scores.length - 1].score.toFixed(2)} / 10` : "Not yet recorded"}</strong></div><div><span>Average of earlier reviews</span><strong>{scores.length > 1 ? `${(scores.slice(0, -1).reduce((sum, item) => sum + item.score, 0) / (scores.length - 1)).toFixed(2)} / 10` : "No earlier reviews"}</strong></div></div>
               <h2 id="score-history-heading">Your score over time</h2><p>Mean of your seven wellness pillars. These are subjective coaching indicators.</p>
-              {scores.length ? <><div className="assessment-chart"><ResponsiveContainer width="100%" height="100%"><LineChart data={scores} margin={{ top: 10, right: 14, bottom: 4, left: -20 }}><CartesianGrid stroke="#d9e6d7" strokeDasharray="3 3" /><XAxis dataKey="assessmentDate" tick={{ fontSize: 11 }} minTickGap={20} /><YAxis domain={[0, 10]} tickCount={6} /><Tooltip position={{ y: 0 }} /><Line type="linear" dataKey="score" name="Current score" stroke="#28744a" strokeWidth={2} dot={{ r: 3 }} isAnimationActive={false} /></LineChart></ResponsiveContainer></div><details><summary>View scores</summary><ul>{scores.map(item => <li key={item.assessmentDate}>{item.assessmentDate}: {item.score.toFixed(1)} / 10</li>)}</ul></details></> : <p>No assessments recorded yet.</p>}
+              {scores.length ? <div className="assessment-chart" role="img" aria-label={`Score history: ${scores.map(item => `${formatDate(item.assessmentDate)}: ${item.score.toFixed(2)} out of 10`).join(", ")}`}><ResponsiveContainer width="100%" height="100%"><LineChart data={scores} margin={{ top: 10, right: 14, bottom: 4, left: -20 }}><CartesianGrid stroke="#d9e6d7" strokeDasharray="3 3" /><XAxis dataKey="assessmentDate" tick={{ fontSize: 11 }} minTickGap={20} tickFormatter={formatDate} /><YAxis domain={[0, 10]} tickCount={6} /><Tooltip position={{ y: 0 }} labelFormatter={(value) => formatDate(String(value))} formatter={(value) => typeof value === "number" ? value.toFixed(2) : value} /><Line type="linear" dataKey="score" name="Current score" stroke="#28744a" strokeWidth={2} dot={{ r: 3 }} isAnimationActive={false} /></LineChart></ResponsiveContainer></div> : <p>No assessments recorded yet.</p>}
             </section>}
             <div className="client-portal-grid">
               <section aria-labelledby="client-tasks-heading">
@@ -192,7 +192,7 @@ export default function ClientPortal() {
                         <p className="client-portal-meta">{task.pillar} · {task.completedAt ? "Completed" : "Assigned"}</p>
                         <h3>{task.title}</h3>
                         {task.description && <p className="client-portal-content">{task.description}</p>}
-                        {task.dueAt && <p className="client-portal-meta">Due {formatDate(task.dueAt)} (UTC)</p>}
+                        {task.dueAt && <p className="client-portal-meta">Due {formatDate(task.dueAt)}</p>}
                       </li>
                     ))}
                   </ul>

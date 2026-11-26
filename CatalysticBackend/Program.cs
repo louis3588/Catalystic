@@ -118,5 +118,3 @@ app.MapAssessmentEndpoints();
 app.MapWeeklyReviewEndpoints();
 app.Run();
 
-public partial class Program;
-

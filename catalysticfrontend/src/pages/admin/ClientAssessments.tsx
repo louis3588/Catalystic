@@ -45,17 +45,17 @@ export default function ClientAssessments({ clientId }: { clientId: number }) {
       <div className="assessment-charts">
         <div className="assessment-chart-card"><h4>Scores over time</h4><p>Each pillar and PREOS, out of 10.</p>
           <div className="assessment-chart"><ResponsiveContainer width="100%" height="100%"><LineChart data={data} margin={{ top: 10, right: 14, bottom: 4, left: -20 }}>
-            <CartesianGrid stroke="#d9e6d7" strokeDasharray="3 3" /><XAxis dataKey="assessmentDate" tick={{ fontSize: 11 }} minTickGap={20} /><YAxis domain={[0, 10]} tickCount={6} /><Tooltip position={{ y: 0 }} /><Legend />
+            <CartesianGrid stroke="#d9e6d7" strokeDasharray="3 3" /><XAxis dataKey="assessmentDate" tick={{ fontSize: 11 }} tickFormatter={value => String(value).split("-").reverse().join("/")} minTickGap={20} /><YAxis domain={[0, 10]} tickCount={6} /><Tooltip position={{ y: 0 }} formatter={value => typeof value === "number" ? value.toFixed(2) : value} /><Legend />
             {metrics.map(({ key, label, colour }) => <Line key={key} type="linear" dataKey={key} name={label} stroke={colour} strokeWidth={2} dot={{ r: 3 }} isAnimationActive={false} />)}
           </LineChart></ResponsiveContainer></div>
         </div>
         <div className="assessment-chart-card"><h4>Average score over time</h4><p>Mean of the seven pillars and PREOS, out of 10.</p>
           <div className="assessment-chart"><ResponsiveContainer width="100%" height="100%"><LineChart data={data} margin={{ top: 10, right: 14, bottom: 4, left: -20 }}>
-            <CartesianGrid stroke="#d9e6d7" strokeDasharray="3 3" /><XAxis dataKey="assessmentDate" tick={{ fontSize: 11 }} minTickGap={20} /><YAxis domain={[0, 10]} tickCount={6} /><Tooltip position={{ y: 0 }} /><Line type="linear" dataKey="mean" name="Average" stroke="#28744a" strokeWidth={2} dot={{ r: 3 }} isAnimationActive={false} />
+            <CartesianGrid stroke="#d9e6d7" strokeDasharray="3 3" /><XAxis dataKey="assessmentDate" tick={{ fontSize: 11 }} tickFormatter={value => String(value).split("-").reverse().join("/")} minTickGap={20} /><YAxis domain={[0, 10]} tickCount={6} /><Tooltip position={{ y: 0 }} formatter={value => typeof value === "number" ? value.toFixed(2) : value} /><Line type="linear" dataKey="mean" name="Average" stroke="#28744a" strokeWidth={2} dot={{ r: 3 }} isAnimationActive={false} />
           </LineChart></ResponsiveContainer></div>
         </div>
       </div>
-      <details className="assessment-table"><summary>View assessment data</summary><div className="assessment-table-scroll"><table><caption>Assessment scores and averages</caption><thead><tr><th scope="col">Date</th>{metrics.map(m => <th scope="col" key={m.key}>{m.label}</th>)}<th scope="col">Mean /10</th></tr></thead><tbody>{data.map(a => <tr key={a.id}><th scope="row">{a.assessmentDate}</th>{metrics.map(m => <td key={m.key}>{a[m.key]}</td>)}<td>{a.mean}</td></tr>)}</tbody></table></div></details>
+      <details className="assessment-table"><summary>View assessment data</summary><div className="assessment-table-scroll"><table><caption>Assessment scores and averages</caption><thead><tr><th scope="col">Date</th>{metrics.map(m => <th scope="col" key={m.key}>{m.label}</th>)}<th scope="col">Mean /10</th></tr></thead><tbody>{data.map(a => <tr key={a.id}><th scope="row">{a.assessmentDate.split("-").reverse().join("/")}</th>{metrics.map(m => <td key={m.key}>{a[m.key]}</td>)}<td>{a.mean.toFixed(2)}</td></tr>)}</tbody></table></div></details>
     </>}
     <p>New assessments are created after a client submits a weekly review and the discussion and PREOS rating are completed.</p>
   </section>;

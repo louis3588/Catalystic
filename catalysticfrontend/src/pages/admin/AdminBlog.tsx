@@ -113,7 +113,7 @@ export default function AdminBlog() {
       </form>
       <p role="status">{message}</p><h2>All posts</h2>
       {posts.length === 0 && <p>No posts yet.</p>}
-      {posts.map((post) => <article className="enquiry-item" key={post.id}><h3>{post.title}</h3><BlogLabels labels={post.labels || []} /><p>{!post.isPublished ? "Draft" : new Date(post.releaseTime) > new Date() ? "Scheduled" : "Published"}</p><button type="button" onClick={() => { setEditing(post); setSelected((post.labels || []).map(label => label.id)); }}>Edit</button> <button type="button" disabled={busy} onClick={() => void remove(post)}>Delete</button></article>)}
+      {posts.map((post) => <article className="enquiry-item blog-post-card" key={post.id}><div className="blog-card-top"><span>{!post.isPublished ? "Draft" : new Date(post.releaseTime) > new Date() ? "Scheduled" : "Published"}</span><time>{new Date(post.releaseTime).toLocaleDateString("en-GB", { timeZone: "UTC" })}</time></div><h3>{post.title}</h3><BlogLabels labels={post.labels || []} /><div className="blog-post-actions"><button type="button" onClick={() => { setEditing(post); setSelected((post.labels || []).map(label => label.id)); }}>Edit</button><button type="button" disabled={busy} onClick={() => void remove(post)}>Delete</button></div></article>)}
     </>}
   </div></section>;
 }

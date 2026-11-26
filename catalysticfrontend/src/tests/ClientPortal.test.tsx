@@ -21,10 +21,12 @@ test("client signs in, sees assigned work, and signs out", async () => {
 
   render(<MemoryRouter><ClientPortal /></MemoryRouter>);
   fireEvent.change(await screen.findByLabelText(/^email/i), { target: { value: "client@example.invalid" } });
+  expect(screen.queryByRole("link", { name: /start weekly review/i })).not.toBeInTheDocument();
   fireEvent.change(screen.getByLabelText(/^password/i), { target: { value: "test password" } });
   fireEvent.click(screen.getByRole("button", { name: /^sign in$/i }));
 
   expect(await screen.findByText("Your shared note")).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: /start weekly review/i })).toBeInTheDocument();
   expect(screen.getByText("Make a plan")).toBeInTheDocument();
   expect(fetchMock).toHaveBeenCalledWith("/api/auth/login", expect.objectContaining({ method: "POST" }));
 

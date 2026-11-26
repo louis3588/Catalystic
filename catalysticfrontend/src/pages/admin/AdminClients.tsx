@@ -247,7 +247,7 @@ export default function AdminClients() {
         )}
         {state === "ready" && (
           <>
-            <section className="enquiry-item">
+            <div className="admin-client-layout"><aside className="enquiry-item admin-invite">
               <h2>Invite a client</h2>
               <p>
                 For now, invitations require your manual approval. Payment is
@@ -302,7 +302,7 @@ export default function AdminClients() {
                   </button>
                 </div>
               )}
-            </section>
+            </aside><div className="admin-directory-panel">
             <p>
               Client accounts appear here after they have been provisioned.
               Showing up to 100 clients.
@@ -324,6 +324,7 @@ export default function AdminClients() {
                 ))}
               </tbody></table></div>
             )}
+            </div></div>
             <p role="status">{feedback}</p>
             <dialog ref={deactivateDialog} className="client-confirm-dialog" aria-labelledby="deactivate-title">
               <h3 id="deactivate-title">Deactivate client access?</h3>
@@ -410,7 +411,6 @@ export default function AdminClients() {
                           {new Date(task.dueAt).toLocaleDateString("en-GB", {
                             timeZone: "UTC",
                           })}{" "}
-                          (UTC)
                         </p>
                       )}
                       <p className="enquiry-message">{task.description}</p>
@@ -436,7 +436,7 @@ export default function AdminClients() {
                       </select>
                     </label>
                     <label>
-                      Due date in UTC (optional){" "}
+                      Due date (optional){" "}
                       <input name="dueAt" type="date" />
                     </label>
                     <button className="button book-button" disabled={busy}>

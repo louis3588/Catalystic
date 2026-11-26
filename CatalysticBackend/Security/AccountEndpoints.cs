@@ -9,11 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CatalysticBackend.Security;
 
-public static class AccountEndpoints
+public static partial class AccountEndpoints
 {
-    public record Credentials(string? Email, string? Password);
-    public record PasswordChange(string? CurrentPassword, string? NewPassword);
-    public record BootstrapChange(string? Email, string? Password, string? NewPassword);
 
     public static void MapAccountEndpoints(this WebApplication app)
     {

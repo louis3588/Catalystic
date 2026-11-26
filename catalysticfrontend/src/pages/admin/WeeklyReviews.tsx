@@ -28,9 +28,10 @@ export default function WeeklyReviews({ clientId, onCompleted }: { clientId: num
     } catch { setMessage("Unable to update the review. It may have changed or an assessment may already exist for that date."); }
     finally { setBusy(false); }
   }
-  return <div><h3>Weekly reviews</h3>{reviews === null && !message && <p>Loading reviews…</p>}{reviews?.length === 0 && <p>No weekly reviews yet.</p>}
-    {reviews?.map(review => <article className="client-note-card" key={review.id}><h4>{review.reviewDate}</h4><p>{review.status === "PendingContact" ? "Contact client to discuss" : review.status === "Contacted" ? "Contacted — PREOS needed" : "Completed"}</p><p>Next review: {review.nextReviewDate}</p><dl>{metrics.map(metric => <div key={metric} className="review-label"><dt>{metric}</dt><dd>{review[metric]} / 10</dd></div>)}</dl>
+  const date = (value: string) => value.split("-").reverse().join("/");
+  return <div><h3>Latest weekly review</h3>{reviews === null && !message && <p>Loading reviews…</p>}{reviews?.length === 0 && <p>No weekly reviews yet.</p>}
+    {reviews?.slice(0, 1).map(review => <article className="client-note-card" key={review.id}><h4>{date(review.reviewDate)}</h4><p>{review.status === "PendingContact" ? "Contact client to discuss" : review.status === "Contacted" ? "Contacted — PREOS needed" : "Completed"}</p><p>Next review: {date(review.nextReviewDate)}</p><div className="assessment-table-scroll"><table className="weekly-review-table"><thead><tr>{metrics.map(metric => <th key={metric} scope="col" className="review-label">{metric}</th>)}</tr></thead><tbody><tr>{metrics.map(metric => <td key={metric}>{review[metric]} / 10</td>)}</tr></tbody></table></div>
       {review.status === "PendingContact" && <button type="button" disabled={busy} onClick={() => void action(review.id, "contacted")}>Mark discussion completed</button>}
       {review.status === "Contacted" && <form onSubmit={event => { event.preventDefault(); const value = new FormData(event.currentTarget).get("preos"); void action(review.id, "complete", Number(value)); }}><label>PREOS <input name="preos" type="number" min="0" max="10" step="0.01" required /></label> <button disabled={busy}>Complete review</button></form>}
-    </article>)}<p role="status">{message}</p></div>;
+    </article>)}<p className={message ? (message.startsWith("Unable") ? "dashboard-feedback-error" : "dashboard-feedback") : ""} role="status">{message}</p></div>;
 }

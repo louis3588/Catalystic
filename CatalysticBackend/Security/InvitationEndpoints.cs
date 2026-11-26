@@ -12,10 +12,8 @@ using Npgsql;
 
 namespace CatalysticBackend.Security;
 
-public static class InvitationEndpoints
+public static partial class InvitationEndpoints
 {
-    public record InviteRequest(string? FirstName, string? LastName, string? Email, bool ManuallyApproved);
-    public record AcceptRequest(string? Token, string? Password);
 
     public static void MapInvitationEndpoints(this WebApplication app)
     {

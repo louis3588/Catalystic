@@ -15,6 +15,8 @@ import ClientPortal from "./pages/client/ClientPortal";
 import AdminBlog from "./pages/admin/AdminBlog";
 import WeeklyReview from "./pages/client/WeeklyReview";
 import "./App.css";
+import "./styles/admin.css";
+import "./styles/client.css";
 
 function RouteChange() {
   const { pathname } = useLocation();

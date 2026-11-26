@@ -6,11 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CatalysticBackend.Security;
 
-public static class ClientWorkEndpoints
+public static partial class ClientWorkEndpoints
 {
-    public record NoteRequest(string? Content);
-    public record TaskRequest(string? Title, string? Description, string? Pillar, DateTime? DueAt);
-    public record AccessRequest(bool Active);
 
     private static readonly string[] Pillars =
         ["Physical", "Dietary", "Social", "Emotional", "Intellectual", "Habitual", "Financial"];
