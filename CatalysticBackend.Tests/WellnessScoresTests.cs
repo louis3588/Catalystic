@@ -6,7 +6,7 @@ namespace CatalysticBackend.Tests;
 public class WellnessScoresTests
 {
     [Fact]
-    public void Computes_total_and_mean_from_seven_pillars_and_independence()
+    public void Computes_total_and_mean_from_seven_pillars_and_preos()
     {
         var scores = new WellnessScores(6, 5, 4, 7, 8, 3, 5, 6);
 

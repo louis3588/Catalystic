@@ -64,4 +64,7 @@ public class BlogServiceTests
         clock.Current = release;
         Assert.NotNull(await service.GetPublicAsync(post.Id, default));
     }
+
+    [Fact]
+    public async Task
 }

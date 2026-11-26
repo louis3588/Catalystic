@@ -90,7 +90,7 @@ export default function AdminEnquiries() {
   }
 
   return (
-    <section className="section"><div className="container">
+    <section className="section admin-area"><div className="container">
       {view !== "ready" && <h1>Administrator portal</h1>}
       {view === "loading" && <p>Loading enquiries…</p>}
       {view === "error" && <p role="alert">Unable to load enquiries. Check your connection and permissions.</p>}

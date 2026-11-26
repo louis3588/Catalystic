@@ -24,7 +24,7 @@ public static class ClientWorkEndpoints
             context.Response.Headers.CacheControl = "no-store";
             var clients = await db.Users.AsNoTracking().Where(user => user.Role == "Client")
                 .OrderBy(user => user.FirstName).ThenBy(user => user.Id).Take(100)
-                .Select(user => new { user.Id, user.FirstName, user.LastName, user.Email, user.IsActive })
+                .Select(user => new { user.Id, user.FirstName, user.LastName, user.Email, IsActive = user.AccountState == AccountState.Activated, user.AccountState, PendingReviews = db.WeeklyReviews.Count(review => review.ClientData.UserId == user.Id && review.Status != "Completed") })
                 .ToListAsync(context.RequestAborted);
             return Results.Ok(clients);
         });
@@ -33,7 +33,7 @@ public static class ClientWorkEndpoints
         {
             context.Response.Headers.CacheControl = "no-store";
             var client = await db.Users.AsNoTracking().Where(user => user.Id == id && user.Role == "Client")
-                .Select(user => new { user.Id, user.FirstName, user.LastName, user.Email, user.IsActive })
+                .Select(user => new { user.Id, user.FirstName, user.LastName, user.Email, IsActive = user.AccountState == AccountState.Activated, user.AccountState })
                 .SingleOrDefaultAsync(context.RequestAborted);
             if (client is null) return Results.NotFound();
 
@@ -66,7 +66,7 @@ public static class ClientWorkEndpoints
                     return Results.BadRequest(new { error = "This account has not completed provisioning." });
             }
 
-            client.IsActive = request.Active;
+            client.AccountState = request.Active ? AccountState.Activated : AccountState.Dormant;
             client.SessionVersion = Guid.NewGuid();
             await db.SaveChangesAsync(context.RequestAborted);
             return Results.NoContent();
@@ -115,6 +115,10 @@ public static class ClientWorkEndpoints
             context.Response.Headers.CacheControl = "no-store";
             if (!int.TryParse(context.User.FindFirstValue(ClaimTypes.NameIdentifier), out var id) || id <= 0)
                 return Results.Unauthorized();
+            var firstName = await db.Users.AsNoTracking().Where(user => user.Id == id)
+                .Select(user => user.FirstName).SingleOrDefaultAsync(context.RequestAborted);
+            var nextReviewDate = await db.WeeklyReviews.AsNoTracking().Where(review => review.ClientData.UserId == id)
+                .OrderByDescending(review => review.SubmittedAt).Select(review => (DateOnly?)review.NextReviewDate).FirstOrDefaultAsync(context.RequestAborted);
             var notes = await db.SharedClientNotes.AsNoTracking().Where(note => note.ClientId == id)
                 .OrderByDescending(note => note.SharedAt).Take(100)
                 .Select(note => new { note.Id, note.Content, note.SharedAt }).ToListAsync(context.RequestAborted);
@@ -122,7 +126,7 @@ public static class ClientWorkEndpoints
                 .OrderByDescending(task => task.CreatedAt).Take(100)
                 .Select(task => new { task.Id, task.Title, task.Description, task.Pillar, task.DueAt, task.CompletedAt, task.CreatedAt })
                 .ToListAsync(context.RequestAborted);
-            return Results.Ok(new { notes, tasks });
+            return Results.Ok(new { firstName, nextReviewDate, notes, tasks });
         });
     }
 

@@ -22,6 +22,21 @@ namespace CatalysticBackend.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("BlogLabelBlogPost", b =>
+                {
+                    b.Property<int>("LabelsId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PostsId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("LabelsId", "PostsId");
+
+                    b.HasIndex("PostsId");
+
+                    b.ToTable("BlogLabelBlogPost");
+                });
+
             modelBuilder.Entity("CatalysticBackend.Models.BlogLabel", b =>
                 {
                     b.Property<int>("Id")
@@ -29,9 +44,6 @@ namespace CatalysticBackend.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BlogId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Colour")
                         .IsRequired()
@@ -47,9 +59,7 @@ namespace CatalysticBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BlogId");
-
-                    b.ToTable("BlogLabel");
+                    b.ToTable("BlogLabels");
                 });
 
             modelBuilder.Entity("CatalysticBackend.Models.BlogPost", b =>
@@ -87,6 +97,34 @@ namespace CatalysticBackend.Migrations
                     b.HasIndex("IsPublished", "ReleaseTime");
 
                     b.ToTable("BlogPosts");
+                });
+
+            modelBuilder.Entity("CatalysticBackend.Models.ClientData", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("ClientData");
                 });
 
             modelBuilder.Entity("CatalysticBackend.Models.ClientInvitation", b =>
@@ -287,6 +325,9 @@ namespace CatalysticBackend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AccountState")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime?>("BootstrapExpiresAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -314,9 +355,6 @@ namespace CatalysticBackend.Migrations
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("character varying(64)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsEmailVerified")
                         .HasColumnType("boolean");
@@ -354,18 +392,197 @@ namespace CatalysticBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", t =>
+                        {
+                            t.HasCheckConstraint("CK_Users_AccountState", "\"AccountState\" IN (0, 1, 2)");
+                        });
                 });
 
-            modelBuilder.Entity("CatalysticBackend.Models.BlogLabel", b =>
+            modelBuilder.Entity("CatalysticBackend.Models.WeeklyReview", b =>
                 {
-                    b.HasOne("CatalysticBackend.Models.BlogPost", "Blog")
-                        .WithMany("Labels")
-                        .HasForeignKey("BlogId")
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("ClientDataId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("CompletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("ContactedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal>("Dietary")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<decimal>("Emotional")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<decimal>("Financial")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<decimal>("Habitual")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<decimal>("Intellectual")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<DateOnly>("NextReviewDate")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("Physical")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<DateOnly>("ReviewDate")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("Social")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("character varying(24)");
+
+                    b.Property<DateTime>("SubmittedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientDataId")
+                        .IsUnique()
+                        .HasFilter("\"Status\" <> 'Completed'");
+
+                    b.HasIndex("ClientDataId", "ReviewDate")
+                        .IsUnique();
+
+                    b.ToTable("WeeklyReviews", t =>
+                        {
+                            t.HasCheckConstraint("CK_WeeklyReview_Dietary", "\"Dietary\" >= 0 AND \"Dietary\" <= 10");
+
+                            t.HasCheckConstraint("CK_WeeklyReview_Emotional", "\"Emotional\" >= 0 AND \"Emotional\" <= 10");
+
+                            t.HasCheckConstraint("CK_WeeklyReview_Financial", "\"Financial\" >= 0 AND \"Financial\" <= 10");
+
+                            t.HasCheckConstraint("CK_WeeklyReview_Habitual", "\"Habitual\" >= 0 AND \"Habitual\" <= 10");
+
+                            t.HasCheckConstraint("CK_WeeklyReview_Intellectual", "\"Intellectual\" >= 0 AND \"Intellectual\" <= 10");
+
+                            t.HasCheckConstraint("CK_WeeklyReview_Physical", "\"Physical\" >= 0 AND \"Physical\" <= 10");
+
+                            t.HasCheckConstraint("CK_WeeklyReview_Social", "\"Social\" >= 0 AND \"Social\" <= 10");
+
+                            t.HasCheckConstraint("CK_WeeklyReview_Status", "\"Status\" IN ('PendingContact', 'Contacted', 'Completed')");
+                        });
+                });
+
+            modelBuilder.Entity("CatalysticBackend.Models.WellnessAssessment", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateOnly>("AssessmentDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("ClientDataId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal>("Dietary")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<decimal>("Emotional")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<decimal>("Financial")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<decimal>("Habitual")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<decimal>("Intellectual")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<decimal>("PREOS")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<decimal>("Physical")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.Property<decimal>("Social")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("numeric(4,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientDataId", "AssessmentDate")
+                        .IsUnique();
+
+                    b.ToTable("WellnessAssessments", t =>
+                        {
+                            t.HasCheckConstraint("CK_WellnessAssessment_Dietary", "\"Dietary\" >= 0 AND \"Dietary\" <= 10");
+
+                            t.HasCheckConstraint("CK_WellnessAssessment_Emotional", "\"Emotional\" >= 0 AND \"Emotional\" <= 10");
+
+                            t.HasCheckConstraint("CK_WellnessAssessment_Financial", "\"Financial\" >= 0 AND \"Financial\" <= 10");
+
+                            t.HasCheckConstraint("CK_WellnessAssessment_Habitual", "\"Habitual\" >= 0 AND \"Habitual\" <= 10");
+
+                            t.HasCheckConstraint("CK_WellnessAssessment_Intellectual", "\"Intellectual\" >= 0 AND \"Intellectual\" <= 10");
+
+                            t.HasCheckConstraint("CK_WellnessAssessment_PREOS", "\"PREOS\" >= 0 AND \"PREOS\" <= 10");
+
+                            t.HasCheckConstraint("CK_WellnessAssessment_Physical", "\"Physical\" >= 0 AND \"Physical\" <= 10");
+
+                            t.HasCheckConstraint("CK_WellnessAssessment_Social", "\"Social\" >= 0 AND \"Social\" <= 10");
+                        });
+                });
+
+            modelBuilder.Entity("BlogLabelBlogPost", b =>
+                {
+                    b.HasOne("CatalysticBackend.Models.BlogLabel", null)
+                        .WithMany()
+                        .HasForeignKey("LabelsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Blog");
+                    b.HasOne("CatalysticBackend.Models.BlogPost", null)
+                        .WithMany()
+                        .HasForeignKey("PostsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CatalysticBackend.Models.ClientData", b =>
+                {
+                    b.HasOne("CatalysticBackend.Models.User", "User")
+                        .WithOne()
+                        .HasForeignKey("CatalysticBackend.Models.ClientData", "UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("CatalysticBackend.Models.ClientInvitation", b =>
@@ -420,9 +637,26 @@ namespace CatalysticBackend.Migrations
                     b.Navigation("Client");
                 });
 
-            modelBuilder.Entity("CatalysticBackend.Models.BlogPost", b =>
+            modelBuilder.Entity("CatalysticBackend.Models.WeeklyReview", b =>
                 {
-                    b.Navigation("Labels");
+                    b.HasOne("CatalysticBackend.Models.ClientData", "ClientData")
+                        .WithMany()
+                        .HasForeignKey("ClientDataId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ClientData");
+                });
+
+            modelBuilder.Entity("CatalysticBackend.Models.WellnessAssessment", b =>
+                {
+                    b.HasOne("CatalysticBackend.Models.ClientData", "ClientData")
+                        .WithMany()
+                        .HasForeignKey("ClientDataId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ClientData");
                 });
 #pragma warning restore 612, 618
         }

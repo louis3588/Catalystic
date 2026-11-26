@@ -1,6 +1,8 @@
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { sendRequest } from "../../api";
+import TaskCalendar from "../../components/TaskCalendar";
+import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 type SharedNote = {
   id: number;
@@ -18,6 +20,8 @@ type ClientTask = {
 };
 
 type ClientWork = {
+  firstName?: string;
+  nextReviewDate?: string | null;
   notes: SharedNote[];
   tasks: ClientTask[];
 };
@@ -38,6 +42,8 @@ export default function ClientPortal() {
   const [work, setWork] = useState<ClientWork | null>(null);
   const [feedback, setFeedback] = useState("");
   const [busy, setBusy] = useState(false);
+  const [scores, setScores] = useState<{ assessmentDate: string; score: number }[] | null>(null);
+  const [scoresError, setScoresError] = useState(false);
 
   const loadWork = useCallback(async (signal?: AbortSignal) => {
     try {
@@ -69,6 +75,17 @@ export default function ClientPortal() {
     void loadWork(controller.signal);
     return () => controller.abort();
   }, [loadWork]);
+
+  useEffect(() => {
+    if (view !== "ready") { setScores(null); return; }
+    const controller = new AbortController();
+    setScoresError(false);
+    fetch("/api/client/assessments", { credentials: "same-origin", cache: "no-store", signal: controller.signal })
+      .then(async response => { if (!response.ok) throw new Error(); return response.json(); })
+      .then(result => { if (!controller.signal.aborted) setScores(result); })
+      .catch(() => { if (!controller.signal.aborted) setScoresError(true); });
+    return () => controller.abort();
+  }, [view]);
 
   async function signIn(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -141,6 +158,7 @@ export default function ClientPortal() {
             <label>Password <input name="password" type="password" autoComplete="current-password" required /></label>
             <button className="button book-button" disabled={busy}>{busy ? "Signing in…" : "Sign in"}</button>
             <p role="status">{feedback}</p>
+            <div className="client-quick-links"><Link to="/client/weekly-review">Start weekly review →</Link><span>Call booking is not available yet.</span></div>
           </form>
         )}
         {view === "forbidden" && (
@@ -154,10 +172,16 @@ export default function ClientPortal() {
         {view === "ready" && work && (
           <>
             <div className="client-portal-toolbar">
-              <p>Keep your focus on the steps you’ve agreed with your practitioner.</p>
+              <div><h2>Welcome{work.firstName ? `, ${work.firstName}` : ""}</h2><p>Keep your focus on the steps you’ve agreed with your practitioner.</p></div>
               <button type="button" onClick={() => void signOut()} disabled={busy}>Sign out</button>
             </div>
             <p role="status">{feedback}</p>
+            {scoresError && <p role="alert">Unable to load your score history.</p>}
+            {scores && <section className="client-score-section" aria-labelledby="score-history-heading">
+              <div className="client-score-summary"><div><span>Current score</span><strong>{scores.length ? `${scores[scores.length - 1].score.toFixed(1)} / 10` : "Not yet recorded"}</strong></div><div><span>Average of earlier reviews</span><strong>{scores.length > 1 ? `${(scores.slice(0, -1).reduce((sum, item) => sum + item.score, 0) / (scores.length - 1)).toFixed(1)} / 10` : "No earlier reviews"}</strong></div></div>
+              <h2 id="score-history-heading">Your score over time</h2><p>Mean of your seven wellness pillars. These are subjective coaching indicators.</p>
+              {scores.length ? <><div className="assessment-chart"><ResponsiveContainer width="100%" height="100%"><LineChart data={scores} margin={{ top: 10, right: 14, bottom: 4, left: -20 }}><CartesianGrid stroke="#d9e6d7" strokeDasharray="3 3" /><XAxis dataKey="assessmentDate" tick={{ fontSize: 11 }} minTickGap={20} /><YAxis domain={[0, 10]} tickCount={6} /><Tooltip position={{ y: 0 }} /><Line type="linear" dataKey="score" name="Current score" stroke="#28744a" strokeWidth={2} dot={{ r: 3 }} isAnimationActive={false} /></LineChart></ResponsiveContainer></div><details><summary>View scores</summary><ul>{scores.map(item => <li key={item.assessmentDate}>{item.assessmentDate}: {item.score.toFixed(1)} / 10</li>)}</ul></details></> : <p>No assessments recorded yet.</p>}
+            </section>}
             <div className="client-portal-grid">
               <section aria-labelledby="client-tasks-heading">
                 <h2 id="client-tasks-heading">Your tasks</h2>
@@ -188,6 +212,7 @@ export default function ClientPortal() {
                 )}
               </section>
             </div>
+            <TaskCalendar tasks={work.nextReviewDate ? [...work.tasks, { id: -1, title: "Weekly review", dueAt: work.nextReviewDate, completedAt: null }] : work.tasks} />
           </>
         )}
       </div>

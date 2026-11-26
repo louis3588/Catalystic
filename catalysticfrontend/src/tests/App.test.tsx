@@ -129,12 +129,15 @@ test("an administrator can select a client and save a private note", async () =>
   window.fetch = jest.fn()
     .mockResolvedValueOnce({ ok: true, json: async () => [client] } as Response)
     .mockResolvedValueOnce({ ok: true, json: async () => detail } as Response)
+    .mockResolvedValueOnce({ ok: true, json: async () => [] } as Response)
     .mockResolvedValueOnce({ ok: true, json: async () => ({ token: "csrf" }) } as Response)
     .mockResolvedValueOnce({ ok: true } as Response)
-    .mockResolvedValueOnce({ ok: true, json: async () => detail } as Response);
+    .mockResolvedValueOnce({ ok: true, json: async () => detail } as Response)
+    .mockResolvedValueOnce({ ok: true, json: async () => [] } as Response);
 
   render(<App />);
-  fireEvent.click(await screen.findByRole("button", { name: /alex example/i }));
+  fireEvent.click(await screen.findByRole("button", { name: /view client/i }));
+  fireEvent.click(await screen.findByText("Private practitioner notes"));
   fireEvent.change(await screen.findByLabelText(/^private note$/i), { target: { value: "Private observation" } });
   fireEvent.click(screen.getByRole("button", { name: /save private note/i }));
   expect(await screen.findByText(/private note saved/i)).toBeInTheDocument();

@@ -13,16 +13,17 @@ public sealed record WellnessScores
     public decimal Habitual { get; }
     public decimal Financial { get; }
 
-    // personal independence rating from the admin
-    public decimal Independence { get; }
+    // PREOS: proactiveness, responsiveness, and effectiveness of services.
+    // This is a subjective rating recorded by the practitioner for administrative use.
+    public decimal PREOS { get; }
 
-    public decimal Total => Physical + Dietary + Social + Emotional + Intellectual + Habitual + Financial + Independence;
+    public decimal Total => Physical + Dietary + Social + Emotional + Intellectual + Habitual + Financial + PREOS;
     public decimal Mean => Total / 8m;
 
     public WellnessScores(decimal physical, decimal dietary, decimal social, decimal emotional,
-        decimal intellectual, decimal habitual, decimal financial, decimal independence)
+        decimal intellectual, decimal habitual, decimal financial, decimal preos)
     {
-        decimal[] values = [physical, dietary, social, emotional, intellectual, habitual, financial, independence];
+        decimal[] values = [physical, dietary, social, emotional, intellectual, habitual, financial, preos];
 
         if (values.Any(value => value < 0 || value > 10))
         {
@@ -36,6 +37,6 @@ public sealed record WellnessScores
         Intellectual = intellectual;
         Habitual = habitual;
         Financial = financial;
-        Independence = independence;
+        PREOS = preos;
     }
 }

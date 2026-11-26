@@ -116,8 +116,23 @@ function client() {
             { cwd: repo, stdio: ['ignore', 'pipe', 'pipe'] });
         await waitForOutput(postgres, 'ready to accept connections');
         run(pg('createdb'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', 'catalystic_auth_test']);
+        run(dotnet, ['ef', 'database', 'update', '20261125160749_AddWellnessAssessments', '--project', path.join(backend, 'CatalysticBackend.csproj')]);
+        const seedLegacy = `WITH u AS (INSERT INTO "Users" ("FirstName", "Email", "PasswordHash", "PhoneNumber", "City", "ProfileImageUrl", "IsActive", "IsEmailVerified", "IsPhoneNumberVerified", "MustChangePassword", "SessionVersion", "Role") VALUES ('Migration Test', 'migration@example.invalid', '', '', '', '', false, false, false, false, gen_random_uuid(), 'Client') RETURNING "Id") INSERT INTO "WellnessAssessments" ("ClientId", "AssessmentDate", "Physical", "Dietary", "Social", "Emotional", "Intellectual", "Habitual", "Financial", "PREOS", "CreatedAt") SELECT "Id", '2029-01-01', 1, 2, 3, 4, 5, 6, 7, 8, now() FROM u;`;
+        run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-v', 'ON_ERROR_STOP=1', '-c', seedLegacy]);
+        const legacyLabel = `WITH p AS (INSERT INTO "BlogPosts" ("Title", "Content", "ReleaseTime", "CreatedAt", "UpdatedAt", "IsPublished") VALUES ('Legacy', 'Text', now(), now(), now(), false) RETURNING "Id") INSERT INTO "BlogLabel" ("BlogId", "Name", "Description", "Colour") SELECT "Id", 'Legacy label', '', '#123456' FROM p;`;
+        run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-v', 'ON_ERROR_STOP=1', '-c', legacyLabel]);
+        const seedStates = `INSERT INTO "Users" ("FirstName", "Email", "PasswordHash", "PhoneNumber", "City", "ProfileImageUrl", "IsActive", "IsEmailVerified", "IsPhoneNumberVerified", "MustChangePassword", "SessionVersion", "Role") VALUES ('Active', 'state-active@example.invalid', 'hash', '', '', '', true, false, false, false, gen_random_uuid(), 'Client'), ('Dormant', 'state-dormant@example.invalid', 'hash', '', '', '', false, false, false, false, gen_random_uuid(), 'Client');`;
+        run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-v', 'ON_ERROR_STOP=1', '-c', seedStates]);
         run(dotnet, ['ef', 'database', 'update', '--project', path.join(backend, 'CatalysticBackend.csproj')]);
-        const sql = `INSERT INTO "Users" ("FirstName", "Email", "PasswordHash", "PhoneNumber", "City", "DateOfBirth", "ProfileImageUrl", "IsActive", "IsEmailVerified", "IsPhoneNumberVerified", "MustChangePassword", "SessionVersion") VALUES ('Test', '${firstEmail}', '', '', '', '2000-01-01Z', '', false, false, false, false, '00000000-0000-0000-0000-000000000000'), ('Test', '${secondEmail}', '', '', '', '2000-01-01Z', '', false, false, false, false, '00000000-0000-0000-0000-000000000000')`;
+        const migrated = run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-tAc', `SELECT count(*) FROM "WellnessAssessments" a JOIN "ClientData" c ON c."Id" = a."ClientDataId" JOIN "Users" u ON u."Id" = c."UserId" WHERE u."Email" = 'migration@example.invalid' AND c."FirstName" = 'Migration Test' AND a."PREOS" = 8`]).trim();
+        assert.equal(migrated, '1', 'migration preserves and relinks existing assessments');
+        const migratedLabels = run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-tAc', `SELECT count(*) FROM "BlogLabelBlogPost" j JOIN "BlogLabels" l ON l."Id" = j."LabelsId" JOIN "BlogPosts" p ON p."Id" = j."PostsId" WHERE l."Name" = 'Legacy label' AND p."Title" = 'Legacy'`]).trim();
+        assert.equal(migratedLabels, '1', 'existing label assignments survive migration');
+        const states = run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-tAc', `SELECT string_agg("AccountState"::text, ',' ORDER BY "Email") FROM "Users" WHERE "Email" IN ('migration@example.invalid', 'state-active@example.invalid', 'state-dormant@example.invalid')`]).trim();
+        assert.equal(states, '0,1,2', 'migration preserves inactive, active and dormant states');
+        run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-v', 'ON_ERROR_STOP=1', '-c', `DELETE FROM "Users" WHERE "Email" IN ('state-active@example.invalid', 'state-dormant@example.invalid')`]);
+        run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-v', 'ON_ERROR_STOP=1', '-c', `DELETE FROM "Users" WHERE "Email" = 'migration@example.invalid'`]);
+        const sql = `INSERT INTO "Users" ("FirstName", "Email", "PasswordHash", "PhoneNumber", "City", "DateOfBirth", "ProfileImageUrl", "AccountState", "IsEmailVerified", "IsPhoneNumberVerified", "MustChangePassword", "SessionVersion") VALUES ('Test', '${firstEmail}', '', '', '', '2000-01-01Z', '', 0, false, false, false, '00000000-0000-0000-0000-000000000000'), ('Test', '${secondEmail}', '', '', '', '2000-01-01Z', '', 0, false, false, false, '00000000-0000-0000-0000-000000000000')`;
         run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-v', 'ON_ERROR_STOP=1', '-c', sql]);
         const attempts = await Promise.all([bootstrap(firstEmail), bootstrap(secondEmail)]);
         assert.equal(attempts.filter(attempt => attempt.code === 0).length, 1, 'only one bootstrap may succeed');
@@ -127,7 +142,7 @@ function client() {
         const bootstrapState = run(pg('psql'), [
             '-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test',
             '-d', 'catalystic_auth_test', '-tAc',
-            'SELECT "IsActive" AND "IsEmailVerified" AND "IsPhoneNumberVerified" AND "MustChangePassword" AND "Role" = \'Admin\' AND "BootstrapExpiresAt" > now() AND "PasswordHash" <> \'\' FROM "Users" WHERE "Role" = \'Admin\'',
+            'SELECT "AccountState" = 1 AND "IsEmailVerified" AND "IsPhoneNumberVerified" AND "MustChangePassword" AND "Role" = \'Admin\' AND "BootstrapExpiresAt" > now() AND "PasswordHash" <> \'\' FROM "Users" WHERE "Role" = \'Admin\'',
         ]).trim();
         assert.equal(bootstrapState, 't', 'bootstrap must set administrator state');
         server = spawn(dotnet, [path.join(backend, 'bin', 'Debug', 'net10.0', 'CatalysticBackend.dll')],
@@ -198,7 +213,7 @@ function client() {
         assert.equal((await afterChange.request('POST', '/api/auth/login', { email, password: changedPassword }, afterChangeToken)).status, 200);
 
         // Create two synthetic clients in the disposable database, never in Neon.
-        const seedClients = `INSERT INTO "Users" ("FirstName", "Email", "PasswordHash", "PhoneNumber", "City", "DateOfBirth", "ProfileImageUrl", "IsActive", "IsEmailVerified", "IsPhoneNumberVerified", "MustChangePassword", "SessionVersion", "Role") SELECT name, address, "PasswordHash", '', '', '2000-01-01Z', '', true, true, false, false, gen_random_uuid(), 'Client' FROM "Users" CROSS JOIN (VALUES ('Client One', 'client-one@example.invalid'), ('Client Two', 'client-two@example.invalid')) AS clients(name, address) WHERE "Role" = 'Admin'`;
+        const seedClients = `INSERT INTO "Users" ("FirstName", "Email", "PasswordHash", "PhoneNumber", "City", "DateOfBirth", "ProfileImageUrl", "AccountState", "IsEmailVerified", "IsPhoneNumberVerified", "MustChangePassword", "SessionVersion", "Role") SELECT name, address, "PasswordHash", '', '', '2000-01-01Z', '', 1, true, false, false, gen_random_uuid(), 'Client' FROM "Users" CROSS JOIN (VALUES ('Client One', 'client-one@example.invalid'), ('Client Two', 'client-two@example.invalid')) AS clients(name, address) WHERE "Role" = 'Admin'`;
         run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-v', 'ON_ERROR_STOP=1', '-c', seedClients]);
         const directory = await afterChange.request('GET', '/api/admin/clients/');
         assert.equal(directory.status, 200);
@@ -216,13 +231,56 @@ function client() {
         const owner = client();
         const ownerToken = await owner.token();
         assert.equal((await owner.request('POST', '/api/auth/login', { email: clientOne.email, password: changedPassword }, ownerToken)).status, 200);
+        const assessment = { assessmentDate: '2030-01-01', physical: 6, dietary: 5, social: 4, emotional: 7, intellectual: 8, habitual: 3, financial: 5, preos: 6 };
+        const assessmentPath = `/api/admin/clients/${clientOne.id}/assessments/`;
+        assert.equal((await client().request('GET', assessmentPath)).status, 401);
+        assert.equal((await owner.request('GET', assessmentPath)).status, 403);
+        assert.equal((await afterChange.request('POST', assessmentPath, assessment, adminToken)).status, 405);
+        const seedAssessment = `WITH c AS (INSERT INTO "ClientData" ("UserId", "FirstName") VALUES (${clientOne.id}, 'Client One') RETURNING "Id") INSERT INTO "WellnessAssessments" ("ClientDataId", "AssessmentDate", "Physical", "Dietary", "Social", "Emotional", "Intellectual", "Habitual", "Financial", "PREOS", "CreatedAt") SELECT "Id", '2030-01-01', 6, 5, 4, 7, 8, 3, 5, 6, now() FROM c`;
+        run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-v', 'ON_ERROR_STOP=1', '-c', seedAssessment]);
+        const assessments = JSON.parse((await afterChange.request('GET', assessmentPath)).body);
+        assert.equal(assessments[0].total, 44);
+        assert.equal(assessments[0].mean, 5.5);
+        assert.equal(assessments[0].preos, 6);
+        const clientAssessments = JSON.parse((await owner.request('GET', '/api/client/assessments')).body);
+        assert.equal(clientAssessments.length, 1);
+        assert.ok(Math.abs(clientAssessments[0].score - 38 / 7) < 0.0001);
+        assert.equal(Object.hasOwn(clientAssessments[0], 'preos'), false);
+        const nextReviewDate = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
+        const weekly = { nextReviewDate, physical: 5, dietary: 5, social: 5, emotional: 5, intellectual: 5, habitual: 5, financial: 5 };
+        const weeklyToken = await owner.token();
+        assert.equal((await owner.request('POST', '/api/client/weekly-reviews/', weekly)).status, 400);
+        assert.equal((await owner.request('POST', '/api/client/weekly-reviews/', weekly, weeklyToken)).status, 201);
+        assert.equal((await owner.request('POST', '/api/client/weekly-reviews/', weekly, weeklyToken)).status, 409);
+        assert.equal(JSON.parse((await owner.request('GET', '/api/client/work/')).body).nextReviewDate, nextReviewDate);
+        const reviewsPath = `/api/admin/clients/${clientOne.id}/weekly-reviews/`;
+        assert.equal((await owner.request('GET', reviewsPath)).status, 403);
+        const reviews = JSON.parse((await afterChange.request('GET', reviewsPath)).body);
+        assert.equal(reviews[0].status, 'PendingContact');
+        const reviewPath = `${reviewsPath}${reviews[0].id}`;
+        assert.equal((await afterChange.request('POST', `${reviewPath}/complete`, { preos: 6 }, adminToken)).status, 409);
+        assert.equal((await afterChange.request('POST', `${reviewPath}/contacted`, {}, adminToken)).status, 204);
+        assert.equal((await afterChange.request('POST', `${reviewPath}/complete`, { preos: 6 }, adminToken)).status, 204);
+        assert.equal((await afterChange.request('POST', `${reviewPath}/complete`, { preos: 6 }, adminToken)).status, 409);
+        assert.equal(JSON.parse((await owner.request('GET', '/api/client/assessments')).body).length, 2);
+        const retainedCheck = `DELETE FROM "Users" WHERE "Id" = ${clientOne.id}; SELECT count(*) FROM "WellnessAssessments" a JOIN "ClientData" c ON c."Id" = a."ClientDataId" WHERE c."UserId" IS NULL AND c."FirstName" = 'Client One' AND a."PREOS" = 6 AND a."AssessmentDate" = '2030-01-01';`;
         const blog = { title: 'Test article', content: '<script>text only</script>', isPublished: true, releaseTime: null };
+        assert.equal((await owner.request('POST', '/api/admin/blog/labels', { name: 'Habits', colour: '#228844' }, ownerToken)).status, 403);
+        assert.equal((await afterChange.request('POST', '/api/admin/blog/labels', { name: 'Habits', colour: '#228844' })).status, 400);
+        assert.equal((await afterChange.request('POST', '/api/admin/blog/labels', { name: 'Bad', colour: 'red' }, adminToken)).status, 400);
+        const label = JSON.parse((await afterChange.request('POST', '/api/admin/blog/labels', { name: 'Habits', colour: '#228844' }, adminToken)).body);
+        blog.labelIds = [label.id];
         assert.equal((await client().request('POST', '/api/admin/blog/', blog)).status, 401);
         assert.equal((await owner.request('POST', '/api/admin/blog/', blog, ownerToken)).status, 403);
         assert.equal((await afterChange.request('POST', '/api/admin/blog/', blog)).status, 400);
         const createdBlog = await afterChange.request('POST', '/api/admin/blog/', blog, adminToken);
         assert.equal(createdBlog.status, 200);
         const blogId = JSON.parse(createdBlog.body).id;
+        assert.equal(JSON.parse((await client().request('GET', `/api/blog/?labelId=${label.id}`)).body).length, 1);
+        assert.equal((await afterChange.request('PUT', `/api/admin/blog/labels/${label.id}`, { name: 'Habits updated', colour: '#FF0011' }, adminToken)).status, 200);
+        assert.equal(JSON.parse((await client().request('GET', `/api/blog/${blogId}`)).body).labels[0].name, 'Habits updated');
+        assert.equal((await afterChange.request('PUT', `/api/admin/blog/${blogId}`, { ...blog, labelIds: [] }, adminToken)).status, 200);
+        assert.equal(JSON.parse((await client().request('GET', `/api/blog/?labelId=${label.id}`)).body).length, 0);
         assert.equal((await client().request('GET', `/api/blog/${blogId}`)).status, 200);
         assert.equal((await afterChange.request('PUT', `/api/admin/blog/${blogId}`, { ...blog, isPublished: false }, adminToken)).status, 200);
         assert.equal((await client().request('GET', `/api/blog/${blogId}`)).status, 404);
@@ -302,7 +360,9 @@ function client() {
         const expiredClient = client();
         const expiredCsrf = await expiredClient.token();
         assert.equal((await expiredClient.request('POST', '/api/invitations/accept', { token: JSON.parse(expiredInvite.body).token, password: setup.password }, expiredCsrf)).status, 400);
-        console.log('PostgreSQL invitation, authentication, enquiries, client ownership, notes, tasks and access checks passed.');
+        const retained = run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-tAc', retainedCheck]).trim();
+        assert.equal(retained.split(/\s+/).pop(), '1', 'assessment and name survive account deletion without a user link');
+        console.log('PostgreSQL invitation, authentication, enquiries, client ownership, notes, tasks, assessments and retention relationship checks passed.');
     } finally {
         if (server) server.kill();
         if (postgres) {

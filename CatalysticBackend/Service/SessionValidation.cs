@@ -3,6 +3,7 @@ using CatalysticBackend.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using CatalysticBackend.Models;
 
 namespace CatalysticBackend.Service;
 
@@ -35,10 +36,10 @@ public sealed class SessionValidation(CatalysticDbContext dbContext) : CookieAut
 
         var account = await dbContext.Users.AsNoTracking()
             .Where(user => user.Id == id)
-            .Select(user => new { user.IsActive, user.Role, user.SessionVersion, user.MustChangePassword })
+            .Select(user => new { user.AccountState, user.Role, user.SessionVersion, user.MustChangePassword })
             .SingleOrDefaultAsync(context.HttpContext.RequestAborted);
 
-        if (account is null || !account.IsActive || account.MustChangePassword ||
+        if (account is null || account.AccountState != AccountState.Activated || account.MustChangePassword ||
             account.SessionVersion != version ||
             (account.Role != "Admin" && account.Role != "Client") ||
             !principal!.IsInRole(account.Role))

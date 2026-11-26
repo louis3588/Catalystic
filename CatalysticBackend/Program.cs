@@ -33,6 +33,7 @@ builder.Services.AddDbContext<CatalysticDbContext>(option =>
 
 builder.Services.AddScoped<SessionValidation>();
 builder.Services.AddScoped<BlogService>();
+builder.Services.AddScoped<AssessmentService>();
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddAntiforgery(options =>
@@ -113,6 +114,8 @@ app.MapEnquiryEndpoints();
 app.MapClientWorkEndpoints();
 app.MapInvitationEndpoints();
 app.MapBlogEndpoints();
+app.MapAssessmentEndpoints();
+app.MapWeeklyReviewEndpoints();
 app.Run();
 
 public partial class Program;

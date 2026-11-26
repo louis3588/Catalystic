@@ -13,6 +13,7 @@ import AdminClients from "./pages/admin/AdminClients";
 import Onboarding from "./pages/client/Onboarding";
 import ClientPortal from "./pages/client/ClientPortal";
 import AdminBlog from "./pages/admin/AdminBlog";
+import WeeklyReview from "./pages/client/WeeklyReview";
 import "./App.css";
 
 function RouteChange() {
@@ -48,6 +49,7 @@ function App() {
           <Route path="/admin/blog" element={<AdminBlog />} />
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/client" element={<ClientPortal />} />
+          <Route path="/client/weekly-review" element={<WeeklyReview />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

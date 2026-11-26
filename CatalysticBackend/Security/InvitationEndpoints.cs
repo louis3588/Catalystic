@@ -45,8 +45,9 @@ public static class InvitationEndpoints
                 await db.ClientInvitations.AnyAsync(invitation => invitation.NormalizedEmail == normalized, context.RequestAborted))
                 return Results.Conflict(new { error = "An account or invitation already exists for this email." });
 
-            var client = new User { FirstName = firstName, LastName = lastName, Email = email, Role = "Client", IsActive = false };
+            var client = new User { FirstName = firstName, LastName = lastName, Email = email, Role = "Client", AccountState = AccountState.Unactivated };
             db.Users.Add(client);
+            db.ClientData.Add(new ClientData { User = client, FirstName = firstName, LastName = lastName });
             db.ClientInvitations.Add(new ClientInvitation
             {
                 Client = client,
@@ -98,7 +99,7 @@ public static class InvitationEndpoints
                 .SingleOrDefaultAsync(item => item.TokenHash == hash, context.RequestAborted);
             if (invitation is null) return Results.BadRequest(new { error = "The invitation is invalid or expired." });
             var client = await db.Users.SingleOrDefaultAsync(user => user.Id == invitation.ClientId && user.Role == "Client", context.RequestAborted);
-            if (client is null || client.IsActive || !string.IsNullOrEmpty(client.PasswordHash))
+            if (client is null || client.AccountState != AccountState.Unactivated || !string.IsNullOrEmpty(client.PasswordHash))
                 return Results.BadRequest(new { error = "The invitation is invalid or expired." });
 
             var accepted = await db.ClientInvitations.Where(item => item.Id == invitation.Id && item.AcceptedAt == null && item.ExpiresAt > now)
@@ -108,7 +109,7 @@ public static class InvitationEndpoints
             client.PasswordHash = hasher.HashPassword(client, request.Password);
             // A manually delivered link proves possession of the link, not the email inbox.
             client.IsEmailVerified = false;
-            client.IsActive = true;
+            client.AccountState = AccountState.Activated;
             client.SessionVersion = Guid.NewGuid();
             await db.SaveChangesAsync(context.RequestAborted);
             await transaction.CommitAsync(context.RequestAborted);

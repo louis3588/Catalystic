@@ -15,6 +15,7 @@ test("client signs in, sees assigned work, and signs out", async () => {
       notes: [{ id: 1, content: "Your shared note", sharedAt: "2026-01-01T12:00:00Z" }],
       tasks: [{ id: 2, title: "Make a plan", description: "Take a first step", pillar: "Physical", dueAt: null, completedAt: null }],
     }) } as Response)
+    .mockResolvedValueOnce({ ok: true, json: async () => [] } as Response)
     .mockResolvedValueOnce({ ok: true, json: async () => ({ token: "csrf" }) } as Response)
     .mockResolvedValueOnce({ ok: true } as Response);
 
@@ -34,7 +35,8 @@ test("client signs in, sees assigned work, and signs out", async () => {
 
 test("shows empty states and handles a forbidden session", async () => {
   jest.spyOn(window, "fetch")
-    .mockResolvedValueOnce({ ok: true, json: async () => ({ notes: [], tasks: [] }) } as Response);
+    .mockResolvedValueOnce({ ok: true, json: async () => ({ notes: [], tasks: [] }) } as Response)
+    .mockResolvedValueOnce({ ok: true, json: async () => [] } as Response);
   const { unmount } = render(<MemoryRouter><ClientPortal /></MemoryRouter>);
   expect(await screen.findByText(/no tasks assigned yet/i)).toBeInTheDocument();
   expect(screen.getByText(/no notes shared with you yet/i)).toBeInTheDocument();

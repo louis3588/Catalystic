@@ -21,13 +21,13 @@ public static class AdminBootstrap
         if (await db.Users.AnyAsync(user => user.Role == "Admin"))
             throw new InvalidOperationException("An administrator already exists; bootstrap is disabled.");
         var matches = await db.Users.Where(user => user.Email.ToLower() == email.ToLower()).Take(2).ToListAsync();
-        if (matches.Count != 1 || matches[0].IsActive || !string.IsNullOrEmpty(matches[0].PasswordHash))
+        if (matches.Count != 1 || matches[0].AccountState != AccountState.Unactivated || !string.IsNullOrEmpty(matches[0].PasswordHash))
             throw new InvalidOperationException("Expected exactly one inactive account without a password.");
         var account = matches[0];
         var secret = Convert.ToHexString(RandomNumberGenerator.GetBytes(24));
         account.PasswordHash = hasher.HashPassword(account, secret);
         account.Role = "Admin";
-        account.IsActive = true;
+        account.AccountState = AccountState.Activated;
         account.IsEmailVerified = true;
         account.IsPhoneNumberVerified = true;
         account.MustChangePassword = true;
