@@ -63,7 +63,7 @@ function waitForOutput(child, needle) {
 
 function bootstrap(email) {
     return new Promise(resolve => {
-        const child = spawn(dotnet, [path.join(backend, 'bin', 'Debug', 'net10.0', 'CatalysticBackend.dll'), 'bootstrap-admin'],
+        const child = spawn(dotnet, [path.join(backend, 'bin', 'Release', 'net10.0', 'CatalysticBackend.dll'), 'bootstrap-admin'],
             { cwd: backend, env: dbEnv, stdio: ['pipe', 'pipe', 'pipe'] });
         let stdout = '';
         child.stdout.on('data', chunk => { stdout += chunk; });
@@ -116,14 +116,17 @@ function client() {
             { cwd: repo, stdio: ['ignore', 'pipe', 'pipe'] });
         await waitForOutput(postgres, 'ready to accept connections');
         run(pg('createdb'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', 'catalystic_auth_test']);
-        run(dotnet, ['ef', 'database', 'update', '20261125160749_AddWellnessAssessments', '--project', path.join(backend, 'CatalysticBackend.csproj')]);
+        run(dotnet, ['ef', 'database', 'update', '20261125160749_AddWellnessAssessments', '--configuration', 'Release', '--project', path.join(backend, 'CatalysticBackend.csproj')]);
         const seedLegacy = `WITH u AS (INSERT INTO "Users" ("FirstName", "Email", "PasswordHash", "PhoneNumber", "City", "ProfileImageUrl", "IsActive", "IsEmailVerified", "IsPhoneNumberVerified", "MustChangePassword", "SessionVersion", "Role") VALUES ('Migration Test', 'migration@example.invalid', '', '', '', '', false, false, false, false, gen_random_uuid(), 'Client') RETURNING "Id") INSERT INTO "WellnessAssessments" ("ClientId", "AssessmentDate", "Physical", "Dietary", "Social", "Emotional", "Intellectual", "Habitual", "Financial", "PREOS", "CreatedAt") SELECT "Id", '2029-01-01', 1, 2, 3, 4, 5, 6, 7, 8, now() FROM u;`;
         run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-v', 'ON_ERROR_STOP=1', '-c', seedLegacy]);
+        run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-v', 'ON_ERROR_STOP=1', '-c', `INSERT INTO "ClientTasks" ("ClientId", "Title", "Description", "Pillar", "CreatedAt") SELECT "Id", 'Legacy task', '', 'Physical', now() FROM "Users" WHERE "Email" = 'migration@example.invalid'`]);
         const legacyLabel = `WITH p AS (INSERT INTO "BlogPosts" ("Title", "Content", "ReleaseTime", "CreatedAt", "UpdatedAt", "IsPublished") VALUES ('Legacy', 'Text', now(), now(), now(), false) RETURNING "Id") INSERT INTO "BlogLabel" ("BlogId", "Name", "Description", "Colour") SELECT "Id", 'Legacy label', '', '#123456' FROM p;`;
         run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-v', 'ON_ERROR_STOP=1', '-c', legacyLabel]);
         const seedStates = `INSERT INTO "Users" ("FirstName", "Email", "PasswordHash", "PhoneNumber", "City", "ProfileImageUrl", "IsActive", "IsEmailVerified", "IsPhoneNumberVerified", "MustChangePassword", "SessionVersion", "Role") VALUES ('Active', 'state-active@example.invalid', 'hash', '', '', '', true, false, false, false, gen_random_uuid(), 'Client'), ('Dormant', 'state-dormant@example.invalid', 'hash', '', '', '', false, false, false, false, gen_random_uuid(), 'Client');`;
         run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-v', 'ON_ERROR_STOP=1', '-c', seedStates]);
-        run(dotnet, ['ef', 'database', 'update', '--project', path.join(backend, 'CatalysticBackend.csproj')]);
+        run(dotnet, ['ef', 'database', 'update', '--configuration', 'Release', '--project', path.join(backend, 'CatalysticBackend.csproj')]);
+        const migratedTask = run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-tAc', `SELECT count(*) FROM "ClientTasks" WHERE "Title" = 'Legacy task' AND "EventType" = 'Task' AND "Pillar" = 'Physical'`]).trim();
+        assert.equal(migratedTask, '1', 'existing tasks remain task events');
         const migrated = run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-tAc', `SELECT count(*) FROM "WellnessAssessments" a JOIN "ClientData" c ON c."Id" = a."ClientDataId" JOIN "Users" u ON u."Id" = c."UserId" WHERE u."Email" = 'migration@example.invalid' AND c."FirstName" = 'Migration Test' AND a."PREOS" = 8`]).trim();
         assert.equal(migrated, '1', 'migration preserves and relinks existing assessments');
         const migratedLabels = run(pg('psql'), ['-h', '127.0.0.1', '-p', String(dbPort), '-U', 'catalystic_test', '-d', 'catalystic_auth_test', '-tAc', `SELECT count(*) FROM "BlogLabelBlogPost" j JOIN "BlogLabels" l ON l."Id" = j."LabelsId" JOIN "BlogPosts" p ON p."Id" = j."PostsId" WHERE l."Name" = 'Legacy label' AND p."Title" = 'Legacy'`]).trim();
@@ -145,7 +148,7 @@ function client() {
             'SELECT "AccountState" = 1 AND "IsEmailVerified" AND "IsPhoneNumberVerified" AND "MustChangePassword" AND "Role" = \'Admin\' AND "BootstrapExpiresAt" > now() AND "PasswordHash" <> \'\' FROM "Users" WHERE "Role" = \'Admin\'',
         ]).trim();
         assert.equal(bootstrapState, 't', 'bootstrap must set administrator state');
-        server = spawn(dotnet, [path.join(backend, 'bin', 'Debug', 'net10.0', 'CatalysticBackend.dll')],
+        server = spawn(dotnet, [path.join(backend, 'bin', 'Release', 'net10.0', 'CatalysticBackend.dll')],
             { cwd: backend, env: dbEnv, stdio: ['ignore', 'pipe', 'pipe'] });
         await waitForOutput(server, 'Application started');
         const first = client();
@@ -204,7 +207,7 @@ function client() {
             server.once('exit', resolve);
             server.kill();
         });
-        server = spawn(dotnet, [path.join(backend, 'bin', 'Debug', 'net10.0', 'CatalysticBackend.dll')],
+        server = spawn(dotnet, [path.join(backend, 'bin', 'Release', 'net10.0', 'CatalysticBackend.dll')],
             { cwd: backend, env: dbEnv, stdio: ['ignore', 'pipe', 'pipe'] });
         await waitForOutput(server, 'Application started');
         const afterChange = client();
@@ -250,6 +253,9 @@ function client() {
         const weekly = { nextReviewDate, physical: 5, dietary: 5, social: 5, emotional: 5, intellectual: 5, habitual: 5, financial: 5 };
         const weeklyToken = await owner.token();
         assert.equal((await owner.request('POST', '/api/client/weekly-reviews/', weekly)).status, 400);
+        assert.equal((await owner.request('POST', '/api/client/weekly-reviews/', { ...weekly, physical: 10.01 }, weeklyToken)).status, 400);
+        assert.equal((await owner.request('POST', '/api/client/weekly-reviews/', { ...weekly, dietary: 1.234 }, weeklyToken)).status, 400);
+        assert.equal((await owner.request('POST', '/api/client/weekly-reviews/', { ...weekly, nextReviewDate: new Date(Date.now() + 8 * 86400000).toISOString().slice(0, 10) }, weeklyToken)).status, 400);
         assert.equal((await owner.request('POST', '/api/client/weekly-reviews/', weekly, weeklyToken)).status, 201);
         assert.equal((await owner.request('POST', '/api/client/weekly-reviews/', weekly, weeklyToken)).status, 409);
         assert.equal(JSON.parse((await owner.request('GET', '/api/client/work/')).body).nextReviewDate, nextReviewDate);
@@ -259,7 +265,10 @@ function client() {
         assert.equal(reviews[0].status, 'PendingContact');
         const reviewPath = `${reviewsPath}${reviews[0].id}`;
         assert.equal((await afterChange.request('POST', `${reviewPath}/complete`, { preos: 6 }, adminToken)).status, 409);
+        assert.equal((await afterChange.request('POST', `/api/admin/clients/${clientTwo.id}/weekly-reviews/${reviews[0].id}/contacted`, {}, adminToken)).status, 409);
         assert.equal((await afterChange.request('POST', `${reviewPath}/contacted`, {}, adminToken)).status, 204);
+        assert.equal((await afterChange.request('POST', `${reviewPath}/complete`, { preos: 10.01 }, adminToken)).status, 400);
+        assert.equal(JSON.parse((await afterChange.request('GET', reviewsPath)).body)[0].status, 'Contacted');
         assert.equal((await afterChange.request('POST', `${reviewPath}/complete`, { preos: 6 }, adminToken)).status, 204);
         assert.equal((await afterChange.request('POST', `${reviewPath}/complete`, { preos: 6 }, adminToken)).status, 409);
         assert.equal(JSON.parse((await owner.request('GET', '/api/client/assessments')).body).length, 2);
@@ -305,6 +314,34 @@ function client() {
         assert.equal(otherWork.status, 200);
         assert.deepEqual(JSON.parse(otherWork.body).notes.map(note => note.content), ['Other client note']);
         assert.deepEqual(JSON.parse(otherWork.body).tasks, []);
+        const calendarPath = `/api/admin/clients/${clientOne.id}/calendar`;
+        assert.equal((await client().request('GET', '/api/client/calendar/')).status, 401);
+        assert.equal((await owner.request('GET', `${calendarPath}/`)).status, 403);
+        assert.equal((await owner.request('POST', '/api/client/calendar/requests', { message: 'Please call' })).status, 400);
+        assert.equal((await owner.request('POST', '/api/client/calendar/requests', { message: 'Please call' }, weeklyToken)).status, 201);
+        assert.equal((await owner.request('POST', '/api/client/calendar/requests', { message: '   ' }, weeklyToken)).status, 400);
+        const requests = JSON.parse((await afterChange.request('GET', `${calendarPath}/`)).body).requests;
+        assert.equal(requests[0].status, 'Pending');
+        const appointment = { type: 'Call', title: 'Review call', description: 'Discuss progress', startsAt: '2099-02-01T10:00:00Z', endsAt: '2099-02-01T11:00:00Z', callRequestId: requests[0].id };
+        assert.equal((await owner.request('POST', `${calendarPath}/events`, appointment, ownerToken)).status, 403);
+        assert.equal((await afterChange.request('POST', `${calendarPath}/events`, appointment)).status, 400);
+        assert.equal((await afterChange.request('POST', `${calendarPath}/events`, { ...appointment, endsAt: appointment.startsAt }, adminToken)).status, 400);
+        assert.equal((await afterChange.request('POST', `${calendarPath}/events`, appointment, adminToken)).status, 201);
+        const ownEvents = JSON.parse((await owner.request('GET', '/api/client/calendar/')).body);
+        assert.equal(ownEvents[0].title, 'Review call');
+        assert.equal(JSON.parse((await afterChange.request('GET', `${calendarPath}/`)).body).requests[0].status, 'Scheduled');
+        assert.equal((await other.request('GET', `/api/client/calendar/events/${ownEvents[0].id}/file`)).status, 404);
+        assert.equal((await client().request('GET', `/api/client/calendar/events/${ownEvents[0].id}/file`)).status, 401);
+        assert.equal((await afterChange.request('GET', `/api/admin/clients/${clientTwo.id}/calendar/events/${ownEvents[0].id}/file`)).status, 404);
+        assert.match((await owner.request('GET', `/api/client/calendar/events/${ownEvents[0].id}/file`)).body, /BEGIN:VCALENDAR/);
+        assert.deepEqual(JSON.parse((await other.request('GET', '/api/client/calendar/')).body), []);
+        assert.equal((await afterChange.request('POST', `${calendarPath}/requests/${requests[0].id}/decline`, {}, adminToken)).status, 404);
+        const concurrent = { type: 'Meeting', title: 'Meeting', description: '', startsAt: '2099-02-01T12:00:00Z', endsAt: '2099-02-01T13:00:00Z' };
+        const attemptsAtSameTime = await Promise.all([
+            afterChange.request('POST', `${calendarPath}/events`, concurrent, adminToken),
+            afterChange.request('POST', `/api/admin/clients/${clientTwo.id}/calendar/events`, concurrent, adminToken),
+        ]);
+        assert.deepEqual(attemptsAtSameTime.map(result => result.status).sort(), [201, 400]);
         assert.equal((await afterChange.request('PATCH', `/api/admin/clients/${clientOne.id}/access`, { active: false }, adminToken)).status, 204);
         assert.equal((await owner.request('GET', '/api/client/work/')).status, 401);
         assert.equal((await afterChange.request('PATCH', `/api/admin/clients/${clientOne.id}/access`, { active: true }, adminToken)).status, 204);

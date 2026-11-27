@@ -21,7 +21,7 @@ public static partial class ClientWorkEndpoints
             context.Response.Headers.CacheControl = "no-store";
             var clients = await db.Users.AsNoTracking().Where(user => user.Role == "Client")
                 .OrderBy(user => user.FirstName).ThenBy(user => user.Id).Take(100)
-                .Select(user => new { user.Id, user.FirstName, user.LastName, user.Email, IsActive = user.AccountState == AccountState.Activated, user.AccountState, PendingReviews = db.WeeklyReviews.Count(review => review.ClientData.UserId == user.Id && review.Status != "Completed") })
+                .Select(user => new { user.Id, user.FirstName, user.LastName, user.Email, IsActive = user.AccountState == AccountState.Activated, user.AccountState, PendingReviews = db.WeeklyReviews.Count(review => review.ClientData.UserId == user.Id && review.Status != "Completed"), PendingCalls = db.CallRequests.Count(request => request.ClientId == user.Id && request.Status == "Pending") })
                 .ToListAsync(context.RequestAborted);
             return Results.Ok(clients);
         });

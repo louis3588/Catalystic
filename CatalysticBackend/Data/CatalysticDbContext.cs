@@ -17,6 +17,10 @@ public class CatalysticDbContext : DbContext
     public DbSet<PractitionerNote> PractitionerNotes => Set<PractitionerNote>();
     public DbSet<SharedClientNote> SharedClientNotes => Set<SharedClientNote>();
     public DbSet<ClientTask> ClientTasks => Set<ClientTask>();
+    public DbSet<CalendarEvent> CalendarEvents => Set<CalendarEvent>();
+    public DbSet<ScheduledCall> ScheduledCalls => Set<ScheduledCall>();
+    public DbSet<ScheduledMeeting> ScheduledMeetings => Set<ScheduledMeeting>();
+    public DbSet<CallRequest> CallRequests => Set<CallRequest>();
     public DbSet<ClientInvitation> ClientInvitations => Set<ClientInvitation>();
     public DbSet<WellnessAssessment> WellnessAssessments => Set<WellnessAssessment>();
     public DbSet<ClientData> ClientData => Set<ClientData>();
@@ -78,13 +82,28 @@ public class CatalysticDbContext : DbContext
             entity.HasIndex(e => new { e.ClientId, e.SharedAt });
         });
 
-        modelBuilder.Entity<ClientTask>(entity =>
+        modelBuilder.Entity<CalendarEvent>(entity =>
         {
+            entity.ToTable("ClientTasks");
+            entity.HasDiscriminator<string>("EventType")
+                .HasValue<ClientTask>("Task")
+                .HasValue<ScheduledCall>("Call")
+                .HasValue<ScheduledMeeting>("Meeting");
             entity.Property(e => e.Title).HasMaxLength(160).IsRequired();
             entity.Property(e => e.Description).HasMaxLength(4000).IsRequired();
-            entity.Property(e => e.Pillar).HasMaxLength(20).IsRequired();
             entity.HasOne(e => e.Client).WithMany().HasForeignKey(e => e.ClientId).OnDelete(DeleteBehavior.Cascade);
             entity.HasIndex(e => new { e.ClientId, e.CreatedAt });
+        });
+        modelBuilder.Entity<TimedEvent>();
+        modelBuilder.Entity<ClientTask>().Property(e => e.Pillar).HasMaxLength(20).IsRequired();
+        modelBuilder.Entity<CallRequest>(entity =>
+        {
+            entity.Property(e => e.Message).HasMaxLength(1000).IsRequired();
+            entity.Property(e => e.Status).HasMaxLength(16).IsRequired().IsConcurrencyToken();
+            entity.HasOne(e => e.Client).WithMany().HasForeignKey(e => e.ClientId).OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(e => e.ScheduledCall).WithMany().HasForeignKey(e => e.ScheduledCallId).OnDelete(DeleteBehavior.SetNull);
+            entity.HasIndex(e => new { e.ClientId, e.CreatedAt });
+            entity.ToTable(table => table.HasCheckConstraint("CK_CallRequests_Status", "\"Status\" IN ('Pending', 'Scheduled', 'Declined')"));
         });
 
         modelBuilder.Entity<Enquiry>(entity =>

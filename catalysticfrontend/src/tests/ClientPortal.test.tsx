@@ -7,7 +7,7 @@ afterEach(() => {
 });
 
 test("client signs in, sees assigned work, and signs out", async () => {
-  const fetchMock = jest.spyOn(window, "fetch")
+  const responses = jest.fn()
     .mockResolvedValueOnce({ status: 401 } as Response)
     .mockResolvedValueOnce({ ok: true, json: async () => ({ token: "csrf" }) } as Response)
     .mockResolvedValueOnce({ ok: true, json: async () => ({ passwordChangeRequired: false }) } as Response)
@@ -18,6 +18,10 @@ test("client signs in, sees assigned work, and signs out", async () => {
     .mockResolvedValueOnce({ ok: true, json: async () => [] } as Response)
     .mockResolvedValueOnce({ ok: true, json: async () => ({ token: "csrf" }) } as Response)
     .mockResolvedValueOnce({ ok: true } as Response);
+  const fetchMock = jest.spyOn(window, "fetch").mockImplementation((input, init) => {
+    if (String(input).startsWith("/api/client/calendar")) return Promise.resolve({ ok: true, json: async () => [] } as Response);
+    return responses(input, init);
+  });
 
   render(<MemoryRouter><ClientPortal /></MemoryRouter>);
   fireEvent.change(await screen.findByLabelText(/^email/i), { target: { value: "client@example.invalid" } });

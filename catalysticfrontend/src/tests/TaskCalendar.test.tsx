@@ -12,3 +12,12 @@ test("shows a task on its day and opens and closes its details", () => {
   fireEvent.keyDown(event, { key: "Escape" });
   expect(screen.queryByRole("group", { name: "Plan a walk details" })).not.toBeInTheDocument();
 });
+
+test("provides an authenticated export link for an appointment", () => {
+  const date = new Date();
+  const start = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 15, 10)).toISOString();
+  const end = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 15, 11)).toISOString();
+  render(<TaskCalendar tasks={[]} events={[{ id: 9, type: "Call", title: "Review call", description: "Discuss the week", startsAt: start, endsAt: end }]} exportBase="/api/client/calendar" />);
+  fireEvent.click(screen.getByRole("button", { name: "Review call" }));
+  expect(screen.getByRole("link", { name: "Export event" })).toHaveAttribute("href", "/api/client/calendar/events/9/file");
+});

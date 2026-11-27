@@ -99,6 +99,89 @@ namespace CatalysticBackend.Migrations
                     b.ToTable("BlogPosts");
                 });
 
+            modelBuilder.Entity("CatalysticBackend.Models.CalendarEvent", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(4000)
+                        .HasColumnType("character varying(4000)");
+
+                    b.Property<string>("EventType")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("character varying(13)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(160)
+                        .HasColumnType("character varying(160)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId", "CreatedAt");
+
+                    b.ToTable("ClientTasks", (string)null);
+
+                    b.HasDiscriminator<string>("EventType").HasValue("CalendarEvent");
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("CatalysticBackend.Models.CallRequest", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<DateTime?>("ResolvedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("ScheduledCallId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Status")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ScheduledCallId");
+
+                    b.HasIndex("ClientId", "CreatedAt");
+
+                    b.ToTable("CallRequests", t =>
+                        {
+                            t.HasCheckConstraint("CK_CallRequests_Status", "\"Status\" IN ('Pending', 'Scheduled', 'Declined')");
+                        });
+                });
+
             modelBuilder.Entity("CatalysticBackend.Models.ClientData", b =>
                 {
                     b.Property<int>("Id")
@@ -173,48 +256,6 @@ namespace CatalysticBackend.Migrations
                         .IsUnique();
 
                     b.ToTable("ClientInvitations");
-                });
-
-            modelBuilder.Entity("CatalysticBackend.Models.ClientTask", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<int>("ClientId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("CompletedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(4000)
-                        .HasColumnType("character varying(4000)");
-
-                    b.Property<DateTime?>("DueAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Pillar")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("character varying(160)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId", "CreatedAt");
-
-                    b.ToTable("ClientTasks");
                 });
 
             modelBuilder.Entity("CatalysticBackend.Models.Enquiry", b =>
@@ -560,6 +601,51 @@ namespace CatalysticBackend.Migrations
                         });
                 });
 
+            modelBuilder.Entity("CatalysticBackend.Models.ClientTask", b =>
+                {
+                    b.HasBaseType("CatalysticBackend.Models.CalendarEvent");
+
+                    b.Property<DateTime?>("CompletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DueAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Pillar")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.HasDiscriminator().HasValue("Task");
+                });
+
+            modelBuilder.Entity("CatalysticBackend.Models.TimedEvent", b =>
+                {
+                    b.HasBaseType("CatalysticBackend.Models.CalendarEvent");
+
+                    b.Property<DateTime>("EndsAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("StartsAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasDiscriminator().HasValue("TimedEvent");
+                });
+
+            modelBuilder.Entity("CatalysticBackend.Models.ScheduledCall", b =>
+                {
+                    b.HasBaseType("CatalysticBackend.Models.TimedEvent");
+
+                    b.HasDiscriminator().HasValue("Call");
+                });
+
+            modelBuilder.Entity("CatalysticBackend.Models.ScheduledMeeting", b =>
+                {
+                    b.HasBaseType("CatalysticBackend.Models.TimedEvent");
+
+                    b.HasDiscriminator().HasValue("Meeting");
+                });
+
             modelBuilder.Entity("BlogLabelBlogPost", b =>
                 {
                     b.HasOne("CatalysticBackend.Models.BlogLabel", null)
@@ -573,6 +659,35 @@ namespace CatalysticBackend.Migrations
                         .HasForeignKey("PostsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CatalysticBackend.Models.CalendarEvent", b =>
+                {
+                    b.HasOne("CatalysticBackend.Models.User", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("CatalysticBackend.Models.CallRequest", b =>
+                {
+                    b.HasOne("CatalysticBackend.Models.User", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CatalysticBackend.Models.ScheduledCall", "ScheduledCall")
+                        .WithMany()
+                        .HasForeignKey("ScheduledCallId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Client");
+
+                    b.Navigation("ScheduledCall");
                 });
 
             modelBuilder.Entity("CatalysticBackend.Models.ClientData", b =>
@@ -602,17 +717,6 @@ namespace CatalysticBackend.Migrations
                     b.Navigation("Client");
 
                     b.Navigation("IssuedBy");
-                });
-
-            modelBuilder.Entity("CatalysticBackend.Models.ClientTask", b =>
-                {
-                    b.HasOne("CatalysticBackend.Models.User", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
                 });
 
             modelBuilder.Entity("CatalysticBackend.Models.PractitionerNote", b =>

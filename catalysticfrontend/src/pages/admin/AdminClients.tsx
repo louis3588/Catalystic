@@ -2,7 +2,7 @@ import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { sendRequest } from "../../api";
 import ClientAssessments from "./ClientAssessments";
-import TaskCalendar from "../../components/TaskCalendar";
+import CalendarBooking from "../../components/CalendarBooking";
 import WeeklyReviews from "./WeeklyReviews";
 
 type Client = {
@@ -13,6 +13,7 @@ type Client = {
   isActive: boolean;
   accountState: number;
   pendingReviews?: number;
+  pendingCalls?: number;
 };
 type Note = {
   id: number;
@@ -63,6 +64,7 @@ export default function AdminClients() {
   const deactivateDialog = useRef<HTMLDialogElement>(null);
   const [pendingDeactivation, setPendingDeactivation] = useState<Client | null>(null);
   const [reviewsOpen, setReviewsOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
   const [assessmentVersion, setAssessmentVersion] = useState(0);
 
   useEffect(() => {
@@ -312,7 +314,7 @@ export default function AdminClients() {
             ) : (
               <div className="client-table-scroll"><table className="client-directory"><caption>Client directory</caption><thead><tr><th scope="col">Client</th><th scope="col">Account</th><th scope="col">Actions</th></tr></thead><tbody>
                 {clients.map((client) => (
-                  <tr key={client.id}><td><strong>{client.firstName} {client.lastName}</strong><br /><a href={`mailto:${encodeURIComponent(client.email)}`}>{client.email}</a>{!!client.pendingReviews && <p>Review needs attention</p>}</td><td>{accountStateLabel(client)}</td><td className="client-actions">
+                  <tr key={client.id}><td><strong>{client.firstName} {client.lastName}</strong><br /><a href={`mailto:${encodeURIComponent(client.email)}`}>{client.email}</a>{!!client.pendingReviews && <p>Review needs attention</p>}{!!client.pendingCalls && <p>{client.pendingCalls} call request(s) need attention</p>}</td><td>{accountStateLabel(client)}</td><td className="client-actions">
                     <button
                       type="button"
                       onClick={() => void selectClient(client.id)}
@@ -343,7 +345,7 @@ export default function AdminClients() {
                 </p>
                 <details className="client-detail-panel" onToggle={event => setReviewsOpen(event.currentTarget.open)}><summary>Weekly reviews</summary>{reviewsOpen && <WeeklyReviews key={detail.client.id} clientId={detail.client.id} onCompleted={() => { setAssessmentVersion(value => value + 1); setClients(previous => previous.map(client => client.id === detail.client.id ? { ...client, pendingReviews: 0 } : client)); }} />}</details>
                 <details className="client-detail-panel"><summary>Wellness assessments</summary><ClientAssessments key={`${detail.client.id}-${assessmentVersion}`} clientId={detail.client.id} /></details>
-                <details className="client-detail-panel"><summary>Client calendar</summary><TaskCalendar tasks={detail.tasks} /></details>
+                <details className="client-detail-panel" onToggle={event => setCalendarOpen(event.currentTarget.open)}><summary>Client calendar and call requests</summary>{calendarOpen && <CalendarBooking key={detail.client.id} clientId={detail.client.id} tasks={detail.tasks} onPendingCallsChange={count => setClients(previous => previous.map(client => client.id === detail.client.id ? { ...client, pendingCalls: count } : client))} />}</details>
                 <details className="enquiry-item client-detail-panel">
                   <summary>Private practitioner notes</summary>
                   <p>Only administrators can see these notes.</p>

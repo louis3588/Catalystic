@@ -1382,6 +1382,15 @@ body {
 .calendar-event, .client-portal button.calendar-event { width: 100%; padding: .3rem .4rem; border: 0; border-radius: 5px; background: #d8efd4; color: #174625; text-align: left; font-size: .75rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; }
 .calendar-popover { position: absolute; z-index: 20; top: 100%; left: 0; width: 230px; padding: 1rem; border: 1px solid #a9d0ad; border-radius: 12px; color: #fff; background: rgba(20, 76, 43, .96); box-shadow: 0 12px 30px #173b2940; text-align: left; }
 .calendar-popover-review { background: rgba(28, 78, 80, .97); border-color: #9bc6bf; }
+.calendar-popover-call { background: rgba(33, 70, 82, .97); border-color: #9dc4cc; }
+.calendar-popover-meeting { background: rgba(69, 63, 93, .97); border-color: #c2b6d7; }
+.calendar-event-call, .client-portal button.calendar-event-call { background: #dceef2; color: #174552; }
+.calendar-event-meeting, .client-portal button.calendar-event-meeting { background: #eae3f3; color: #49355e; }
+.calendar-export { display: inline-block; background: rgba(255,255,255,.2); color: white; border: 1px solid rgba(255,255,255,.4); border-radius: 8px; padding: .5rem .75rem; text-decoration: none; }
+.calendar-export:hover, .calendar-export:focus-visible { color: white; background: rgba(255,255,255,.35); }
+.calendar-booking > form { margin-top: 1.5rem; }
+.calendar-booking > ul { list-style: none; padding: 0; }
+.calendar-booking > ul > li { margin: .75rem 0; padding: 1rem; border: 1px solid #d5e3d1; border-radius: 12px; background: #f8fbf7; }
 .calendar-day:nth-child(7n) .calendar-popover, .calendar-day:nth-child(7n + 6) .calendar-popover { left: auto; right: 0; }
 .calendar-popover span, .calendar-popover strong { display: block; position: relative; }
 .calendar-popover p { display: flex; gap: .4rem; position: relative; color: #e3f4df; font-size: .82rem; }

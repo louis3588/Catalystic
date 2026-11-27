@@ -1,7 +1,7 @@
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { sendRequest } from "../../api";
-import TaskCalendar from "../../components/TaskCalendar";
+import CalendarBooking from "../../components/CalendarBooking";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 type SharedNote = {
@@ -174,7 +174,7 @@ export default function ClientPortal() {
               <p>Keep your focus on the steps you’ve agreed with your practitioner.</p>
               <button type="button" onClick={() => void signOut()} disabled={busy}>Sign out</button>
             </div>
-            <nav className="client-quick-links" aria-label="Client shortcuts"><Link to="/client/weekly-review">Start weekly review →</Link><span>Call booking coming soon</span></nav>
+            <nav className="client-quick-links" aria-label="Client shortcuts"><Link to="/client/weekly-review">Start weekly review →</Link><a href="#calendar-booking">Request a call →</a></nav>
             <p role="status">{feedback}</p>
             {scoresError && <p role="alert">Unable to load your score history.</p>}
             {scores && <section className="client-score-section" aria-labelledby="score-history-heading">
@@ -212,7 +212,7 @@ export default function ClientPortal() {
                 )}
               </section>
             </div>
-            <TaskCalendar tasks={work.nextReviewDate ? [...work.tasks, { id: -1, title: "Weekly review", dueAt: work.nextReviewDate, completedAt: null }] : work.tasks} />
+            <CalendarBooking tasks={work.nextReviewDate ? [...work.tasks, { id: -1, title: "Weekly review", dueAt: work.nextReviewDate, completedAt: null }] : work.tasks} />
           </>
         )}
       </div>
