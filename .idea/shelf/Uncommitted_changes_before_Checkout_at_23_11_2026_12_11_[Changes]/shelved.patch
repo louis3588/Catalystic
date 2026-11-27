@@ -1,0 +1,219 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"e3112146-aa0f-4b49-b205-694b2e1769c5\" name=\"Changes\" comment=\"static pages initialised\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CatalysticBackend.Tests/auth-integration.cjs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CatalysticBackend.Tests/auth-integration.cjs\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CatalysticBackend/Models/User.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CatalysticBackend/Models/User.cs\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CatalysticBackend/Program.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CatalysticBackend/Program.cs\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CatalysticBackend/Service/DTOs/UserProfile.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CatalysticBackend/Service/DTOs/UserProfile.cs\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/catalysticfrontend/src/App.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/catalysticfrontend/src/App.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/catalysticfrontend/src/App.test.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/catalysticfrontend/src/App.test.tsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/catalysticfrontend/src/App.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/catalysticfrontend/src/App.tsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/catalysticfrontend/src/pages/Contact.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/catalysticfrontend/src/pages/Contact.tsx\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"DBNavigator.Project.Workspace.Settings\">\r\n    <assistant-settings>\r\n      <credential-settings>\r\n        <credentials />\r\n      </credential-settings>\r\n      <profile-settings>\r\n        <profiles />\r\n      </profile-settings>\r\n      <mcp-server-settings>\r\n        <workspace-integration value=\"false\" />\r\n        <mcp-servers />\r\n        <mcp-tool-approvals />\r\n      </mcp-server-settings>\r\n    </assistant-settings>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"NextEditCompletionFeaturesState\">\r\n    <decayedCancelled>\r\n      <entry key=\"MS100\" value=\"1.0\" />\r\n      <entry key=\"MS500\" value=\"1.0000000000000002\" />\r\n      <entry key=\"S2\" value=\"1.0001214517097667\" />\r\n      <entry key=\"S5\" value=\"1.046435944319956\" />\r\n      <entry key=\"S10\" value=\"1.746860067500227\" />\r\n      <entry key=\"S30\" value=\"11.202499671364764\" />\r\n      <entry key=\"S60\" value=\"27.292696897854466\" />\r\n      <entry key=\"M2\" value=\"47.857804643429915\" />\r\n      <entry key=\"M5\" value=\"70.0403371680215\" />\r\n      <entry key=\"M10\" value=\"80.12206996543583\" />\r\n      <entry key=\"M15\" value=\"83.86549147597106\" />\r\n      <entry key=\"M30\" value=\"87.82039034107183\" />\r\n      <entry key=\"H1\" value=\"89.88124565153198\" />\r\n      <entry key=\"H2\" value=\"90.93327481563522\" />\r\n      <entry key=\"H4\" value=\"91.46478638129946\" />\r\n      <entry key=\"D1\" value=\"91.91053944370195\" />\r\n      <entry key=\"W1\" value=\"91.98721357944122\" />\r\n    </decayedCancelled>\r\n    <decayedSelected>\r\n      <entry key=\"MS100\" value=\"0.0\" />\r\n      <entry key=\"MS500\" value=\"0.0\" />\r\n      <entry key=\"S2\" value=\"0.0\" />\r\n      <entry key=\"S5\" value=\"0.0\" />\r\n      <entry key=\"S10\" value=\"0.0\" />\r\n      <entry key=\"S30\" value=\"0.0\" />\r\n      <entry key=\"S60\" value=\"0.0\" />\r\n      <entry key=\"M2\" value=\"0.0\" />\r\n      <entry key=\"M5\" value=\"0.0\" />\r\n      <entry key=\"M10\" value=\"0.0\" />\r\n      <entry key=\"M15\" value=\"0.0\" />\r\n      <entry key=\"M30\" value=\"0.0\" />\r\n      <entry key=\"H1\" value=\"0.0\" />\r\n      <entry key=\"H2\" value=\"0.0\" />\r\n      <entry key=\"H4\" value=\"0.0\" />\r\n      <entry key=\"D1\" value=\"0.0\" />\r\n      <entry key=\"W1\" value=\"0.0\" />\r\n    </decayedSelected>\r\n    <decayedShown>\r\n      <entry key=\"MS100\" value=\"0.9138314502294005\" />\r\n      <entry key=\"MS500\" value=\"0.9821395952633917\" />\r\n      <entry key=\"S2\" value=\"0.9956254261082869\" />\r\n      <entry key=\"S5\" value=\"1.0445388148973462\" />\r\n      <entry key=\"S10\" value=\"1.7452492049443642\" />\r\n      <entry key=\"S30\" value=\"11.198758820345482\" />\r\n      <entry key=\"S60\" value=\"27.287305901102243\" />\r\n      <entry key=\"M2\" value=\"47.8523611075399\" />\r\n      <entry key=\"M5\" value=\"70.03682026424943\" />\r\n      <entry key=\"M10\" value=\"80.11998830630529\" />\r\n      <entry key=\"M15\" value=\"83.86402204177864\" />\r\n      <entry key=\"M30\" value=\"87.81961203704948\" />\r\n      <entry key=\"H1\" value=\"89.88084505534495\" />\r\n      <entry key=\"H2\" value=\"90.93307158525046\" />\r\n      <entry key=\"H4\" value=\"91.46468402394626\" />\r\n      <entry key=\"D1\" value=\"91.91052228028522\" />\r\n      <entry key=\"W1\" value=\"91.98721112497086\" />\r\n    </decayedShown>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7,\r\n  &quot;fromUser&quot;: false\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3MHmhssY0Ldkm7CvxrIRENEqplW\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,\r\n    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;development&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.updates&quot;,\r\n    &quot;ts.external.directory.path&quot;: &quot;D:\\\\Code\\\\JavaScript\\\\Catalystic\\\\catalysticfrontend\\\\node_modules\\\\typescript\\\\lib&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ReactDesignerToolWindowState\">\r\n    <option name=\"myId2Visible\">\r\n      <map>\r\n        <entry key=\"com.intellij.reactbuddy.reactComponents\" value=\"false\" />\r\n        <entry key=\"com.intellij.reactbuddy.reactInspector\" value=\"false\" />\r\n        <entry key=\"com.intellij.reactbuddy.storybook\" value=\"false\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Code\\JavaScript\\Catalystic\\CatalysticBackend\\docs\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Debug Application\" type=\"JavascriptDebugType\" uri=\"http://localhost:3000\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-56aff7b04f6f-JavaScript-WS-263.7307.202\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"e3112146-aa0f-4b49-b205-694b2e1769c5\" name=\"Changes\" comment=\"\" />\r\n      <created>1795015990485</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1795015990485</updated>\r\n      <workItem from=\"1795015991513\" duration=\"37000\" />\r\n      <workItem from=\"1795048007869\" duration=\"1565000\" />\r\n      <workItem from=\"1795050107654\" duration=\"1765000\" />\r\n      <workItem from=\"1795183528641\" duration=\"3966000\" />\r\n      <workItem from=\"1795187998095\" duration=\"240000\" />\r\n      <workItem from=\"1795188338903\" duration=\"35000\" />\r\n      <workItem from=\"1795188399389\" duration=\"9663000\" />\r\n      <workItem from=\"1795269835383\" duration=\"9226000\" />\r\n      <workItem from=\"1795281045795\" duration=\"1785000\" />\r\n      <workItem from=\"1795354682447\" duration=\"1037000\" />\r\n      <workItem from=\"1795358343560\" duration=\"10110000\" />\r\n      <workItem from=\"1795429937434\" duration=\"22000\" />\r\n      <workItem from=\"1795431203221\" duration=\"300000\" />\r\n      <workItem from=\"1795431601856\" duration=\"48000\" />\r\n      <workItem from=\"1795432071131\" duration=\"203000\" />\r\n      <workItem from=\"1795433112395\" duration=\"1371000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"user profile provision init\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1795050797802</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1795050797802</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"static pages initialised\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1795354818165</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1795354818165</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"3\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"user profile provision init\" />\r\n    <MESSAGE value=\"static pages initialised\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"static pages initialised\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision d1b3c47b168baa1d8909692fd8776b04e507be62)
++++ b/.idea/workspace.xml	(date 1795435293318)
+@@ -4,19 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="static pages initialised">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CatalysticBackend.Tests/auth-integration.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend.Tests/auth-integration.cjs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Models/User.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Program.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Service/DTOs/UserProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Service/DTOs/UserProfile.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.test.tsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.tsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/Contact.tsx" afterDir="false" />
+-    </list>
++    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="client invitations setup" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -45,25 +33,31 @@
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
++  <component name="GithubPullRequestsUISettings"><![CDATA[{
++  "selectedUrlAndAccountId": {
++    "url": "https://github.com/louis3588/Catalystic.git",
++    "accountId": "acdb90f8-ee1f-4281-a67d-e0b9882e8304"
++  }
++}]]></component>
+   <component name="NextEditCompletionFeaturesState">
+     <decayedCancelled>
+-      <entry key="MS100" value="1.0" />
+-      <entry key="MS500" value="1.0000000000000002" />
+-      <entry key="S2" value="1.0001214517097667" />
+-      <entry key="S5" value="1.046435944319956" />
+-      <entry key="S10" value="1.746860067500227" />
+-      <entry key="S30" value="11.202499671364764" />
+-      <entry key="S60" value="27.292696897854466" />
+-      <entry key="M2" value="47.857804643429915" />
+-      <entry key="M5" value="70.0403371680215" />
+-      <entry key="M10" value="80.12206996543583" />
+-      <entry key="M15" value="83.86549147597106" />
+-      <entry key="M30" value="87.82039034107183" />
+-      <entry key="H1" value="89.88124565153198" />
+-      <entry key="H2" value="90.93327481563522" />
+-      <entry key="H4" value="91.46478638129946" />
+-      <entry key="D1" value="91.91053944370195" />
+-      <entry key="W1" value="91.98721357944122" />
++      <entry key="MS100" value="1.0032620621864725" />
++      <entry key="MS500" value="1.3243966892195662" />
++      <entry key="S2" value="2.466689127421166" />
++      <entry key="S5" value="3.8832370114078385" />
++      <entry key="S10" value="4.762486819413231" />
++      <entry key="S30" value="5.770361921897529" />
++      <entry key="S60" value="9.683705712270468" />
++      <entry key="M2" value="24.01885866958262" />
++      <entry key="M5" value="53.46460042781506" />
++      <entry key="M10" value="71.96668738011606" />
++      <entry key="M15" value="79.67317315632171" />
++      <entry key="M30" value="88.31204294803982" />
++      <entry key="H1" value="93.01702679626169" />
++      <entry key="H2" value="95.47272952922948" />
++      <entry key="H4" value="96.72728593892903" />
++      <entry key="D1" value="97.78660860056493" />
++      <entry key="W1" value="97.96948420349851" />
+     </decayedCancelled>
+     <decayedSelected>
+       <entry key="MS100" value="0.0" />
+@@ -85,23 +79,23 @@
+       <entry key="W1" value="0.0" />
+     </decayedSelected>
+     <decayedShown>
+-      <entry key="MS100" value="0.9138314502294005" />
+-      <entry key="MS500" value="0.9821395952633917" />
+-      <entry key="S2" value="0.9956254261082869" />
+-      <entry key="S5" value="1.0445388148973462" />
+-      <entry key="S10" value="1.7452492049443642" />
+-      <entry key="S30" value="11.198758820345482" />
+-      <entry key="S60" value="27.287305901102243" />
+-      <entry key="M2" value="47.8523611075399" />
+-      <entry key="M5" value="70.03682026424943" />
+-      <entry key="M10" value="80.11998830630529" />
+-      <entry key="M15" value="83.86402204177864" />
+-      <entry key="M30" value="87.81961203704948" />
+-      <entry key="H1" value="89.88084505534495" />
+-      <entry key="H2" value="90.93307158525046" />
+-      <entry key="H4" value="91.46468402394626" />
+-      <entry key="D1" value="91.91052228028522" />
+-      <entry key="W1" value="91.98721112497086" />
++      <entry key="MS100" value="0.9043152442443563" />
++      <entry key="MS500" value="1.2997474644602764" />
++      <entry key="S2" value="2.4532392912922587" />
++      <entry key="S5" value="3.8726985625609696" />
++      <entry key="S10" value="4.755475746802739" />
++      <entry key="S30" value="5.7674171276506785" />
++      <entry key="S60" value="9.681419816444102" />
++      <entry key="M2" value="24.016019367351856" />
++      <entry key="M5" value="53.4618992227659" />
++      <entry key="M10" value="71.96481428944718" />
++      <entry key="M15" value="79.67177611708372" />
++      <entry key="M30" value="88.31126034306581" />
++      <entry key="H1" value="93.01661240072795" />
++      <entry key="H2" value="95.47251627914575" />
++      <entry key="H4" value="96.72717776459118" />
++      <entry key="D1" value="97.78659035319063" />
++      <entry key="W1" value="97.9694815913428" />
+     </decayedShown>
+   </component>
+   <component name="ProjectColorInfo">{
+@@ -113,28 +107,28 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
+-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+-    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.updates&quot;,
+-    &quot;ts.external.directory.path&quot;: &quot;D:\\Code\\JavaScript\\Catalystic\\catalysticfrontend\\node_modules\\typescript\\lib&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "ModuleVcsDetector.initialDetectionPerformed": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
++    "codeWithMe.voiceChat.enabledByDefault": "false",
++    "git-widget-placeholder": "#18 on development",
++    "ignore.virus.scanning.warn.message": "true",
++    "javascript.preferred.runtime.type.id": "node",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.jshint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.jshint": "",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_interpreter_path": "node",
++    "nodejs_package_manager_path": "npm",
++    "settings.editor.selected.configurable": "preferences.updates",
++    "ts.external.directory.path": "D:\\Code\\JavaScript\\Catalystic\\catalysticfrontend\\node_modules\\typescript\\lib"
+   }
+-}</component>
++}]]></component>
+   <component name="ReactDesignerToolWindowState">
+     <option name="myId2Visible">
+       <map>
+@@ -183,7 +177,7 @@
+       <workItem from="1795431203221" duration="300000" />
+       <workItem from="1795431601856" duration="48000" />
+       <workItem from="1795432071131" duration="203000" />
+-      <workItem from="1795433112395" duration="1371000" />
++      <workItem from="1795433112395" duration="2014000" />
+     </task>
+     <task id="LOCAL-00001" summary="user profile provision init">
+       <option name="closed" value="true" />
+@@ -201,15 +195,35 @@
+       <option name="project" value="LOCAL" />
+       <updated>1795354818165</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL-00003" summary="client invitations setup">
++      <option name="closed" value="true" />
++      <created>1795434730714</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1795434730714</updated>
++    </task>
++    <option name="localTasksCounter" value="4" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="user profile provision init" />
+     <MESSAGE value="static pages initialised" />
+-    <option name="LAST_COMMIT_MESSAGE" value="static pages initialised" />
++    <MESSAGE value="client invitations setup" />
++    <option name="LAST_COMMIT_MESSAGE" value="client invitations setup" />
+   </component>
+ </project>
+\ No newline at end of file

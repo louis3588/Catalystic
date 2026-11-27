@@ -45,7 +45,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="devops" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -56,12 +56,33 @@
     &quot;assignee&quot;: &quot;louis3588&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/louis3588/Catalystic.git&quot;,
-    &quot;accountId&quot;: &quot;acdb90f8-ee1f-4281-a67d-e0b9882e8304&quot;
+  <component name="GitHubPullRequestState"><![CDATA[{
+  "prStates": [
+    {
+      "id": {
+        "id": "PR_kwDOVy_Mrs8AAAABRzN5TQ",
+        "number": 19
+      },
+      "lastSeen": 1795602855919
+    }
+  ]
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/louis3588/Catalystic.git",
+    "accountId": "acdb90f8-ee1f-4281-a67d-e0b9882e8304"
+  },
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
+    },
+    "owner": "louis3588",
+    "repository": "Catalystic"
   }
-}</component>
+}]]></component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
       <entry key="MS100" value="1.0040748480385666" />

@@ -15,7 +15,7 @@ using CatalysticBackend.Models;
 using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
-// Explicit environment configuration must take precedence over a local .env file.
+
 DotNetEnv.Env.NoClobber().Load();
 var connectionString =
     $"Host={Environment.GetEnvironmentVariable("PGHOST")};" +
