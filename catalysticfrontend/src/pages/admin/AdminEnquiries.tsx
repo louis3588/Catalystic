@@ -90,7 +90,7 @@ export default function AdminEnquiries() {
   }
 
   return (
-    <section className="section"><div className="container">
+    <section className="section admin-area"><div className="container">
       {view !== "ready" && <h1>Administrator portal</h1>}
       {view === "loading" && <p>Loading enquiries…</p>}
       {view === "error" && <p role="alert">Unable to load enquiries. Check your connection and permissions.</p>}
@@ -121,6 +121,7 @@ export default function AdminEnquiries() {
         <div className="admin-summary">
           <div className="admin-summary-card"><span>New enquiries</span><strong>{items.filter(item => item.status === "New").length}</strong><small>Within the latest 100 enquiries</small></div>
           <div className="admin-summary-card"><span>Client management</span><strong>Your clients</strong><Link to="/admin/clients">View clients →</Link></div>
+          <div className="admin-summary-card"><span>Website content</span><strong>Blog posts</strong><Link to="/admin/blog">Manage blog →</Link></div>
         </div>
         <div className="admin-inbox-heading"><div><span className="admin-eyebrow">YOUR INBOX</span><h2>Enquiries</h2><p>Review enquiries and reply using your email application.</p></div></div>
       </>}

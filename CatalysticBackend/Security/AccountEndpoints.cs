@@ -9,11 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CatalysticBackend.Security;
 
-public static class AccountEndpoints
+public static partial class AccountEndpoints
 {
-    public record Credentials(string? Email, string? Password);
-    public record PasswordChange(string? CurrentPassword, string? NewPassword);
-    public record BootstrapChange(string? Email, string? Password, string? NewPassword);
 
     public static void MapAccountEndpoints(this WebApplication app)
     {
@@ -57,7 +54,7 @@ public static class AccountEndpoints
             var oldHash = account.PasswordHash;
             var newHash = hasher.HashPassword(account, request.NewPassword!);
             var now = DateTime.UtcNow;
-            var changed = await db.Users.Where(user => user.Id == account.Id && user.IsActive && user.MustChangePassword &&
+            var changed = await db.Users.Where(user => user.Id == account.Id && user.AccountState == AccountState.Activated && user.MustChangePassword &&
                     user.PasswordHash == oldHash && user.BootstrapExpiresAt > now)
                 .ExecuteUpdateAsync(update => update.SetProperty(user => user.PasswordHash, newHash)
                     .SetProperty(user => user.MustChangePassword, false)
@@ -76,7 +73,7 @@ public static class AccountEndpoints
             if (!ValidPassword(request.NewPassword)) return Results.BadRequest(new { error = "Password must be 12 to 256 characters." });
             var oldHash = account!.PasswordHash;
             var hash = hasher.HashPassword(account, request.NewPassword!);
-            var changed = await db.Users.Where(user => user.Id == id && user.IsActive && user.PasswordHash == oldHash)
+            var changed = await db.Users.Where(user => user.Id == id && user.AccountState == AccountState.Activated && user.PasswordHash == oldHash)
                 .ExecuteUpdateAsync(update => update.SetProperty(user => user.PasswordHash, hash)
                     .SetProperty(user => user.SessionVersion, Guid.NewGuid()));
             await context.SignOutAsync();
@@ -98,7 +95,7 @@ public static class AccountEndpoints
 
     private static bool Verify(User? user, string? password, IPasswordHasher<User> hasher)
     {
-        if (user is not { IsActive: true } || string.IsNullOrEmpty(user.PasswordHash) ||
+        if (user is not { AccountState: AccountState.Activated } || string.IsNullOrEmpty(user.PasswordHash) ||
             password is not { Length: > 0 and <= 256 }) return false;
 
         try

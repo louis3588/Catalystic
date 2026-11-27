@@ -1,6 +1,9 @@
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { sendRequest } from "../../api";
+import ClientAssessments from "./ClientAssessments";
+import CalendarBooking from "../../components/CalendarBooking";
+import WeeklyReviews from "./WeeklyReviews";
 
 type Client = {
   id: number;
@@ -8,6 +11,9 @@ type Client = {
   lastName: string | null;
   email: string;
   isActive: boolean;
+  accountState: number;
+  pendingReviews?: number;
+  pendingCalls?: number;
 };
 type Note = {
   id: number;
@@ -40,6 +46,12 @@ const pillars = [
   "Financial",
 ];
 
+function accountStateLabel(client: Client): string {
+  if (client.accountState === 0) return "Unactivated";
+  if (client.accountState === 2) return "Dormant";
+  return client.isActive ? "Active" : "Inactive";
+}
+
 export default function AdminClients() {
   const [clients, setClients] = useState<Client[]>([]);
   const [detail, setDetail] = useState<Detail | null>(null);
@@ -49,6 +61,11 @@ export default function AdminClients() {
   const [feedback, setFeedback] = useState("");
   const [busy, setBusy] = useState(false);
   const [invitationLink, setInvitationLink] = useState("");
+  const deactivateDialog = useRef<HTMLDialogElement>(null);
+  const [pendingDeactivation, setPendingDeactivation] = useState<Client | null>(null);
+  const [reviewsOpen, setReviewsOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [assessmentVersion, setAssessmentVersion] = useState(0);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -133,10 +150,10 @@ export default function AdminClients() {
     }
   }
 
-  async function changeAccess() {
-    if (!detail || busy) return;
-    const clientId = detail.client.id;
-    const active = !detail.client.isActive;
+  async function changeAccess(client: Client) {
+    if (busy) return;
+    const clientId = client.id;
+    const active = !client.isActive;
     setBusy(true);
     setFeedback("");
 
@@ -149,12 +166,12 @@ export default function AdminClients() {
       if (!response.ok) throw new Error();
       setClients((previous) =>
         previous.map((client) =>
-          client.id === clientId ? { ...client, isActive: active } : client,
+          client.id === clientId ? { ...client, isActive: active, accountState: active ? 1 : 2 } : client,
         ),
       );
       setDetail((previous) =>
         previous && previous.client.id === clientId
-          ? { ...previous, client: { ...previous.client, isActive: active } }
+          ? { ...previous, client: { ...previous.client, isActive: active, accountState: active ? 1 : 2 } }
           : previous,
       );
       setFeedback(
@@ -212,7 +229,7 @@ export default function AdminClients() {
   }
 
   return (
-    <section className="section">
+    <section className="section admin-area">
       <div className="container">
         <Link className="text-link" to="/admin">
           Back to enquiries
@@ -232,7 +249,7 @@ export default function AdminClients() {
         )}
         {state === "ready" && (
           <>
-            <section className="enquiry-item">
+            <div className="admin-client-layout"><aside className="enquiry-item admin-invite">
               <h2>Invite a client</h2>
               <p>
                 For now, invitations require your manual approval. Payment is
@@ -287,7 +304,7 @@ export default function AdminClients() {
                   </button>
                 </div>
               )}
-            </section>
+            </aside><div className="admin-directory-panel">
             <p>
               Client accounts appear here after they have been provisioned.
               Showing up to 100 clients.
@@ -295,43 +312,42 @@ export default function AdminClients() {
             {clients.length === 0 ? (
               <p>No client accounts yet.</p>
             ) : (
-              <ul className="client-list">
+              <div className="client-table-scroll"><table className="client-directory"><caption>Client directory</caption><thead><tr><th scope="col">Client</th><th scope="col">Account</th><th scope="col">Actions</th></tr></thead><tbody>
                 {clients.map((client) => (
-                  <li key={client.id}>
+                  <tr key={client.id}><td><strong>{client.firstName} {client.lastName}</strong><br /><a href={`mailto:${encodeURIComponent(client.email)}`}>{client.email}</a>{!!client.pendingReviews && <p>Review needs attention</p>}{!!client.pendingCalls && <p>{client.pendingCalls} call request(s) need attention</p>}</td><td>{accountStateLabel(client)}</td><td className="client-actions">
                     <button
                       type="button"
                       onClick={() => void selectClient(client.id)}
                     >
-                      {client.firstName} {client.lastName} —{" "}
-                      {client.isActive ? "Active" : "Inactive"}
+                      View client
                     </button>
-                  </li>
+                    <a href={`mailto:${encodeURIComponent(client.email)}`}>Email</a>
+                    <button type="button" className={client.isActive ? "client-danger-button" : "client-access-button"} disabled={busy} onClick={() => { if (client.isActive) { setPendingDeactivation(client); deactivateDialog.current?.showModal(); } else { void changeAccess(client); } }}>{client.isActive ? "Deactivate access" : "Activate access"}</button></td></tr>
                 ))}
-              </ul>
+              </tbody></table></div>
             )}
+            </div></div>
             <p role="status">{feedback}</p>
+            <dialog ref={deactivateDialog} className="client-confirm-dialog" aria-labelledby="deactivate-title">
+              <h3 id="deactivate-title">Deactivate client access?</h3>
+              <p>{pendingDeactivation?.firstName} will be signed out and unable to access the portal until reactivated.</p>
+              <div className="client-actions"><button type="button" onClick={() => deactivateDialog.current?.close()}>Cancel</button><button type="button" className="client-danger-button" onClick={() => { deactivateDialog.current?.close(); if (pendingDeactivation) void changeAccess(pendingDeactivation); }}>Deactivate access</button></div>
+            </dialog>
             {detail && (
               <div className="client-detail">
-                <h2>
+                <h2 className="client-detail-heading">
                   {detail.client.firstName} {detail.client.lastName}
                 </h2>
                 <p>{detail.client.email}</p>
                 <p>
                   Account access:{" "}
-                  {detail.client.isActive ? "Active" : "Inactive"}
+                  {accountStateLabel(detail.client)}
                 </p>
-                <button
-                  type="button"
-                  className="button button-outline client-access-button"
-                  disabled={busy}
-                  onClick={() => void changeAccess()}
-                >
-                  {detail.client.isActive
-                    ? "Deactivate access"
-                    : "Activate access"}
-                </button>
-                <section className="enquiry-item">
-                  <h3>Private practitioner notes</h3>
+                <details className="client-detail-panel" onToggle={event => setReviewsOpen(event.currentTarget.open)}><summary>Weekly reviews</summary>{reviewsOpen && <WeeklyReviews key={detail.client.id} clientId={detail.client.id} onCompleted={() => { setAssessmentVersion(value => value + 1); setClients(previous => previous.map(client => client.id === detail.client.id ? { ...client, pendingReviews: 0 } : client)); }} />}</details>
+                <details className="client-detail-panel"><summary>Wellness assessments</summary><ClientAssessments key={`${detail.client.id}-${assessmentVersion}`} clientId={detail.client.id} /></details>
+                <details className="client-detail-panel" onToggle={event => setCalendarOpen(event.currentTarget.open)}><summary>Client calendar and call requests</summary>{calendarOpen && <CalendarBooking key={detail.client.id} clientId={detail.client.id} tasks={detail.tasks} onPendingCallsChange={count => setClients(previous => previous.map(client => client.id === detail.client.id ? { ...client, pendingCalls: count } : client))} />}</details>
+                <details className="enquiry-item client-detail-panel">
+                  <summary>Private practitioner notes</summary>
                   <p>Only administrators can see these notes.</p>
                   {detail.privateNotes.map((note) => (
                     <p className="enquiry-message" key={note.id}>
@@ -355,12 +371,12 @@ export default function AdminClients() {
                       Save private note
                     </button>
                   </form>
-                </section>
-                <section className="enquiry-item">
-                  <h3>Shared notes</h3>
+                </details>
+                <details className="enquiry-item client-detail-panel">
+                  <summary>Shared notes</summary>
                   <p>Sharing makes the note visible to this client.</p>
                   {detail.sharedNotes.map((note) => (
-                    <p className="enquiry-message" key={note.id}>
+                    <p className="enquiry-message client-note-card" key={note.id}>
                       {note.content}
                     </p>
                   ))}
@@ -381,11 +397,11 @@ export default function AdminClients() {
                       Share note
                     </button>
                   </form>
-                </section>
-                <section className="enquiry-item">
-                  <h3>Tasks and homework</h3>
+                </details>
+                <details className="enquiry-item client-detail-panel">
+                  <summary>Tasks and homework</summary>
                   {detail.tasks.map((task) => (
-                    <div key={task.id}>
+                    <div className="client-note-card" key={task.id}>
                       <strong>{task.title}</strong>
                       <p>
                         {task.pillar} ·{" "}
@@ -397,7 +413,6 @@ export default function AdminClients() {
                           {new Date(task.dueAt).toLocaleDateString("en-GB", {
                             timeZone: "UTC",
                           })}{" "}
-                          (UTC)
                         </p>
                       )}
                       <p className="enquiry-message">{task.description}</p>
@@ -423,14 +438,14 @@ export default function AdminClients() {
                       </select>
                     </label>
                     <label>
-                      Due date in UTC (optional){" "}
+                      Due date (optional){" "}
                       <input name="dueAt" type="date" />
                     </label>
                     <button className="button book-button" disabled={busy}>
                       Assign task
                     </button>
                   </form>
-                </section>
+                </details>
               </div>
             )}
           </>

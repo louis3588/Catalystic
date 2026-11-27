@@ -27,7 +27,7 @@ public class SessionValidationTests
             .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
         await using var db = new CatalysticDbContext(options);
         var version = Guid.NewGuid();
-        db.Users.Add(new User { Id = 1, IsActive = active, MustChangePassword = mustChange,
+        db.Users.Add(new User { Id = 1, AccountState = active ? AccountState.Activated : AccountState.Dormant, MustChangePassword = mustChange,
             SessionVersion = version, Role = storedRole });
         await db.SaveChangesAsync();
 

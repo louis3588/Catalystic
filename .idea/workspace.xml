@@ -4,9 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="source level jenkins coverage">
+    <list default="true" id="e3112146-aa0f-4b49-b205-694b2e1769c5" name="Changes" comment="redesign and restructure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend.Tests/AssessmentServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend.Tests/AssessmentServiceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend.Tests/BlogServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend.Tests/BlogServiceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend.Tests/auth-integration.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend.Tests/auth-integration.cjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Data/CatalysticDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Migrations/CatalysticDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Models/ClientTask.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Models/ClientTask.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CatalysticBackend/Security/ClientWorkEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CatalysticBackend/Security/ClientWorkEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/components/TaskCalendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/components/TaskCalendar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/AdminClients.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/admin/AdminClients.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/pages/client/ClientPortal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/pages/client/ClientPortal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/tests/ClientPortal.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/tests/ClientPortal.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/tests/TaskCalendar.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/tests/TaskCalendar.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalysticfrontend/src/tests/WeeklyReview.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/catalysticfrontend/src/tests/WeeklyReview.test.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,23 +85,23 @@
 }]]></component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0033101840333423" />
-      <entry key="MS500" value="1.5781944975447033" />
-      <entry key="S2" value="3.2883882265339235" />
-      <entry key="S5" value="4.174425213221928" />
-      <entry key="S10" value="4.558533097020563" />
-      <entry key="S30" value="4.845904845960575" />
-      <entry key="S60" value="4.926600450193392" />
-      <entry key="M2" value="5.082570514340521" />
-      <entry key="M5" value="8.021274378581264" />
-      <entry key="M10" value="24.05027161991104" />
-      <entry key="M15" value="50.974619406354094" />
-      <entry key="M30" value="149.0588828436155" />
-      <entry key="H1" value="302.6993226862587" />
-      <entry key="H2" value="514.1298425712339" />
-      <entry key="H4" value="768.5173327253224" />
-      <entry key="D1" value="1201.6423940697427" />
-      <entry key="W1" value="1312.1792037456732" />
+      <entry key="MS100" value="1.0040748480385666" />
+      <entry key="MS500" value="1.4138784673300167" />
+      <entry key="S2" value="3.0163953994502424" />
+      <entry key="S5" value="4.947472390650329" />
+      <entry key="S10" value="6.191229662640883" />
+      <entry key="S30" value="7.318886989788786" />
+      <entry key="S60" value="7.648512454094841" />
+      <entry key="M2" value="7.847374708484316" />
+      <entry key="M5" value="11.458654335350726" />
+      <entry key="M10" value="28.043497859980597" />
+      <entry key="M15" value="45.49350702501236" />
+      <entry key="M30" value="87.1555800543824" />
+      <entry key="H1" value="157.50920830766347" />
+      <entry key="H2" value="320.6738602703486" />
+      <entry key="H4" value="638.0562757437384" />
+      <entry key="D1" value="1523.2790923678524" />
+      <entry key="W1" value="1824.5971142793967" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -95,37 +109,37 @@
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
       <entry key="S10" value="0.0" />
-      <entry key="S30" value="0.0" />
-      <entry key="S60" value="0.0" />
-      <entry key="M2" value="0.0" />
-      <entry key="M5" value="0.0" />
-      <entry key="M10" value="0.0" />
-      <entry key="M15" value="0.0" />
-      <entry key="M30" value="0.0" />
-      <entry key="H1" value="0.0" />
-      <entry key="H2" value="0.0" />
-      <entry key="H4" value="0.0" />
-      <entry key="D1" value="0.0" />
-      <entry key="W1" value="0.0" />
+      <entry key="S30" value="3.946953266310592E-247" />
+      <entry key="S60" value="6.28247822623413E-124" />
+      <entry key="M2" value="2.5064872284203193E-62" />
+      <entry key="M5" value="2.288896728505409E-25" />
+      <entry key="M10" value="4.784241557974926E-13" />
+      <entry key="M15" value="6.117050503660049E-9" />
+      <entry key="M30" value="7.821157525366716E-5" />
+      <entry key="H1" value="0.008843730844709565" />
+      <entry key="H2" value="0.0940411125237767" />
+      <entry key="H4" value="0.30666123413919644" />
+      <entry key="D1" value="0.8211890439643852" />
+      <entry key="W1" value="0.9722491952832834" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9105237979115652" />
-      <entry key="MS500" value="1.5480701673647714" />
-      <entry key="S2" value="3.272246663545809" />
-      <entry key="S5" value="4.166092442074191" />
-      <entry key="S10" value="4.553953017643783" />
-      <entry key="S30" value="4.844274186242315" />
-      <entry key="S60" value="4.9257696251492655" />
-      <entry key="M2" value="5.082124407083269" />
-      <entry key="M5" value="8.020873674033053" />
-      <entry key="M10" value="24.049569909536697" />
-      <entry key="M15" value="50.97355482477872" />
-      <entry key="M30" value="149.05716214505026" />
-      <entry key="H1" value="302.6975183395937" />
-      <entry key="H2" value="514.1283703383758" />
-      <entry key="H4" value="768.5162964737946" />
-      <entry key="D1" value="1201.642142618359" />
-      <entry key="W1" value="1312.179165039813" />
+      <entry key="MS100" value="0.9303900120403897" />
+      <entry key="MS500" value="1.3929260798413017" />
+      <entry key="S2" value="3.0036657250526284" />
+      <entry key="S5" value="4.93740579705007" />
+      <entry key="S10" value="6.184393073677772" />
+      <entry key="S30" value="7.316033463050318" />
+      <entry key="S60" value="7.646999520100637" />
+      <entry key="M2" value="7.846593654253957" />
+      <entry key="M5" value="11.458235387606178" />
+      <entry key="M10" value="28.04303868298847" />
+      <entry key="M15" value="45.49301888719167" />
+      <entry key="M30" value="87.15518313977796" />
+      <entry key="H1" value="157.5175578455444" />
+      <entry key="H2" value="320.7672777382858" />
+      <entry key="H4" value="638.3622508179027" />
+      <entry key="D1" value="1524.1000003081904" />
+      <entry key="W1" value="1825.5693154249755" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -137,29 +151,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "devops",
-    "ignore.virus.scanning.warn.message": "true",
-    "javascript.preferred.runtime.type.id": "node",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.jshint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "settings.editor.selected.configurable": "com.intellij.air.settings.ai.providers",
-    "ts.external.directory.path": "D:\\Code\\JavaScript\\Catalystic\\catalysticfrontend\\node_modules\\typescript\\lib"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start:all.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.mcpserver.settings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Code\\JavaScript\\Catalystic\\catalysticfrontend\\node_modules\\typescript\\lib&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -174,7 +189,7 @@
       <recent name="D:\Code\JavaScript\Catalystic\CatalysticBackend\docs" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.start:all">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
@@ -188,11 +203,21 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="start:all" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/catalysticfrontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:all" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-56aff7b04f6f-JavaScript-WS-263.7307.202" />
+        <option value="bundled-js-predefined-d6986cc7102b-56aff7b04f6f-JavaScript-WS-263.7307.348" />
       </set>
     </attachedChunks>
   </component>
@@ -228,14 +253,15 @@
       <workItem from="1795446691560" duration="1777000" />
       <workItem from="1795448528679" duration="223000" />
       <workItem from="1795448781150" duration="8101000" />
-      <workItem from="1795463902448" duration="1209000" />
-      <workItem from="1795525707871" duration="556000" />
-      <workItem from="1795526693471" duration="274000" />
-      <workItem from="1795528571647" duration="66000" />
-      <workItem from="1795528664384" duration="223000" />
-      <workItem from="1795529224712" duration="1423000" />
-      <workItem from="1795600142596" duration="153000" />
-      <workItem from="1795600324348" duration="4711000" />
+      <workItem from="1795463902448" duration="403000" />
+      <workItem from="1795608791192" duration="125000" />
+      <workItem from="1795609087738" duration="55000" />
+      <workItem from="1795615575708" duration="1000" />
+      <workItem from="1795615619685" duration="29000" />
+      <workItem from="1795619432154" duration="12451000" />
+      <workItem from="1795681423249" duration="4902000" />
+      <workItem from="1795699763967" duration="12851000" />
+      <workItem from="1795728328414" duration="12000" />
     </task>
     <task id="LOCAL-00001" summary="user profile provision init">
       <option name="closed" value="true" />
@@ -253,29 +279,29 @@
       <option name="project" value="LOCAL" />
       <updated>1795354818165</updated>
     </task>
-    <task id="LOCAL-00003" summary="client to admin messaging">
+    <task id="LOCAL-00003" summary="admin blog posts scheduling">
       <option name="closed" value="true" />
-      <created>1795464634644</created>
+      <created>1795621618258</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1795464634646</updated>
+      <updated>1795621618259</updated>
     </task>
-    <task id="LOCAL-00004" summary="jenkins config and test coverage reports">
+    <task id="LOCAL-00004" summary="wellness assessments and blog labels modelled">
       <option name="closed" value="true" />
-      <created>1795602303657</created>
+      <created>1795700428599</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1795602303657</updated>
+      <updated>1795700428599</updated>
     </task>
-    <task id="LOCAL-00005" summary="source level jenkins coverage">
+    <task id="LOCAL-00005" summary="redesign and restructure">
       <option name="closed" value="true" />
-      <created>1795603803131</created>
+      <created>1795709004522</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1795603803131</updated>
+      <updated>1795709004523</updated>
     </task>
     <option name="localTasksCounter" value="6" />
     <servers />
@@ -297,9 +323,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="user profile provision init" />
     <MESSAGE value="static pages initialised" />
-    <MESSAGE value="client to admin messaging" />
-    <MESSAGE value="jenkins config and test coverage reports" />
-    <MESSAGE value="source level jenkins coverage" />
-    <option name="LAST_COMMIT_MESSAGE" value="source level jenkins coverage" />
+    <MESSAGE value="admin blog posts scheduling" />
+    <MESSAGE value="wellness assessments and blog labels modelled" />
+    <MESSAGE value="redesign and restructure" />
+    <option name="LAST_COMMIT_MESSAGE" value="redesign and restructure" />
   </component>
 </project>
